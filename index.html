@@ -63,6 +63,7 @@
         <a href="#why">Why LumySmile</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="header__actions">
@@ -311,6 +312,85 @@
       </div>
     </section>
 
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container contact__inner">
+        <div class="contact__intro">
+          <span class="eyebrow">We're here to help</span>
+          <h2>Get in touch</h2>
+          <p>Questions about your order, our products, or which routine is right for you? Our friendly team is happy to help — we usually reply within 24 hours.</p>
+
+          <ul class="contact__info">
+            <li>
+              <span class="contact__ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Email us</strong>
+                <a href="mailto:support@lumysmile.com">support@lumysmile.com</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact__ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </span>
+              <div>
+                <strong>Our address</strong>
+                <span>2829 Rue Gigault, Québec, QC, G1V 2C8, Canada</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact__ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Response time</strong>
+                <span>Within 24 hours, Mon–Fri</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="contact__social">
+            <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+            </a>
+            <a href="https://tiktok.com" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 4c.4 2.4 2 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4v5.6a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.8a2.4 2.4 0 1 0 1.7 2.3V4H14Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.2l.8-3H14V8.6c0-.4.2-.6.7-.6Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact__form" id="contactForm"
+              action="https://lumysmile.com/contact#contact_form"
+              method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="contact" />
+          <input type="hidden" name="utf8" value="✓" />
+
+          <div class="field">
+            <label for="cName">Name</label>
+            <input type="text" id="cName" name="contact[name]" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="cEmail">Email</label>
+            <input type="email" id="cEmail" name="contact[email]" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="cPhone">Phone <span class="field__opt">(optional)</span></label>
+            <input type="tel" id="cPhone" name="contact[phone]" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="cBody">How can we help?</label>
+            <textarea id="cBody" name="contact[body]" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg btn--block">Send message</button>
+          <p class="contact__note" id="contactMsg" role="status" aria-live="polite">Your message goes straight to our support team. We'll reply by email.</p>
+        </form>
+      </div>
+    </section>
+
     <!-- Newsletter -->
     <section class="newsletter">
       <div class="container newsletter__inner">
@@ -363,7 +443,7 @@
       <div class="footer__col">
         <h4>Help</h4>
         <a href="#faq">FAQ</a>
-        <a href="mailto:support@lumysmile.com">Contact us</a>
+        <a href="#contact">Contact us</a>
         <a href="#why">Our promise</a>
       </div>
       <div class="footer__col">

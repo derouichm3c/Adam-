@@ -329,6 +329,47 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 .faq__item[open] summary::after { transform: rotate(45deg); }
 .faq__item p { padding: 0 1.3rem 1.2rem; margin: 0; color: var(--muted); }
 
+/* ---------- Contact ---------- */
+.contact { background: var(--mint-100); }
+.contact__inner {
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(1.6rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.contact__intro > p { color: var(--muted); max-width: 42ch; }
+.contact__info { list-style: none; padding: 0; margin: 1.8rem 0; display: grid; gap: 1.1rem; }
+.contact__info li { display: flex; gap: .9rem; align-items: flex-start; }
+.contact__ico {
+  flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  background: #fff; color: var(--green-700); box-shadow: var(--shadow-sm);
+}
+.contact__info strong { display: block; font-size: .95rem; margin-bottom: .1rem; }
+.contact__info a, .contact__info span { color: var(--muted); font-size: .92rem; }
+.contact__info a:hover { color: var(--green-700); }
+.contact__social { display: flex; gap: .6rem; margin-top: .4rem; }
+.contact__social a {
+  width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%;
+  background: #fff; color: var(--green-700); box-shadow: var(--shadow-sm);
+  transition: background .2s, color .2s, transform .2s;
+}
+.contact__social a:hover { background: var(--green-600); color: #fff; transform: translateY(-2px); }
+
+.contact__form {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(1.4rem, 3vw, 2.2rem); box-shadow: var(--shadow-md);
+}
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+.field__opt { color: var(--muted); font-weight: 400; }
+.field input, .field textarea {
+  width: 100%; padding: .8em 1em; border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+  font-size: .95rem; font-family: inherit; color: var(--charcoal); background: var(--cream);
+  transition: border-color .2s, box-shadow .2s; resize: vertical;
+}
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--green-500); box-shadow: 0 0 0 4px var(--mint-100);
+}
+.contact__note { font-size: .82rem; color: var(--muted); text-align: center; margin: .9rem 0 0; }
+
 /* ---------- Newsletter ---------- */
 .newsletter { background: var(--cream-2); }
 .newsletter__inner {
@@ -481,6 +522,7 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
   .steps__grid { grid-template-columns: 1fr; }
   .reviews__grid { grid-template-columns: 1fr; }
   .guarantee__inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .contact__inner { grid-template-columns: 1fr; }
   .newsletter__inner { grid-template-columns: 1fr; }
   .modal__grid { grid-template-columns: 1fr; }
 }
