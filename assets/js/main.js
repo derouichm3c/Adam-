@@ -65,7 +65,7 @@
       badge: "Eco",
       rating: "4.7",
       reviews: 96,
-      images: [CDN + "hf_20260715_225801_42d0920b-0b3d-40d9-bdfb-1b9367f2b2d9.png?v=1784156518", CDN + "hf_20260715_223143_71d9dc5b-0029-48a7-b8ea-91c34fb67587.png?v=1784156518", CDN + "hf_20260715_223145_a4580b7a-89d3-4d93-9b68-78177cfb779b.png?v=1784156518"],
+      images: [CDN + "hf_20260715_225801_42d0920b-0b3d-40d9-bdfb-1b9367f2b2d9.png?v=1784156518", CDN + "hf_20260715_215255_c9b389ea-d264-4b3e-b1e9-d24db30d3f43.png?v=1784158039", CDN + "hf_20260715_223143_71d9dc5b-0029-48a7-b8ea-91c34fb67587.png?v=1784156518", CDN + "hf_20260715_223145_a4580b7a-89d3-4d93-9b68-78177cfb779b.png?v=1784156518"],
       desc:
         "<p>Ditch the plastic. Our bamboo toothbrush 4-pack pairs a smooth, biodegradable handle with charcoal-infused bristles — a clean that's gentle on the planet and brightens over time.</p>" +
         "<ul>" +
