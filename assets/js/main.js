@@ -86,7 +86,7 @@
       badge: "Best value",
       rating: "5.0",
       reviews: 87,
-      images: [CDN + "hf_20260715_223635_9b74b804-7c00-4c2a-a8ed-f8a5a52f23e1.png?v=1784156518", CDN + "hf_20260715_223149_cf584903-a644-4851-8278-624b41ef20ec.png?v=1784156518", CDN + "hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"],
+      images: [CDN + "hf_20260715_233643_2cbe1c7c-06e0-443e-ae7f-3976a74e6956.png?v=1784159002", CDN + "hf_20260715_223149_cf584903-a644-4851-8278-624b41ef20ec.png?v=1784156518", CDN + "hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"],
       desc:
         "<p>Our three best-sellers together, at a better price than buying separately. One box, one routine, a brighter smile.</p>" +
         "<ul>" +
