@@ -25,7 +25,7 @@
       badge: "Bestseller",
       rating: "4.8",
       reviews: 214,
-      images: [CDN + "teeth_strips_2.png?v=1783999225", CDN + "fiche_produit_4.png?v=1784056124", CDN + "fiche_produit_bande.png?v=1784053585"],
+      images: [CDN + "hf_20260715_223633_b46fd102-9d99-4eaf-aac3-310267517f9d.png?v=1784156518", CDN + "hf_20260715_224935_4a4a43c6-6220-4440-8a71-ee12da555b68.png?v=1784156518", CDN + "hf_20260715_223930_a5c7983e-924c-4afb-a82b-08f1ab775f01.png?v=1784156518"],
       desc:
         "<p>Get the confidence of professional-level whitening at home — without the sensitivity, the mess, or the dentist's price tag. Our peroxide-free strips lift years of stains gently and safely.</p>" +
         "<ul>" +
@@ -45,7 +45,7 @@
       badge: "Natural",
       rating: "4.9",
       reviews: 168,
-      images: [CDN + "toothpaste.png?v=1783997407", CDN + "toothpaste_3.png?v=1783997512", CDN + "toothpaste_2.png?v=1783997454"],
+      images: [CDN + "hf_20260715_224932_5dece692-f68e-402d-878d-104f269ed580.png?v=1784156518", CDN + "hf_20260715_222940_5f10d2c7-7b73-4670-985e-c87f31b23900.png?v=1784156517", CDN + "hf_20260715_223927_35862cba-4e19-4ea1-b8e6-4079e46e8f65.png?v=1784156518"],
       desc:
         "<p>Activated charcoal has been used for centuries to purify and cleanse. Our charcoal toothpaste harnesses it to gently lift everyday stains — coffee, tea, wine — without harsh chemicals.</p>" +
         "<ul>" +
@@ -65,7 +65,7 @@
       badge: "Eco",
       rating: "4.7",
       reviews: 96,
-      images: [CDN + "toothpaste_11.png?v=1784143245", CDN + "hero-annotated-maxq-v2_ea454137-8ad1-4019-baf1-afb9df7aded4.png?v=1783967195", CDN + "tooth-restored_14c6b485-beee-4e9a-aa91-447b4d0a22c8.png?v=1784055235"],
+      images: [CDN + "hf_20260715_225801_42d0920b-0b3d-40d9-bdfb-1b9367f2b2d9.png?v=1784156518", CDN + "hf_20260715_223143_71d9dc5b-0029-48a7-b8ea-91c34fb67587.png?v=1784156518", CDN + "hf_20260715_223145_a4580b7a-89d3-4d93-9b68-78177cfb779b.png?v=1784156518"],
       desc:
         "<p>Ditch the plastic. Our bamboo toothbrush 4-pack pairs a smooth, biodegradable handle with charcoal-infused bristles — a clean that's gentle on the planet and brightens over time.</p>" +
         "<ul>" +
@@ -86,7 +86,7 @@
       badge: "Best value",
       rating: "5.0",
       reviews: 87,
-      images: [CDN + "bundle_zoomed_restored_c245d6a4-51eb-4f68-af56-f0d7a11dd5cd.png?v=1784143963", CDN + "bundle_4_fixed_33cc5c51-e6c6-422b-a348-6138c4d4e5d9.png?v=1784142728"],
+      images: [CDN + "hf_20260715_223635_9b74b804-7c00-4c2a-a8ed-f8a5a52f23e1.png?v=1784156518", CDN + "hf_20260715_223149_cf584903-a644-4851-8278-624b41ef20ec.png?v=1784156518", CDN + "hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"],
       desc:
         "<p>Our three best-sellers together, at a better price than buying separately. One box, one routine, a brighter smile.</p>" +
         "<ul>" +
