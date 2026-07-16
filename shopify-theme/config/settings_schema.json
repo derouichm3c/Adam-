@@ -1,0 +1,44 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LumySmile",
+    "theme_version": "1.0.0",
+    "theme_author": "LumySmile",
+    "theme_documentation_url": "https://lumysmile.com",
+    "theme_support_url": "https://lumysmile.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image (optional)"
+      },
+      {
+        "type": "text",
+        "id": "announcement_1",
+        "label": "Announcement 1",
+        "default": "Free tracked shipping on orders over $50"
+      },
+      {
+        "type": "text",
+        "id": "announcement_2",
+        "label": "Announcement 2",
+        "default": "30-day money-back guarantee"
+      },
+      {
+        "type": "text",
+        "id": "announcement_3",
+        "label": "Announcement 3",
+        "default": "Peroxide-free & enamel-safe"
+      },
+      {
+        "type": "text",
+        "id": "announcement_4",
+        "label": "Announcement 4",
+        "default": "Natural charcoal & bamboo"
+      }
+    ]
+  }
+]

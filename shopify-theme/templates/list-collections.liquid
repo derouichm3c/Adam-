@@ -1,0 +1,34 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Browse</span>
+    <h1>Collections</h1>
+    <p>Explore everything LumySmile has to offer.</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="product-grid">
+      {%- for collection in collections -%}
+        {%- if collection.products_count > 0 -%}
+          <article class="card">
+            <div class="card__media">
+              <a href="{{ collection.url }}" aria-label="{{ collection.title | escape }}">
+                {%- if collection.featured_image -%}
+                  <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" loading="lazy" width="300" height="300">
+                {%- else -%}
+                  <img src="{{ 'collection-1' | placeholder_svg_tag }}" alt="{{ collection.title | escape }}" width="300" height="300">
+                {%- endif -%}
+              </a>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title"><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
+              <div class="section-cta" style="margin-top:auto">
+                <a href="{{ collection.url }}" class="btn btn--outline">View collection</a>
+              </div>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

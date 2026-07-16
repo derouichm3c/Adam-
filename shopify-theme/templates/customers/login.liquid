@@ -1,0 +1,32 @@
+<section class="auth">
+  <h1>Sign in</h1>
+  <div class="account-block" id="login">
+    {%- form 'customer_login' -%}
+      {%- if form.errors -%}<p class="newsletter__msg" style="color:#c0392b">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="field">
+        <label for="CustomerEmail">Email</label>
+        <input type="email" id="CustomerEmail" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="CustomerPassword">Password</label>
+        <input type="password" id="CustomerPassword" name="customer[password]" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn--primary btn--lg btn--block">Sign in</button>
+      <p class="contact__note"><a class="link" href="#recover">Forgot your password?</a></p>
+    {%- endform -%}
+  </div>
+
+  <div class="account-block" id="recover">
+    <h2 style="font-size:1.1rem">Reset your password</h2>
+    {%- form 'recover_customer_password' -%}
+      {%- if form.posted_successfully? -%}<p class="newsletter__msg">We've sent you an email with a link to reset your password.</p>{%- endif -%}
+      <div class="field">
+        <label for="RecoverEmail">Email</label>
+        <input type="email" id="RecoverEmail" name="email" autocomplete="email" required>
+      </div>
+      <button type="submit" class="btn btn--outline btn--block">Send reset link</button>
+    {%- endform -%}
+  </div>
+
+  <p style="text-align:center;color:var(--muted)">New here? <a class="link" href="{{ routes.account_register_url }}">Create an account</a></p>
+</section>

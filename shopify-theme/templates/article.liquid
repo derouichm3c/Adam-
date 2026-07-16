@@ -1,0 +1,16 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ article.published_at | date: '%B %d, %Y' }}</span>
+    <h1>{{ article.title }}</h1>
+    {%- if article.author != blank -%}<p>By {{ article.author }}</p>{%- endif -%}
+  </div>
+</section>
+<section class="page-wrap">
+  <div class="container" style="max-width:760px">
+    {%- if article.image -%}
+      <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.title | escape }}" style="border-radius:var(--radius);margin-bottom:1.6rem">
+    {%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+    <div class="section-cta" style="text-align:left;margin-top:2rem"><a href="{{ blog.url }}" class="link">&larr; Back to {{ blog.title }}</a></div>
+  </div>
+</section>

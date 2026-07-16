@@ -1,0 +1,20 @@
+<section class="page-wrap">
+  <div class="container" style="max-width:520px;text-align:center">
+    <span class="eyebrow">{{ shop.name }}</span>
+    <h1>Your gift card</h1>
+    <div class="account-block">
+      {%- if gift_card.image -%}
+        <img src="{{ gift_card.image | image_url: width: 600 }}" alt="Gift card" style="border-radius:var(--radius-sm);margin-bottom:1rem">
+      {%- endif -%}
+      <p style="color:var(--muted);margin-bottom:.4rem">Gift card value</p>
+      <p class="price-now" style="font-size:2.4rem">{{ gift_card.balance | money }}</p>
+      {%- if gift_card.enabled == false -%}
+        <p style="color:#c0392b">This gift card is no longer active.</p>
+      {%- endif -%}
+      <p style="letter-spacing:.14em;font-weight:700;margin-top:1rem;word-break:break-all">{{ gift_card.code | format_code }}</p>
+      <div class="section-cta">
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary btn--lg">Shop now</a>
+      </div>
+    </div>
+  </div>
+</section>

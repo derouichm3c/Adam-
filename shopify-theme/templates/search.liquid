@@ -1,0 +1,28 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Search</span>
+    <h1>Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:520px;margin:1rem auto 0;display:flex;gap:.6rem">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products…" aria-label="Search" style="flex:1;padding:.85em 1.1em;border:1.5px solid var(--line);border-radius:999px;font-family:inherit;background:#fff">
+      <button type="submit" class="btn btn--primary">Search</button>
+    </form>
+  </div>
+</section>
+<section>
+  <div class="container">
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <p style="text-align:center;color:var(--muted);margin-bottom:1.6rem">{{ search.results.size }} result{% if search.results.size != 1 %}s{% endif %} for &ldquo;{{ search.terms | escape }}&rdquo;</p>
+        <div class="product-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p style="text-align:center;color:var(--muted);padding:2rem 0">No results for &ldquo;{{ search.terms | escape }}&rdquo;. Try another search.</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>

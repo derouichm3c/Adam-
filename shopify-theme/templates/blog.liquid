@@ -1,0 +1,28 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Journal</span>
+    <h1>{{ blog.title }}</h1>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="product-grid">
+      {%- for article in blog.articles -%}
+        <article class="card">
+          {%- if article.image -%}
+            <div class="card__media">
+              <a href="{{ article.url }}"><img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title | escape }}" loading="lazy" width="300" height="200" style="aspect-ratio:auto"></a>
+            </div>
+          {%- endif -%}
+          <div class="card__body" style="text-align:left">
+            <h3 class="card__title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            <p style="color:var(--muted);font-size:.9rem">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+            <div class="section-cta" style="margin-top:auto"><a href="{{ article.url }}" class="link">Read more &rarr;</a></div>
+          </div>
+        </article>
+      {%- else -%}
+        <p style="color:var(--muted)">No posts yet.</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

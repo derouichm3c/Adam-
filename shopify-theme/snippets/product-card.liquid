@@ -1,0 +1,68 @@
+{%- comment -%}
+  Renders a LumySmile product card.
+  Accepts: product (required)
+{%- endcomment -%}
+{%- liquid
+  assign badge = ''
+  assign rating = ''
+  assign reviews = ''
+  case product.handle
+    when 'teeth-whitening-strips'
+      assign badge = 'Bestseller'
+      assign rating = '4.8'
+      assign reviews = '214'
+    when 'charcoal-whitening-toothpaste'
+      assign badge = 'Natural'
+      assign rating = '4.9'
+      assign reviews = '168'
+    when 'bamboo-toothbrush-4-pack'
+      assign badge = 'Eco'
+      assign rating = '4.7'
+      assign reviews = '96'
+    when 'the-complete-smile-bundle'
+      assign badge = 'Best value'
+      assign rating = '5.0'
+      assign reviews = '87'
+    else
+      assign badge = 'New'
+  endcase
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+-%}
+<article class="card">
+  <div class="card__media">
+    {%- if on_sale -%}
+      <span class="card__badge card__badge--save">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+    {%- else -%}
+      <span class="card__badge">{{ badge }}</span>
+    {%- endif -%}
+    <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_media -%}
+        <img src="{{ product.featured_media | image_url: width: 600 }}" alt="{{ product.featured_media.alt | default: product.title | escape }}" loading="lazy" width="300" height="300">
+      {%- else -%}
+        <img src="{{ 'product-1' | placeholder_svg_tag }}" alt="{{ product.title | escape }}" width="300" height="300">
+      {%- endif -%}
+    </a>
+    <a href="{{ product.url }}" class="card__quick">View product</a>
+  </div>
+  <div class="card__body">
+    {%- if rating != blank -%}
+      <div class="card__stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>{{ rating }} ({{ reviews }})</span></div>
+    {%- endif -%}
+    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title | split: ' — ' | first }}</a></h3>
+    <div class="card__price-row">
+      <span class="card__price">{{ product.price | money }}</span>
+      {%- if on_sale -%}<span class="card__was">{{ product.compare_at_price | money }}</span>{%- endif -%}
+    </div>
+    {%- if product.available -%}
+      {%- form 'product', product, class: 'card__form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="card__add card__add--block">Add to cart</button>
+      {%- endform -%}
+    {%- else -%}
+      <a href="{{ product.url }}" class="card__add card__add--block" style="text-align:center">Sold out</a>
+    {%- endif -%}
+  </div>
+</article>

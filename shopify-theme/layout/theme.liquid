@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#0E6E5C">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- else -%}
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E6E5C'/%3E%3Cpath d='M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='24.5' cy='9' r='2' fill='%237FD9C9'/%3E%3C/svg%3E">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{ 'lumysmile.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}">
+
+  <div class="announcement" role="region" aria-label="Store announcements">
+    <div class="announcement__track">
+      {%- assign a1 = settings.announcement_1 | default: 'Free tracked shipping on orders over $50' -%}
+      {%- assign a2 = settings.announcement_2 | default: '30-day money-back guarantee' -%}
+      {%- assign a3 = settings.announcement_3 | default: 'Peroxide-free & enamel-safe' -%}
+      {%- assign a4 = settings.announcement_4 | default: 'Natural charcoal & bamboo' -%}
+      <span>&#10022; {{ a1 }}</span>
+      <span>&#10022; {{ a2 }}</span>
+      <span>&#10022; {{ a3 }}</span>
+      <span>&#10022; {{ a4 }}</span>
+      <span aria-hidden="true">&#10022; {{ a1 }}</span>
+      <span aria-hidden="true">&#10022; {{ a2 }}</span>
+      <span aria-hidden="true">&#10022; {{ a3 }}</span>
+      <span aria-hidden="true">&#10022; {{ a4 }}</span>
+    </div>
+  </div>
+
+  {%- liquid
+    assign tpl = template.name
+    assign ph = ''
+    if page != blank
+      assign ph = page.handle
+    endif
+  -%}
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name }} home">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="140" style="height:34px;width:auto">
+        {%- else -%}
+          <svg class="brand__mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+            <rect width="32" height="32" rx="9" fill="#0E6E5C"/>
+            <path d="M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="24.5" cy="9" r="2" fill="#7FD9C9"/>
+          </svg>
+          <span class="brand__name">Lumy<span>Smile</span></span>
+        {%- endif -%}
+      </a>
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <a href="{{ routes.root_url }}"{% if tpl == 'index' %} aria-current="page"{% endif %}>Home</a>
+        <a href="{{ routes.all_products_collection_url }}"{% if tpl == 'collection' or tpl == 'product' or tpl == 'list-collections' %} aria-current="page"{% endif %}>Shop</a>
+        <a href="/pages/mission"{% if ph == 'mission' %} aria-current="page"{% endif %}>Mission</a>
+        <a href="/pages/faq"{% if ph == 'faq' %} aria-current="page"{% endif %}>FAQ</a>
+        <a href="/pages/about-us"{% if ph == 'about-us' %} aria-current="page"{% endif %}>About</a>
+        <a href="/pages/contact"{% if ph == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost header__shop-btn">Shop now</a>
+        <a href="{{ routes.cart_url }}" class="cart-btn" id="cartBtn" aria-label="View cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 6h15l-1.5 9h-12L6 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M6 6 5 3H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="20" r="1.4" fill="currentColor"/>
+            <circle cx="17" cy="20" r="1.4" fill="currentColor"/>
+          </svg>
+          <span class="cart-btn__count{% if cart.item_count > 0 %} is-visible{% endif %}" id="cartCount">{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="MainContent">
+    {{ content_for_layout }}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="{{ routes.root_url }}" class="brand brand--light" aria-label="{{ shop.name }} home">
+          <svg class="brand__mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+            <rect width="32" height="32" rx="9" fill="#12A594"/>
+            <path d="M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="24.5" cy="9" r="2" fill="#CDEDE6"/>
+          </svg>
+          <span class="brand__name">Lumy<span>Smile</span></span>
+        </a>
+        <p>Gentle, natural oral care for a brighter, more confident smile.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <a href="{{ routes.all_products_collection_url }}">All products</a>
+        <a href="/products/the-complete-smile-bundle">Complete Bundle</a>
+        <a href="/pages/about-us">Reviews</a>
+      </div>
+      <div class="footer__col">
+        <h4>Explore</h4>
+        <a href="/pages/mission">Our mission</a>
+        <a href="/pages/faq">FAQ</a>
+        <a href="/pages/about-us">About us</a>
+        <a href="/pages/contact">Contact</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="mailto:support@lumysmile.com">support@lumysmile.com</a>
+        <p class="footer__pay">Secure checkout</p>
+        <div class="footer__cards" aria-label="Accepted payment methods">
+          <span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>Apple Pay</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; <span id="year"></span> {{ shop.name }}. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="/policies/privacy-policy">Privacy</a>
+          <a href="/policies/terms-of-service">Terms</a>
+          <a href="/pages/shipping-returns">Shipping &amp; Returns</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  {{ 'lumysmile.js' | asset_url | script_tag }}
+</body>
+</html>

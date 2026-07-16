@@ -1,0 +1,41 @@
+<section class="page-hero collection-hero">
+  <div class="container">
+    <span class="eyebrow">Shop</span>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p>{{ collection.description | strip_html | truncatewords: 30 }}</p>
+    {%- else -%}
+      <p>Clean, effective, peroxide-free oral care for a naturally brighter smile.</p>
+    {%- endif -%}
+    <p class="collection__count">{{ collection.products_count }} product{% if collection.products_count != 1 %}s{% endif %}</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    {%- paginate collection.products by 12 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" aria-label="Previous">&larr;</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span aria-current="page">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a href="{{ paginate.next.url }}" aria-label="Next">&rarr;</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <p style="text-align:center;color:var(--muted);padding:3rem 0">No products found in this collection yet.</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>

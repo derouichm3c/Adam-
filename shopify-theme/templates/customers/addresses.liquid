@@ -1,0 +1,27 @@
+<section class="auth" style="max-width:640px">
+  <h1>Your addresses</h1>
+  <p style="text-align:center"><a class="link" href="{{ routes.account_url }}">&larr; Back to my account</a></p>
+
+  <div class="account-block">
+    <h2 style="font-size:1.1rem">Add a new address</h2>
+    {%- form 'customer_address', customer.new_address -%}
+      <div class="field"><label>First name</label><input type="text" name="address[first_name]"></div>
+      <div class="field"><label>Last name</label><input type="text" name="address[last_name]"></div>
+      <div class="field"><label>Address</label><input type="text" name="address[address1]"></div>
+      <div class="field"><label>City</label><input type="text" name="address[city]"></div>
+      <div class="field"><label>Country</label><input type="text" name="address[country]"></div>
+      <div class="field"><label>ZIP / Postal code</label><input type="text" name="address[zip]"></div>
+      <button type="submit" class="btn btn--primary btn--block">Save address</button>
+    {%- endform -%}
+  </div>
+
+  {%- for address in customer.addresses -%}
+    <div class="account-block">
+      <p>{{ address.first_name }} {{ address.last_name }}<br>{{ address.address1 }}<br>{{ address.city }}, {{ address.country }} {{ address.zip }}</p>
+      {%- form 'customer_address', address -%}
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="link" style="background:none;border:none;padding:0;color:#c0392b">Delete</button>
+      {%- endform -%}
+    </div>
+  {%- endfor -%}
+</section>

@@ -1,0 +1,12 @@
+{
+  "general": {
+    "search": {
+      "search": "Search",
+      "placeholder": "Search products"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for doesn't exist."
+    }
+  }
+}

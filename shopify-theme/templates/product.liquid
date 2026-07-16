@@ -1,0 +1,117 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign badge = ''
+  assign rating = ''
+  assign reviews = ''
+  case product.handle
+    when 'teeth-whitening-strips'
+      assign badge = 'Bestseller'
+      assign rating = '4.8'
+      assign reviews = '214'
+    when 'charcoal-whitening-toothpaste'
+      assign badge = 'Natural'
+      assign rating = '4.9'
+      assign reviews = '168'
+    when 'bamboo-toothbrush-4-pack'
+      assign badge = 'Eco'
+      assign rating = '4.7'
+      assign reviews = '96'
+    when 'the-complete-smile-bundle'
+      assign badge = 'Best value'
+      assign rating = '5.0'
+      assign reviews = '87'
+  endcase
+-%}
+<section class="product">
+  <div class="container product__grid">
+    <div class="product__gallery">
+      <div class="product__main-img">
+        {%- if product.featured_media -%}
+          <img id="pMainImg" src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.featured_media.alt | default: product.title | escape }}" width="600" height="600">
+        {%- else -%}
+          <img id="pMainImg" src="{{ 'product-1' | placeholder_svg_tag }}" alt="{{ product.title | escape }}" width="600" height="600">
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="product__thumbs">
+          {%- for media in product.media -%}
+            <a href="#" data-pimg="{{ media | image_url: width: 1200 }}" aria-label="View image {{ forloop.index }}">
+              <img src="{{ media | image_url: width: 160 }}" alt="{{ product.title | escape }} view {{ forloop.index }}" width="72" height="72" loading="lazy">
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product__info">
+      {%- if badge != blank -%}<span class="eyebrow">{{ badge }}</span>{%- endif -%}
+      <h1>{{ product.title }}</h1>
+      {%- if rating != blank -%}
+        <div class="product__stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>{{ rating }} &middot; {{ reviews }} reviews</span></div>
+      {%- endif -%}
+      <div class="product__price">
+        <span class="price-now">{{ current_variant.price | money }}</span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="price-was">{{ current_variant.compare_at_price | money }}</span>
+          <span class="price-save">Save {{ current_variant.compare_at_price | minus: current_variant.price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      <div class="product__desc rte">{{ product.description }}</div>
+
+      {%- form 'product', product, class: 'product__form' -%}
+        {%- if product.variants.size > 1 -%}
+          <div class="field">
+            <label for="variant-select">Option</label>
+            <select id="variant-select" name="id" class="qty-select" style="padding:.6em 1em;border-radius:12px">
+              {%- for variant in product.variants -%}
+                <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} &ndash; {{ variant.price | money }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- else -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {%- endif -%}
+
+        <div class="qty-select" aria-label="Quantity">
+          <button type="button" data-qty-dec aria-label="Decrease quantity">&minus;</button>
+          <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
+          <button type="button" data-qty-inc aria-label="Increase quantity">+</button>
+        </div>
+
+        {%- if current_variant.available -%}
+          <button type="submit" name="add" class="btn btn--primary btn--lg btn--block">Add to cart &middot; {{ current_variant.price | money }}</button>
+        {%- else -%}
+          <button type="button" class="btn btn--primary btn--lg btn--block" disabled>Sold out</button>
+        {%- endif -%}
+      {%- endform -%}
+
+      <ul class="product__reassure" style="list-style:none;padding-left:0">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Free tracked shipping on orders over $50</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day money-back guarantee</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Peroxide-free &amp; enamel-safe</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Related products {%- endcomment -%}
+<section style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">You may also like</span>
+      <h2>Complete your routine</h2>
+    </div>
+    <div class="product-grid">
+      {%- assign shown = 0 -%}
+      {%- assign handles = 'teeth-whitening-strips,charcoal-whitening-toothpaste,bamboo-toothbrush-4-pack,the-complete-smile-bundle' | split: ',' -%}
+      {%- for h in handles -%}
+        {%- assign p = all_products[h] -%}
+        {%- if p.id and p.handle != product.handle and shown < 4 -%}
+          {% render 'product-card', product: p %}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

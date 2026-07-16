@@ -1,0 +1,72 @@
+<section class="cart-page">
+  <div class="container">
+    {%- if cart.item_count > 0 -%}
+      <div class="section-head" style="text-align:left;margin-bottom:1.6rem;max-width:none">
+        <h1 style="margin:0">Your cart</h1>
+      </div>
+
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr class="cart-row">
+              <td>
+                <div class="cart-item">
+                  <a href="{{ item.url }}">
+                    {%- if item.image -%}
+                      <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="84" height="84">
+                    {%- endif -%}
+                  </a>
+                  <div>
+                    <p class="cart-item__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+                    {%- unless item.variant.title contains 'Default' -%}
+                      <p class="cart-item__price">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                    <p class="cart-item__price">{{ item.price | money }} each</p>
+                    <a class="cart-item__remove" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">Remove</a>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="qty-select">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="Decrease" style="display:grid;place-items:center;width:40px;height:44px;color:inherit">&minus;</a>
+                  <input type="text" value="{{ item.quantity }}" readonly aria-label="Quantity" style="pointer-events:none">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="Increase" style="display:grid;place-items:center;width:40px;height:44px;color:inherit">+</a>
+                </div>
+              </td>
+              <td><strong>{{ item.final_line_price | money }}</strong></td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div class="cart-foot">
+        <div class="cart-foot__box">
+          <div class="cart-foot__row">
+            <span style="font-weight:600">Subtotal</span>
+            <span class="price-now">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-foot__note">Shipping &amp; taxes calculated at checkout. Free tracked shipping over $50.</p>
+          {%- form 'cart', cart -%}
+            <button type="submit" name="checkout" class="btn btn--primary btn--lg btn--block">Checkout securely</button>
+          {%- endform -%}
+          <div class="section-cta" style="margin-top:1rem">
+            <a href="{{ routes.all_products_collection_url }}" class="link">&larr; Continue shopping</a>
+          </div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart-empty-state">
+        <h1>Your cart is empty</h1>
+        <p>Add a little brightness to your routine.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary btn--lg">Start shopping</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
