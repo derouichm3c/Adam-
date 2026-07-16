@@ -1,79 +1,80 @@
+<!-- Page hero -->
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">Our story</span>
-    <h1>About LumySmile</h1>
-    <p>Gentle, natural oral care for a brighter, more confident smile &mdash; without the harsh chemicals.</p>
+    <h1>Small daily rituals.<br>A brighter, cleaner you.</h1>
+    <p>Simple, natural oral care &mdash; made to actually work.</p>
   </div>
 </section>
 
+<!-- Story -->
 <section class="story">
   <div class="container">
     <div class="story__top">
       <div class="story__media">
-        {%- assign about_img = all_products['charcoal-whitening-toothpaste'] -%}
-        {%- if about_img.featured_media -%}
-          <img src="{{ about_img.featured_media | image_url: width: 900 }}" alt="LumySmile natural oral care" width="500" height="500">
-        {%- else -%}
-          <img src="{{ 'lifestyle-1' | placeholder_svg_tag }}" alt="LumySmile" width="500" height="500">
-        {%- endif -%}
+        <img src="https://cdn.shopify.com/s/files/1/0832/7469/4871/files/about-us-hero-smile-v2.png?v=1783986752"
+             alt="Bright, confident smile close-up" width="560" height="560" loading="lazy">
       </div>
       <div class="story__text">
-        <h3>Whitening that works with your body, not against it</h3>
-        <p>LumySmile started with a simple frustration: whitening that actually works usually means harsh peroxide, sensitivity and a mouth full of chemicals. We believed there was a gentler way &mdash; one built around naturally powerful ingredients like activated charcoal and sustainable bamboo.</p>
-        <p>Today we help people brighten their smile the natural way: peroxide-free, enamel-safe, and kind to the planet. No gimmicks &mdash; just clean, effective oral care you can feel good about using every day.</p>
+        <h3>Why we started LumySmile</h3>
+        <p>LumySmile started with a simple idea: oral care shouldn't mean harsh chemicals, plastic waste, or products that overpromise. We couldn't find that for ourselves, so we built it &mdash; natural ingredients like bamboo and activated charcoal, tested and priced fairly.</p>
         <ul class="story__values">
-          <li><strong>Natural first</strong><span>Charcoal, bamboo and clean formulas &mdash; no artificial dyes.</span></li>
-          <li><strong>Gentle &amp; safe</strong><span>Enamel-safe, low-abrasion, peroxide-free by design.</span></li>
-          <li><strong>Planet-friendly</strong><span>Biodegradable bamboo and thoughtful materials.</span></li>
+          <li><strong>Natural</strong><span>Bamboo &amp; activated charcoal, not harsh chemicals.</span></li>
+          <li><strong>Quality</strong><span>Every product tested before it reaches you.</span></li>
+          <li><strong>Effective</strong><span>Real results, not empty promises.</span></li>
+          <li><strong>Fair pricing</strong><span>Honest value, no gimmicks.</span></li>
+          <li><strong>Guaranteed</strong><span>30-day satisfaction guarantee on everything.</span></li>
+          <li><strong>Support</strong><span>Friendly help whenever you need it.</span></li>
         </ul>
       </div>
     </div>
-
     <div class="story__stats">
-      <div><span class="story__num">500+</span><span class="story__label">Happy smiles</span></div>
-      <div><span class="story__num">4.8&#9733;</span><span class="story__label">Average rating</span></div>
-      <div><span class="story__num">7 days</span><span class="story__label">To visible results</span></div>
-      <div><span class="story__num">30-day</span><span class="story__label">Money-back guarantee</span></div>
+      <div class="story__stat"><span class="story__num">30-Day</span><span class="story__label">Guarantee</span></div>
+      <div class="story__stat"><span class="story__num">3&ndash;7 Day</span><span class="story__label">Shipping</span></div>
+      <div class="story__stat"><span class="story__num">100%</span><span class="story__label">Secure checkout</span></div>
+      <div class="story__stat"><span class="story__num">US &amp; CA</span><span class="story__label">We ship to</span></div>
     </div>
   </div>
 </section>
 
+<!-- Reviews -->
 <section class="reviews" id="reviews">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Loved by customers</span>
+    <div class="section-head section-head--light">
+      <span class="eyebrow">Loved by our community</span>
       <h2>Real smiles, real confidence</h2>
-      <p class="reviews__rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated 4.8/5 by our community</p>
+      <p class="reviews__rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated 4.8/5 by happy customers</p>
     </div>
     <div class="reviews__grid">
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;My teeth feel cleaner and look noticeably brighter after a couple of weeks &mdash; and zero sensitivity, which sold me.&rdquo;</blockquote>
-        <figcaption>Sarah M.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Whiter teeth in under a week and zero sensitivity. I've tried the burning strips before &mdash; these are on another level."</blockquote>
+        <figcaption>Sarah M. &middot; Verified buyer</figcaption>
       </figure>
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I love that it's natural and peroxide-free. The charcoal toothpaste has become part of my daily routine.&rdquo;</blockquote>
-        <figcaption>James T.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The charcoal toothpaste leaves my mouth feeling so clean and fresh. Coffee stains are finally fading."</blockquote>
+        <figcaption>James T. &middot; Verified buyer</figcaption>
       </figure>
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;The bamboo brushes feel great and I like knowing they're better for the planet. Great little bundle.&rdquo;</blockquote>
-        <figcaption>Am&eacute;lie R.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Love that it's eco-friendly and it actually works. The bundle is such good value &mdash; my whole routine sorted."</blockquote>
+        <figcaption>Am&eacute;lie R. &middot; Verified buyer</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
+<!-- Guarantee band -->
 <section class="guarantee">
   <div class="container guarantee__inner">
     <div class="guarantee__icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="46" height="46"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div>
-      <h2>Ready to brighten your smile?</h2>
-      <p>Join hundreds of happy customers and try LumySmile risk-free for 30 days.</p>
+      <h2>Your smile, risk-free for 30 days</h2>
+      <p>Try LumySmile at home. If you're not seeing a brighter, more confident smile, we'll refund you &mdash; no fuss. That's our promise.</p>
     </div>
-    <a href="{{ routes.all_products_collection_url }}" class="btn btn--light btn--lg">Shop now</a>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--light btn--lg">Start your routine</a>
   </div>
 </section>

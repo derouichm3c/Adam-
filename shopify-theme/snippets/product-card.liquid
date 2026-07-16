@@ -6,23 +6,28 @@
   assign badge = ''
   assign rating = ''
   assign reviews = ''
+  assign short_title = product.title | split: ' — ' | first
   case product.handle
     when 'teeth-whitening-strips'
       assign badge = 'Bestseller'
       assign rating = '4.8'
       assign reviews = '214'
+      assign short_title = 'Whitening Strips'
     when 'charcoal-whitening-toothpaste'
       assign badge = 'Natural'
       assign rating = '4.9'
       assign reviews = '168'
+      assign short_title = 'Charcoal Toothpaste'
     when 'bamboo-toothbrush-4-pack'
       assign badge = 'Eco'
       assign rating = '4.7'
       assign reviews = '96'
+      assign short_title = 'Bamboo Toothbrush 4-Pack'
     when 'the-complete-smile-bundle'
       assign badge = 'Best value'
       assign rating = '5.0'
       assign reviews = '87'
+      assign short_title = 'The Complete Smile Bundle'
     else
       assign badge = 'New'
   endcase
@@ -51,7 +56,7 @@
     {%- if rating != blank -%}
       <div class="card__stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>{{ rating }} ({{ reviews }})</span></div>
     {%- endif -%}
-    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title | split: ' — ' | first }}</a></h3>
+    <h3 class="card__title"><a href="{{ product.url }}">{{ short_title }}</a></h3>
     <div class="card__price-row">
       <span class="card__price">{{ product.price | money }}</span>
       {%- if on_sale -%}<span class="card__was">{{ product.compare_at_price | money }}</span>{%- endif -%}

@@ -1,19 +1,20 @@
-<section class="page-hero collection-hero">
+{%- liquid
+  assign cdn = 'https://cdn.shopify.com/s/files/1/0832/7469/4871/files/'
+  assign bundle_p = all_products['the-complete-smile-bundle']
+-%}
+<!-- Page hero -->
+<section class="page-hero">
   <div class="container">
-    <span class="eyebrow">Shop</span>
-    <h1>{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <p>{{ collection.description | strip_html | truncatewords: 30 }}</p>
-    {%- else -%}
-      <p>Clean, effective, peroxide-free oral care for a naturally brighter smile.</p>
-    {%- endif -%}
-    <p class="collection__count">{{ collection.products_count }} product{% if collection.products_count != 1 %}s{% endif %}</p>
+    <span class="eyebrow">Shop the collection</span>
+    <h1>Your natural smile routine</h1>
+    <p>Clean formulas, real results. Every product is peroxide-free, enamel-safe and made for daily confidence.</p>
   </div>
 </section>
 
-<section>
+<!-- Product grid -->
+<section class="shop" id="shop">
   <div class="container">
-    {%- paginate collection.products by 12 -%}
+    {%- paginate collection.products by 24 -%}
       {%- if collection.products.size > 0 -%}
         <div class="product-grid">
           {%- for product in collection.products -%}
@@ -24,18 +25,82 @@
           <nav class="pagination" aria-label="Pagination">
             {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" aria-label="Previous">&larr;</a>{%- endif -%}
             {%- for part in paginate.parts -%}
-              {%- if part.is_link -%}
-                <a href="{{ part.url }}">{{ part.title }}</a>
-              {%- else -%}
-                <span aria-current="page">{{ part.title }}</span>
-              {%- endif -%}
+              {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}<span aria-current="page">{{ part.title }}</span>{%- endif -%}
             {%- endfor -%}
             {%- if paginate.next -%}<a href="{{ paginate.next.url }}" aria-label="Next">&rarr;</a>{%- endif -%}
           </nav>
         {%- endif -%}
       {%- else -%}
-        <p style="text-align:center;color:var(--muted);padding:3rem 0">No products found in this collection yet.</p>
+        <p style="text-align:center;color:var(--muted);padding:2rem 0">No products in this collection yet.</p>
       {%- endif -%}
     {%- endpaginate -%}
+  </div>
+</section>
+
+<!-- Featured Bundle -->
+{%- if bundle_p.id -%}
+<section class="bundle" id="bundle">
+  <div class="container bundle__inner">
+    <div class="bundle__media">
+      <img src="{{ cdn }}hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"
+           alt="The Complete Smile Bundle — toothbrush, toothpaste and whitening strips on a natural stone pedestal" width="620" height="620" loading="lazy">
+    </div>
+    <div class="bundle__copy">
+      <span class="eyebrow">Best value &middot; Most popular</span>
+      <h2>The Complete Smile Bundle</h2>
+      <p>Everything you need for a brighter, healthier smile &mdash; in one box. Our three best-sellers, together at a better price than buying separately.</p>
+      <ul class="bundle__list">
+        <li><strong>Bamboo Toothbrush 4-Pack</strong> &mdash; charcoal-infused bristles, biodegradable handle</li>
+        <li><strong>Charcoal Toothpaste</strong> &mdash; natural whitening, fluoride-free, gentle on enamel</li>
+        <li><strong>Whitening Strips</strong> &mdash; peroxide-free, enamel-safe, visible results in days</li>
+      </ul>
+      <div class="bundle__price">
+        <span class="price-now">$59.99</span>
+        <span class="price-was">$84.97</span>
+        <span class="price-save">Save $24.98</span>
+      </div>
+      {%- form 'product', bundle_p -%}
+        <input type="hidden" name="id" value="{{ bundle_p.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="btn btn--primary btn--lg">Add bundle to cart</button>
+      {%- endform -%}
+      <p class="bundle__note">&#10022; Free tracked shipping &middot; 30-day money-back guarantee</p>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- Guarantee band -->
+<section class="guarantee">
+  <div class="container guarantee__inner">
+    <div class="guarantee__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="46" height="46"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div>
+      <h2>Your smile, risk-free for 30 days</h2>
+      <p>Try LumySmile at home. If you're not seeing a brighter, more confident smile, we'll refund you &mdash; no fuss. That's our promise.</p>
+    </div>
+    <a href="/pages/contact" class="btn btn--light btn--lg">Questions? Contact us</a>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="container newsletter__inner">
+    <div>
+      <h2>Get 10% off your first order</h2>
+      <p>Join the LumySmile list for smile tips, new drops and subscriber-only offers.</p>
+    </div>
+    {%- form 'customer', id: 'newsletterFormShop', class: 'newsletter__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="sr-only" for="newsletterEmailShop">Email address</label>
+      <input type="email" id="newsletterEmailShop" name="contact[email]" placeholder="you@email.com" autocomplete="email" required>
+      <button type="submit" class="btn btn--primary">Get my 10% off</button>
+      {%- if form.posted_successfully? -%}
+        <p class="newsletter__msg">You're in! Watch your inbox for your 10% off code.</p>
+      {%- else -%}
+        <p class="newsletter__msg"></p>
+      {%- endif -%}
+    {%- endform -%}
   </div>
 </section>

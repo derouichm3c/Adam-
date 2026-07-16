@@ -1,74 +1,66 @@
+<!-- Page hero -->
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">We're here to help</span>
     <h1>Get in touch</h1>
-    <p>Questions about your order, our products or whitening in general? We usually reply within 24 hours.</p>
+    <p>Questions about your order, our products, or which routine is right for you? Our friendly team usually replies within 24 hours.</p>
   </div>
 </section>
 
-<section class="contact">
+<!-- Contact -->
+<section class="contact" id="contact">
   <div class="container contact__inner">
     <div class="contact__intro">
-      <h2>Talk to a real human</h2>
-      <p>Whether it's help choosing the right product or a question about an existing order, our friendly team is happy to help.</p>
+      <span class="eyebrow">Contact us</span>
+      <h2>Send us a message</h2>
+      <p>Fill in the form and it goes straight to our support inbox &mdash; we'll get back to you by email as soon as we can.</p>
       <ul class="contact__info">
         <li>
-          <span class="contact__ico">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="contact__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
           <div>
-            <strong>Email</strong>
+            <strong>Email us</strong>
             <a href="mailto:support@lumysmile.com">support@lumysmile.com</a>
           </div>
         </li>
         <li>
-          <span class="contact__ico">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="contact__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
           <div>
             <strong>Response time</strong>
-            <span>Within 24 hours, Monday&ndash;Friday</span>
-          </div>
-        </li>
-        <li>
-          <span class="contact__ico">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <strong>30-day guarantee</strong>
-            <span>Not happy? We'll make it right.</span>
+            <span>Within 24 hours, Mon&ndash;Fri</span>
           </div>
         </li>
       </ul>
     </div>
 
-    <div class="contact__form">
-      {%- form 'contact' -%}
-        {%- if form.posted_successfully? -%}
-          <p class="newsletter__msg" style="margin-bottom:1rem">Thanks! Your message has been sent &mdash; we'll be in touch shortly.</p>
-        {%- endif -%}
-        {%- if form.errors -%}
-          <p class="newsletter__msg" style="color:#c0392b;margin-bottom:1rem">Please check the highlighted fields and try again.</p>
-        {%- endif -%}
-        <div class="field">
-          <label for="ContactName">Name</label>
-          <input type="text" id="ContactName" name="contact[name]" value="{{ form.name }}" required>
-        </div>
-        <div class="field">
-          <label for="ContactEmail">Email</label>
-          <input type="email" id="ContactEmail" name="contact[email]" value="{{ form.email }}" required>
-        </div>
-        <div class="field">
-          <label for="ContactPhone">Phone <span class="field__opt">(optional)</span></label>
-          <input type="tel" id="ContactPhone" name="contact[phone]" value="{{ form.phone }}">
-        </div>
-        <div class="field">
-          <label for="ContactBody">Message</label>
-          <textarea id="ContactBody" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
-        </div>
-        <button type="submit" class="btn btn--primary btn--lg btn--block">Send message</button>
-        <p class="contact__note">We'll only use your details to reply to your enquiry.</p>
-      {%- endform -%}
-    </div>
+    {%- form 'contact', id: 'contactForm', class: 'contact__form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="contact__note" style="color:var(--green-700);font-weight:600;margin-bottom:1rem">Thanks! Your message has been sent &mdash; we'll be in touch shortly.</p>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <p class="contact__note" style="color:#c0392b;font-weight:600;margin-bottom:1rem">Please check the highlighted fields and try again.</p>
+      {%- endif -%}
+      <div class="field">
+        <label for="cName">Name</label>
+        <input type="text" id="cName" name="contact[name]" value="{{ form.name }}" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="cEmail">Email</label>
+        <input type="email" id="cEmail" name="contact[email]" value="{{ form.email }}" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="cPhone">Phone <span class="field__opt">(optional)</span></label>
+        <input type="tel" id="cPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="cBody">How can we help?</label>
+        <textarea id="cBody" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+      </div>
+      <button type="submit" class="btn btn--primary btn--lg btn--block">Send message</button>
+      <p class="contact__note">Your message goes straight to our support team. We'll reply by email.</p>
+    {%- endform -%}
   </div>
 </section>

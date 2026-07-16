@@ -1,108 +1,107 @@
 {%- liquid
-  assign hero_p = all_products['teeth-whitening-strips']
   assign bundle_p = all_products['the-complete-smile-bundle']
+  assign cdn = 'https://cdn.shopify.com/s/files/1/0832/7469/4871/files/'
 -%}
 
-<!-- ===================== HERO ===================== -->
+<!-- Hero -->
 <section class="hero">
   <div class="container hero__inner">
     <div class="hero__copy">
-      <span class="eyebrow">Natural whitening · real results</span>
-      <h1>A brighter, more confident smile &mdash; <span class="accent">naturally.</span></h1>
-      <p class="hero__lead">Peroxide-free whitening powered by activated charcoal and bamboo. Gentle on your enamel, tough on stains &mdash; visible results in as little as 7 days.</p>
+      <span class="eyebrow">Gentle. Natural. Effective.</span>
+      <h1>Whiter teeth,<br><span class="accent">naturally.</span></h1>
+      <p class="hero__lead">Professional-level whitening at home &mdash; without the sensitivity, the mess, or the dentist's price tag. Peroxide-free, enamel-safe, and kind to the planet.</p>
       <div class="hero__cta">
-        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary btn--lg">Shop the collection</a>
-        <a href="/pages/mission" class="btn btn--outline btn--lg">Our mission</a>
+        <a href="/products/the-complete-smile-bundle" class="btn btn--primary btn--lg">Shop the Bundle &middot; Save $25</a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline btn--lg">Browse all products</a>
       </div>
       <ul class="hero__badges">
         <li>&#10003; Peroxide-free</li>
         <li>&#10003; Enamel-safe</li>
-        <li>&#10003; 30-day guarantee</li>
+        <li>&#10003; 7-day results</li>
+        <li>&#10003; Natural charcoal</li>
       </ul>
     </div>
     <div class="hero__media">
-      {%- if hero_p.featured_media -%}
-        <img src="{{ hero_p.featured_media | image_url: width: 1080 }}" alt="LumySmile natural whitening" width="540" height="540">
-      {%- else -%}
-        <img src="{{ 'hero-apparel' | placeholder_svg_tag }}" alt="LumySmile" width="540" height="540">
-      {%- endif -%}
-      <span class="hero__pill hero__pill--1"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Loved by 500+ smiles</span>
-      <span class="hero__pill hero__pill--2">&#127793; Peroxide-free</span>
+      <img src="{{ cdn }}hf_20260715_233643_2cbe1c7c-06e0-443e-ae7f-3976a74e6956.png?v=1784159002"
+           alt="The LumySmile Complete Smile Bundle — bamboo toothbrush, charcoal toothpaste and peroxide-free whitening strips" width="560" height="560" loading="eager">
+      <div class="hero__pill hero__pill--1">7-day visible results</div>
+      <div class="hero__pill hero__pill--2">
+        <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        Loved by happy smiles
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== TRUST BAR ===================== -->
-<section class="trustbar" style="padding-block:0">
+<!-- Trust bar -->
+<section class="trustbar" aria-label="Why shop with us">
   <div class="container trustbar__grid">
     <div class="trustbar__item">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div><strong>Peroxide-free</strong><span>Whitening without the zing</span></div>
     </div>
     <div class="trustbar__item">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c4-2 7-5.5 7-10V6l-7-3-7 3v5c0 4.5 3 8 7 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-      <div><strong>Enamel-safe</strong><span>Gentle, low-abrasion</span></div>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c3 2 5 5 5 8a5 5 0 0 1-10 0c0-3 2-6 5-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <div><strong>Enamel-safe</strong><span>Gentle on teeth &amp; gums</span></div>
     </div>
     <div class="trustbar__item">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 4c4 3 7 6 7 10a7 7 0 0 1-14 0c0-1.5.5-3 1.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div><strong>Natural ingredients</strong><span>Charcoal &amp; bamboo</span></div>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c5-1 8-5 8-11-4 0-7 1-8 4-1-3-4-4-8-4 0 6 3 10 8 11Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <div><strong>Eco-friendly</strong><span>Biodegradable bamboo</span></div>
     </div>
     <div class="trustbar__item">
-      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7 10 17l-5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div><strong>30-day guarantee</strong><span>Love it or your money back</span></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FEATURED BUNDLE ===================== -->
-{%- if bundle_p.id -%}
+<!-- Featured Bundle -->
 <section class="bundle" id="bundle">
   <div class="container bundle__inner">
     <div class="bundle__media">
-      {%- if bundle_p.featured_media -%}
-        <img src="{{ bundle_p.featured_media | image_url: width: 900 }}" alt="{{ bundle_p.title | escape }}" width="520" height="520">
-      {%- endif -%}
+      <img src="{{ cdn }}hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"
+           alt="The Complete Smile Bundle — toothbrush, toothpaste and whitening strips on a natural stone pedestal" width="620" height="620" loading="lazy">
     </div>
     <div class="bundle__copy">
-      <span class="eyebrow">Best value</span>
-      <h2>{{ bundle_p.title }}</h2>
+      <span class="eyebrow">Best value &middot; Most popular</span>
+      <h2>The Complete Smile Bundle</h2>
+      <p>Everything you need for a brighter, healthier smile &mdash; in one box. Our three best-sellers, together at a better price than buying separately.</p>
       <ul class="bundle__list">
-        <li>Bamboo Toothbrush 4-Pack &mdash; charcoal bristles, biodegradable</li>
-        <li>Charcoal Toothpaste &mdash; natural whitening, gentle formula</li>
-        <li>Whitening Strips &mdash; peroxide-free, results in days</li>
+        <li><strong>Bamboo Toothbrush 4-Pack</strong> &mdash; charcoal-infused bristles, biodegradable handle</li>
+        <li><strong>Charcoal Toothpaste</strong> &mdash; natural whitening, fluoride-free, gentle on enamel</li>
+        <li><strong>Whitening Strips</strong> &mdash; peroxide-free, enamel-safe, visible results in days</li>
       </ul>
       <div class="bundle__price">
-        <span class="price-now">{{ bundle_p.price | money }}</span>
-        {%- if bundle_p.compare_at_price > bundle_p.price -%}
-          <span class="price-was">{{ bundle_p.compare_at_price | money }}</span>
-          <span class="price-save">Save {{ bundle_p.compare_at_price | minus: bundle_p.price | money }}</span>
-        {%- endif -%}
+        <span class="price-now">$59.99</span>
+        <span class="price-was">$84.97</span>
+        <span class="price-save">Save $24.98</span>
       </div>
-      {%- form 'product', bundle_p -%}
-        <input type="hidden" name="id" value="{{ bundle_p.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="btn btn--primary btn--lg">Add the bundle to cart</button>
-      {%- endform -%}
-      <p class="bundle__note">Free tracked shipping &middot; 30-day money-back guarantee</p>
+      {%- if bundle_p.id -%}
+        {%- form 'product', bundle_p -%}
+          <input type="hidden" name="id" value="{{ bundle_p.selected_or_first_available_variant.id }}">
+          <button type="submit" name="add" class="btn btn--primary btn--lg">Add bundle to cart</button>
+        {%- endform -%}
+      {%- else -%}
+        <a href="/products/the-complete-smile-bundle" class="btn btn--primary btn--lg">Add bundle to cart</a>
+      {%- endif -%}
+      <p class="bundle__note">&#10022; Free tracked shipping &middot; 30-day money-back guarantee</p>
     </div>
   </div>
 </section>
-{%- endif -%}
 
-<!-- ===================== PRODUCT GRID ===================== -->
-<section id="products">
+<!-- Product grid -->
+<section class="shop" id="shop">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">The collection</span>
-      <h2>Everything for a naturally brighter smile</h2>
-      <p>Clean, effective oral care &mdash; peroxide-free and kind to your enamel.</p>
+      <span class="eyebrow">Shop the collection</span>
+      <h2>Your natural smile routine</h2>
+      <p>Clean formulas, real results. Every product is peroxide-free, enamel-safe and made for daily confidence.</p>
     </div>
     <div class="product-grid">
       {%- assign handles = 'teeth-whitening-strips,charcoal-whitening-toothpaste,bamboo-toothbrush-4-pack,the-complete-smile-bundle' | split: ',' -%}
       {%- for h in handles -%}
         {%- assign p = all_products[h] -%}
-        {%- if p.id -%}
-          {% render 'product-card', product: p %}
-        {%- endif -%}
+        {%- if p.id -%}{% render 'product-card', product: p %}{%- endif -%}
       {%- endfor -%}
     </div>
     <div class="section-cta">
@@ -111,126 +110,51 @@
   </div>
 </section>
 
-<!-- ===================== WHY ===================== -->
-<section class="why">
+<!-- Reviews -->
+<section class="reviews" id="reviews">
   <div class="container">
     <div class="section-head section-head--light">
-      <span class="eyebrow">Why LumySmile</span>
-      <h2>Whitening you can feel good about</h2>
-    </div>
-    <div class="why__grid">
-      <div class="why__card">
-        <div class="why__icon">&#127811;</div>
-        <h3>Naturally powered</h3>
-        <p>Activated charcoal and bamboo do the work &mdash; no harsh peroxide, no artificial dyes.</p>
-      </div>
-      <div class="why__card">
-        <div class="why__icon">&#128524;</div>
-        <h3>Gentle by design</h3>
-        <p>Low-abrasion formulas brighten without stripping or weakening your enamel.</p>
-      </div>
-      <div class="why__card">
-        <div class="why__icon">&#9889;</div>
-        <h3>Fast, visible results</h3>
-        <p>See a brighter smile in as little as 7 days &mdash; just 30 minutes a day.</p>
-      </div>
-      <div class="why__card">
-        <div class="why__icon">&#128153;</div>
-        <h3>Risk-free promise</h3>
-        <p>Backed by a 30-day money-back guarantee. If you don't love it, we'll make it right.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== STEPS ===================== -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>A brighter smile in three simple steps</h2>
-    </div>
-    <div class="steps__grid">
-      <div class="steps__item">
-        <div class="steps__num">1</div>
-        <h3>Brush &amp; prep</h3>
-        <p>Start with the charcoal toothpaste and a bamboo brush to lift everyday surface stains.</p>
-      </div>
-      <div class="steps__item">
-        <div class="steps__num">2</div>
-        <h3>Whiten</h3>
-        <p>Apply the peroxide-free strips for 30 minutes a day. No mess, no sensitivity.</p>
-      </div>
-      <div class="steps__item">
-        <div class="steps__num">3</div>
-        <h3>Maintain &amp; smile</h3>
-        <p>Keep your glow with daily brushing and the occasional strip touch-up.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== REVIEWS ===================== -->
-<section class="reviews">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Loved by customers</span>
+      <span class="eyebrow">Loved by our community</span>
       <h2>Real smiles, real confidence</h2>
-      <p class="reviews__rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated 4.8/5 by our community</p>
+      <p class="reviews__rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated 4.8/5 by happy customers</p>
     </div>
     <div class="reviews__grid">
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;My teeth feel cleaner and look noticeably brighter after a couple of weeks &mdash; and zero sensitivity, which sold me.&rdquo;</blockquote>
-        <figcaption>Sarah M.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Whiter teeth in under a week and zero sensitivity. I've tried the burning strips before &mdash; these are on another level."</blockquote>
+        <figcaption>Sarah M. &middot; Verified buyer</figcaption>
       </figure>
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;I love that it's natural and peroxide-free. The charcoal toothpaste has become part of my daily routine.&rdquo;</blockquote>
-        <figcaption>James T.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The charcoal toothpaste leaves my mouth feeling so clean and fresh. Coffee stains are finally fading."</blockquote>
+        <figcaption>James T. &middot; Verified buyer</figcaption>
       </figure>
       <figure class="review">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>&ldquo;The bamboo brushes feel great and I like knowing they're better for the planet. Great little bundle.&rdquo;</blockquote>
-        <figcaption>Amélie R.</figcaption>
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Love that it's eco-friendly and it actually works. The bundle is such good value &mdash; my whole routine sorted."</blockquote>
+        <figcaption>Am&eacute;lie R. &middot; Verified buyer</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ===================== GUARANTEE ===================== -->
-<section class="guarantee">
-  <div class="container guarantee__inner">
-    <div class="guarantee__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="46" height="46"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <div>
-      <h2>Try LumySmile risk-free for 30 days</h2>
-      <p>If you're not thrilled with your brighter smile, contact us within 30 days of delivery and we'll make it right.</p>
-    </div>
-    <a href="{{ routes.all_products_collection_url }}" class="btn btn--light btn--lg">Shop now</a>
-  </div>
-</section>
-
-<!-- ===================== NEWSLETTER ===================== -->
+<!-- Newsletter -->
 <section class="newsletter">
-  <div class="container">
-    <div class="newsletter__inner">
-      <div>
-        <span class="eyebrow">Join the club</span>
-        <h2>Get 10% off your first order</h2>
-        <p>Sign up for smile tips, restocks and members-only offers.</p>
-      </div>
-      {%- form 'customer', id: 'newsletterForm', class: 'newsletter__form' -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input type="email" id="newsletterEmail" name="contact[email]" placeholder="you@email.com" aria-label="Email address" required>
-        <button type="submit" class="btn btn--primary">Sign up</button>
-        {%- if form.posted_successfully? -%}
-          <p class="newsletter__msg" id="newsletterMsg">You're in! Watch your inbox for your welcome offer.</p>
-        {%- else -%}
-          <p class="newsletter__msg" id="newsletterMsg"></p>
-        {%- endif -%}
-      {%- endform -%}
+  <div class="container newsletter__inner">
+    <div>
+      <h2>Get 10% off your first order</h2>
+      <p>Join the LumySmile list for smile tips, new drops and subscriber-only offers.</p>
     </div>
+    {%- form 'customer', id: 'newsletterForm', class: 'newsletter__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="sr-only" for="newsletterEmail">Email address</label>
+      <input type="email" id="newsletterEmail" name="contact[email]" placeholder="you@email.com" autocomplete="email" required>
+      <button type="submit" class="btn btn--primary">Get my 10% off</button>
+      {%- if form.posted_successfully? -%}
+        <p class="newsletter__msg" id="newsletterMsg" role="status" aria-live="polite">You're in! Watch your inbox for your 10% off code.</p>
+      {%- else -%}
+        <p class="newsletter__msg" id="newsletterMsg" role="status" aria-live="polite"></p>
+      {%- endif -%}
+    {%- endform -%}
   </div>
 </section>
