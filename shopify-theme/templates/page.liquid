@@ -1,11 +1,27 @@
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">LumySmile</span>
-    <h1>{{ page.title }}</h1>
-  </div>
-</section>
-<section class="page-wrap">
-  <div class="container" style="max-width:820px">
-    <div class="rte">{{ page.content }}</div>
-  </div>
-</section>
+{%- comment -%}
+  Default page template. Auto-selects the custom LumySmile design based on the
+  page handle, so no manual template assignment is needed. Falls back to a
+  clean styled layout for any other page.
+{%- endcomment -%}
+{%- case page.handle -%}
+  {%- when 'faq' -%}
+    {% render 'page-faq' %}
+  {%- when 'about-us' -%}
+    {% render 'page-about' %}
+  {%- when 'mission' -%}
+    {% render 'page-mission' %}
+  {%- when 'contact' -%}
+    {% render 'page-contact' %}
+  {%- else -%}
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">LumySmile</span>
+        <h1>{{ page.title }}</h1>
+      </div>
+    </section>
+    <section class="page-wrap">
+      <div class="container" style="max-width:820px">
+        <div class="rte">{{ page.content }}</div>
+      </div>
+    </section>
+{%- endcase -%}
