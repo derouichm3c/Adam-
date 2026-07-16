@@ -71,7 +71,7 @@
         "<ul>" +
         "<li><strong>Charcoal-infused bristles</strong> — help lift stains and polish enamel.</li>" +
         "<li><strong>100% biodegradable handle</strong> — back to the earth in months.</li>" +
-        "<li><strong>BPA-free &amp; vegan</strong> — no plastic, no synthetic fillers.</li>" +
+        "<li><strong>BPA-free</strong> — no plastic, no synthetic fillers, nothing that doesn't need to be there.</li>" +
         "<li><strong>Pack of 4</strong> — a full season of eco-friendly brushing.</li>" +
         "</ul>"
     },
