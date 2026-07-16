@@ -173,24 +173,23 @@
     var frag = document.createDocumentFragment();
     PRODUCTS.forEach(function (p) {
       var card = el("article", "card");
-      var priceHtml = p.compareAt
-        ? '<span class="card__price">' + money(p.price) + "</span>"
-        : '<span class="card__price">' + money(p.price) + "</span>";
-      var badgeCls = p.compareAt ? "card__badge card__badge--save" : "card__badge";
+      var badge = p.compareAt
+        ? '<span class="card__badge card__badge--save">Save ' + money(p.compareAt - p.price) + "</span>"
+        : '<span class="card__badge">' + p.badge + "</span>";
+      var priceHtml = '<span class="card__price">' + money(p.price) + "</span>" +
+        (p.compareAt ? ' <span class="card__was">' + money(p.compareAt) + "</span>" : "");
       card.innerHTML =
         '<div class="card__media">' +
-          '<span class="' + badgeCls + '">' + p.badge + "</span>" +
-          '<img src="' + p.images[0] + '" alt="' + p.fullTitle + '" loading="lazy" width="300" height="300" />' +
+          badge +
+          '<img src="' + p.images[0] + '" alt="' + p.fullTitle + '" loading="lazy" width="300" height="300" data-quick="' + p.id + '" />' +
           '<button class="card__quick" type="button" data-quick="' + p.id + '">Quick view</button>' +
         "</div>" +
         '<div class="card__body">' +
           '<div class="card__stars"><span class="stars">' + starString(p.rating) + "</span>" +
             '<span>' + p.rating + " (" + p.reviews + ")</span></div>" +
           '<h3 class="card__title">' + p.title + "</h3>" +
-          '<p class="card__tagline">' + p.tagline + "</p>" +
-          '<div class="card__foot">' + priceHtml +
-            '<button class="card__add" type="button" data-add="' + p.id + '">Add to cart</button>' +
-          "</div>" +
+          '<div class="card__price-row">' + priceHtml + "</div>" +
+          '<button class="card__add card__add--block" type="button" data-add="' + p.id + '">Add to cart</button>' +
         "</div>";
       frag.appendChild(card);
     });
