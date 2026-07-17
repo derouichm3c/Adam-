@@ -52,7 +52,7 @@
             <span style="font-weight:600">Subtotal</span>
             <span class="price-now">{{ cart.total_price | money }}</span>
           </div>
-          <p class="cart-foot__note">Shipping &amp; taxes calculated at checkout. Free tracked shipping over 50$.</p>
+          <p class="cart-foot__note">Shipping &amp; taxes calculated at checkout. Free tracked shipping on all orders.</p>
           {%- form 'cart', cart -%}
             <button type="submit" name="checkout" class="btn btn--primary btn--lg btn--block">Checkout securely</button>
           {%- endform -%}
