@@ -10,7 +10,7 @@
   {%- if settings.favicon != blank -%}
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
   {%- else -%}
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E6E5C'/%3E%3Cpath d='M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='24.5' cy='9' r='2' fill='%237FD9C9'/%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%230E6E5C'/%3E%3Cpath d='M118 258c46 60 102 90 138 90s92-30 138-90' fill='none' stroke='%23fff' stroke-width='34' stroke-linecap='round'/%3E%3Ccircle cx='394' cy='196' r='26' fill='%237FD9C9'/%3E%3C/svg%3E">
   {%- endif -%}
 
   <title>
@@ -65,12 +65,11 @@
         {%- if settings.logo != blank -%}
           <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="140" style="height:34px;width:auto">
         {%- else -%}
-          <svg class="brand__mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
-            <rect width="32" height="32" rx="9" fill="#0E6E5C"/>
-            <path d="M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-            <circle cx="24.5" cy="9" r="2" fill="#7FD9C9"/>
+          <svg class="brand__logo" viewBox="0 0 580 180" width="152" height="47" role="img" aria-label="LumySmile">
+            <text x="290" y="92" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="76" letter-spacing="-1" fill="#1B211F">Lumy<tspan fill="#108972">Smile</tspan></text>
+            <path d="M164 124c39 25 213 25 252 0" fill="none" stroke="#12A594" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="430" cy="118" r="8.5" fill="#7FD9C9"/>
           </svg>
-          <span class="brand__name">Lumy<span>Smile</span></span>
         {%- endif -%}
       </a>
       <nav class="nav" id="primaryNav" aria-label="Primary">
@@ -104,12 +103,11 @@
     <div class="container footer__grid">
       <div class="footer__brand">
         <a href="{{ routes.root_url }}" class="brand brand--light" aria-label="{{ shop.name }} home">
-          <svg class="brand__mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-            <rect width="32" height="32" rx="9" fill="#12A594"/>
-            <path d="M9 18c1.8 3 4.2 4.5 7 4.5s5.2-1.5 7-4.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-            <circle cx="24.5" cy="9" r="2" fill="#CDEDE6"/>
+          <svg class="brand__logo" viewBox="0 0 580 180" width="152" height="47" role="img" aria-label="LumySmile">
+            <text x="290" y="92" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="76" letter-spacing="-1" fill="#FFFFFF">Lumy<tspan fill="#7FD9C9">Smile</tspan></text>
+            <path d="M164 124c39 25 213 25 252 0" fill="none" stroke="#12A594" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="430" cy="118" r="8.5" fill="#CDEDE6"/>
           </svg>
-          <span class="brand__name">Lumy<span>Smile</span></span>
         </a>
         <p>Gentle, natural oral care for a brighter, more confident smile.</p>
       </div>
