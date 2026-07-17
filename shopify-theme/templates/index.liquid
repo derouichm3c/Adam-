@@ -89,27 +89,6 @@
   </div>
 </section>
 
-<!-- Product grid -->
-<section class="shop" id="shop">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Shop the collection</span>
-      <h2>Your natural smile routine</h2>
-      <p>Clean formulas, real results. Every product is peroxide-free, enamel-safe and made for daily confidence.</p>
-    </div>
-    <div class="product-grid">
-      {%- assign handles = 'teeth-whitening-strips,charcoal-whitening-toothpaste,bamboo-toothbrush-4-pack,the-complete-smile-bundle' | split: ',' -%}
-      {%- for h in handles -%}
-        {%- assign p = all_products[h] -%}
-        {%- if p.id -%}{% render 'product-card', product: p %}{%- endif -%}
-      {%- endfor -%}
-    </div>
-    <div class="section-cta">
-      <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline btn--lg">View all products</a>
-    </div>
-  </div>
-</section>
-
 <!-- Reviews -->
 <section class="reviews" id="reviews">
   <div class="container">
