@@ -553,10 +553,14 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
   .nav {
     position: fixed; inset: 72px 0 auto 0; flex-direction: column; gap: 0;
     background: var(--cream); border-bottom: 1px solid var(--line); padding: .5rem 0;
-    transform: translateY(-120%); transition: transform .3s var(--ease); box-shadow: var(--shadow-md);
-    margin: 0; z-index: 55;
+    transform: translateY(-120%); visibility: hidden; opacity: 0;
+    transition: transform .3s var(--ease), opacity .3s var(--ease), visibility 0s .3s;
+    box-shadow: var(--shadow-md); margin: 0; z-index: 55;
   }
-  .nav.is-open { transform: translateY(0); }
+  .nav.is-open {
+    transform: translateY(0); visibility: visible; opacity: 1;
+    transition: transform .3s var(--ease), opacity .3s var(--ease), visibility 0s;
+  }
   .nav a { padding: .9rem clamp(18px,4vw,40px); width: 100%; border-bottom: 1px solid var(--line); }
   .nav a::after { display: none; }
   .nav-toggle { display: flex; }
