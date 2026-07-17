@@ -43,14 +43,27 @@
     input.value = v;
   });
 
-  // Product page: thumbnail -> swap main image
+  // Product page: gallery thumbnails -> swap main image OR play video
   var mainImg = $("#pMainImg");
+  var mainVideo = $("#pMainVideo");
   if (mainImg) {
     document.addEventListener("click", function (e) {
-      var t = e.target.closest("[data-pimg]");
+      var t = e.target.closest(".pthumb");
       if (!t) return;
       e.preventDefault();
-      mainImg.src = t.getAttribute("data-pimg");
+      var type = t.getAttribute("data-ptype");
+      if (type === "video" && mainVideo) {
+        mainImg.style.display = "none";
+        mainVideo.style.display = "block";
+        try { mainVideo.play(); } catch (err) {}
+      } else {
+        if (mainVideo) { mainVideo.pause(); mainVideo.style.display = "none"; }
+        mainImg.style.display = "block";
+        mainImg.src = t.getAttribute("data-pimg");
+      }
+      var all = document.querySelectorAll(".pthumb");
+      for (var i = 0; i < all.length; i++) { all[i].classList.remove("is-active"); }
+      t.classList.add("is-active");
     });
   }
 
