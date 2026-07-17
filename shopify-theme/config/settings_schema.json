@@ -19,7 +19,7 @@
         "type": "text",
         "id": "announcement_1",
         "label": "Announcement 1",
-        "default": "Free tracked shipping on orders over $50"
+        "default": "Free tracked shipping on orders over 50$"
       },
       {
         "type": "text",
