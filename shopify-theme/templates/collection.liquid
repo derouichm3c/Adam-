@@ -6,8 +6,6 @@
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">Shop the collection</span>
-    <h1>Your natural smile routine</h1>
-    <p>Clean formulas, real results. Every product is peroxide-free, enamel-safe and made for daily confidence.</p>
   </div>
 </section>
 
@@ -37,38 +35,6 @@
     {%- endpaginate -%}
   </div>
 </section>
-
-<!-- Featured Bundle -->
-{%- if bundle_p.id -%}
-<section class="bundle" id="bundle">
-  <div class="container bundle__inner">
-    <div class="bundle__media">
-      <img src="{{ cdn }}hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"
-           alt="The Complete Smile Bundle — toothbrush, toothpaste and whitening strips on a natural stone pedestal" width="620" height="620" loading="lazy">
-    </div>
-    <div class="bundle__copy">
-      <span class="eyebrow">Best value &middot; Most popular</span>
-      <h2>The Complete Smile Bundle</h2>
-      <p>Everything you need for a brighter, healthier smile &mdash; in one box. Our three best-sellers, together at a better price than buying separately.</p>
-      <ul class="bundle__list">
-        <li><strong>Bamboo Toothbrush 4-Pack</strong> &mdash; charcoal-infused bristles, biodegradable handle</li>
-        <li><strong>Charcoal Toothpaste</strong> &mdash; natural whitening, fluoride-free, gentle on enamel</li>
-        <li><strong>Whitening Strips</strong> &mdash; peroxide-free, enamel-safe, visible results in days</li>
-      </ul>
-      <div class="bundle__price">
-        <span class="price-now">59.99$</span>
-        <span class="price-was">84.97$</span>
-        <span class="price-save">Save 24.98$</span>
-      </div>
-      {%- form 'product', bundle_p -%}
-        <input type="hidden" name="id" value="{{ bundle_p.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="btn btn--primary btn--lg">Add bundle to cart</button>
-      {%- endform -%}
-      <p class="bundle__note">&#10022; Free tracked shipping &middot; 30-day money-back guarantee</p>
-    </div>
-  </div>
-</section>
-{%- endif -%}
 
 <!-- Guarantee band -->
 <section class="guarantee">
