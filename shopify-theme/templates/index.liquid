@@ -50,40 +50,6 @@
   </div>
 </section>
 
-<!-- Featured Bundle -->
-<section class="bundle" id="bundle">
-  <div class="container bundle__inner">
-    <div class="bundle__media">
-      <img src="{{ cdn }}hf_20260715_224640_429e08a3-e015-4bec-8aaa-52b2f32d9654.png?v=1784156518"
-           alt="The Complete Smile Bundle — toothbrush, toothpaste and whitening strips on a natural stone pedestal" width="620" height="620" loading="lazy">
-    </div>
-    <div class="bundle__copy">
-      <span class="eyebrow">Best value &middot; Most popular</span>
-      <h2>The Complete Smile Bundle</h2>
-      <p>Everything you need for a brighter, healthier smile &mdash; in one box. Our three best-sellers, together at a better price than buying separately.</p>
-      <ul class="bundle__list">
-        <li><strong>Bamboo Toothbrush 4-Pack</strong> &mdash; charcoal-infused bristles, biodegradable handle</li>
-        <li><strong>Charcoal Toothpaste</strong> &mdash; natural whitening, fluoride-free, gentle on enamel</li>
-        <li><strong>Whitening Strips</strong> &mdash; peroxide-free, enamel-safe, visible results in days</li>
-      </ul>
-      <div class="bundle__price">
-        <span class="price-now">59.99$</span>
-        <span class="price-was">84.97$</span>
-        <span class="price-save">Save 24.98$</span>
-      </div>
-      {%- if bundle_p.id -%}
-        {%- form 'product', bundle_p -%}
-          <input type="hidden" name="id" value="{{ bundle_p.selected_or_first_available_variant.id }}">
-          <button type="submit" name="add" class="btn btn--primary btn--lg">Add bundle to cart</button>
-        {%- endform -%}
-      {%- else -%}
-        <a href="/products/the-complete-smile-bundle" class="btn btn--primary btn--lg">Add bundle to cart</a>
-      {%- endif -%}
-      <p class="bundle__note">&#10022; Free tracked shipping &middot; 30-day money-back guarantee</p>
-    </div>
-  </div>
-</section>
-
 <!-- Reviews -->
 <section class="reviews" id="reviews">
   <div class="container">
@@ -96,19 +62,48 @@
       <figure class="review">
         <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>"Whiter teeth in under a week and zero sensitivity. I've tried the burning strips before &mdash; these are on another level."</blockquote>
-        <figcaption>Sarah M. &middot; Verified buyer</figcaption>
+        <figcaption>Sarah M.</figcaption>
       </figure>
       <figure class="review">
         <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>"The charcoal toothpaste leaves my mouth feeling so clean and fresh. Coffee stains are finally fading."</blockquote>
-        <figcaption>James T. &middot; Verified buyer</figcaption>
+        <figcaption>James T.</figcaption>
       </figure>
       <figure class="review">
         <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>"Love that it's eco-friendly and it actually works. The bundle is such good value &mdash; my whole routine sorted."</blockquote>
-        <figcaption>Am&eacute;lie R. &middot; Verified buyer</figcaption>
+        <figcaption>Am&eacute;lie R.</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- Mini FAQ -->
+<section class="faq">
+  <div class="container faq__inner">
+    <div class="section-head">
+      <span class="eyebrow">Good to know</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item" open>
+        <summary>How fast will I see results?</summary>
+        <p>Most people notice a visibly brighter smile in as little as 7 days with the whitening strips, using them just 30 minutes a day. Results vary with your starting shade and habits like coffee, tea and wine.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Will it hurt or make my teeth sensitive?</summary>
+        <p>Our strips are peroxide-free and designed to whiten with dramatically less of the zing and sensitivity that traditional strips cause. The toothpaste is a gentle, low-abrasion formula that won't strip your enamel.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Is LumySmile safe for enamel and gums?</summary>
+        <p>Yes. Everything we make is enamel-safe and gum-friendly &mdash; it brightens without damaging or weakening your teeth. If you have specific dental concerns, we always recommend checking with your dentist first.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Where do you ship and how long does it take?</summary>
+        <p>We offer fast tracked shipping across the US &amp; Canada, free on all orders. Orders are processed within 1&ndash;3 business days and typically arrive within 3&ndash;7 business days, with tracking emailed to you.</p>
+      </details>
+    </div>
+    <p class="faq__more"><a class="link" href="/pages/faq">See all FAQs &rarr;</a></p>
   </div>
 </section>
 
