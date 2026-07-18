@@ -114,11 +114,16 @@ p  { margin: 0 0 1rem; }
 /* ---------- Header ---------- */
 .header {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(251,248,242,.85); backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent; transition: box-shadow .25s, border-color .25s, background .25s;
+  border-bottom: 1px solid transparent; transition: box-shadow .25s, border-color .25s;
 }
-.header.is-scrolled { box-shadow: var(--shadow-sm); border-color: var(--line); background: rgba(251,248,242,.95); }
-.header__inner { display: flex; align-items: center; gap: 1rem; height: 72px; }
+.header::before {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(251,248,242,.85); backdrop-filter: blur(12px);
+  transition: background .25s;
+}
+.header.is-scrolled { box-shadow: var(--shadow-sm); border-color: var(--line); }
+.header.is-scrolled::before { background: rgba(251,248,242,.95); }
+.header__inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 1rem; height: 72px; }
 
 .brand { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; }
 .brand__mark { border-radius: 9px; }
