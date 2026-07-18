@@ -724,4 +724,4 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 
 /* ---------- Brand logo (wordmark + smile underline) ---------- */
 .brand__logo { display: block; width: 184px; height: 57px; }
-@media (max-width: 520px) { .brand__logo { width: 150px; height: 47px; } }
+@media (max-width: 520px) { .brand__logo { width: 195px; height: 61px; } }
