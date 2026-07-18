@@ -339,6 +339,7 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 .story__media:hover img { transform: scale(1.05); }
 .story__text h3 { font-size: 1.4rem; margin-bottom: .6rem; }
 .story__text > p { color: var(--muted); margin-bottom: 1.4rem; }
+.story__text strong { color: var(--charcoal); font-weight: 700; }
 .story__values { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
 .story__values li {
   background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius-sm);
