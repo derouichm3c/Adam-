@@ -141,7 +141,8 @@ p  { margin: 0 0 1rem; }
 .nav > a:hover { color: var(--green-700); }
 .nav > a:hover::after { width: 100%; }
 
-.header__actions { display: flex; align-items: center; gap: .4rem; margin-left: auto; }
+.header__actions { display: flex; align-items: center; gap: .4rem; margin-left: auto; flex: none; }
+.brand { flex: none; }
 .header__shop-btn { border: 1.5px solid var(--green-700); color: var(--green-800); border-radius: 999px; }
 .header__shop-btn:hover { background: var(--green-700); color: #fff; }
 
@@ -160,7 +161,7 @@ p  { margin: 0 0 1rem; }
 .cart-btn__count.is-visible { transform: scale(1); }
 
 .nav-toggle {
-  display: none; flex-direction: column; gap: 5px; background: transparent; border: none;
+  display: none; flex: none; flex-direction: column; gap: 5px; background: transparent; border: none;
   width: 42px; height: 42px; padding: 10px; border-radius: 10px;
 }
 .nav-toggle span { display: block; height: 2px; background: var(--charcoal); border-radius: 2px; transition: transform .25s, opacity .2s; }
@@ -781,4 +782,4 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 
 /* ---------- Brand logo (wordmark + smile underline) ---------- */
 .brand__logo { display: block; width: 184px; height: 57px; }
-@media (max-width: 520px) { .brand__logo { width: 195px; height: 61px; } }
+@media (max-width: 520px) { .brand__logo { width: min(195px, 46vw); height: auto; } }
