@@ -166,6 +166,8 @@ p  { margin: 0 0 1rem; }
 /* ---------- Active nav + sub-page hero ---------- */
 .nav a[aria-current="page"] { color: var(--green-700); }
 .nav a[aria-current="page"]::after { width: 100%; }
+.nav-overlay { display: none; }
+body.nav-open { overflow: hidden; }
 
 .page-hero {
   text-align: center;
@@ -551,18 +553,25 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 
 @media (max-width: 860px) {
   .nav {
-    position: fixed; inset: 72px 0 auto 0; flex-direction: column; gap: 0;
-    background: var(--cream); border-bottom: 1px solid var(--line); padding: .5rem 0;
-    transform: translateY(-120%); visibility: hidden; opacity: 0;
-    transition: transform .3s var(--ease), opacity .3s var(--ease), visibility 0s .3s;
-    box-shadow: var(--shadow-md); margin: 0; z-index: 55;
+    position: fixed; top: 0; left: 0; bottom: 0; width: min(82vw, 330px);
+    flex-direction: column; gap: 0; align-items: stretch;
+    background: var(--cream); padding: 92px 0 24px;
+    transform: translateX(-100%); visibility: hidden;
+    transition: transform .32s var(--ease), visibility 0s .32s;
+    box-shadow: 8px 0 44px rgba(11,33,31,.20); margin: 0; z-index: 59; overflow-y: auto;
   }
   .nav.is-open {
-    transform: translateY(0); visibility: visible; opacity: 1;
-    transition: transform .3s var(--ease), opacity .3s var(--ease), visibility 0s;
+    transform: translateX(0); visibility: visible;
+    transition: transform .32s var(--ease), visibility 0s;
   }
-  .nav a { padding: .9rem clamp(18px,4vw,40px); width: 100%; border-bottom: 1px solid var(--line); }
+  .nav a { padding: 1rem clamp(22px,6vw,34px); width: 100%; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
   .nav a::after { display: none; }
+  .nav-overlay {
+    display: block; position: fixed; inset: 0; background: rgba(11,33,31,.45); z-index: 58;
+    opacity: 0; visibility: hidden;
+    transition: opacity .32s var(--ease), visibility 0s .32s;
+  }
+  .nav-overlay.is-open { opacity: 1; visibility: visible; transition: opacity .32s var(--ease), visibility 0s; }
   .nav-toggle { display: flex; }
   .header__shop-btn { display: none; }
   .hero__inner { grid-template-columns: 1fr; text-align: center; }

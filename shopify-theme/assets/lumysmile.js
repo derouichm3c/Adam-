@@ -5,20 +5,27 @@
   "use strict";
   function $(s, c) { return (c || document).querySelector(s); }
 
-  // Mobile nav
+  // Mobile nav (side drawer)
   var navToggle = $("#navToggle");
   var nav = $("#primaryNav");
+  var navOverlay = $("#navOverlay");
   if (navToggle && nav) {
-    navToggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
+    var setNav = function (open) {
+      nav.classList.toggle("is-open", open);
+      if (navOverlay) navOverlay.classList.toggle("is-open", open);
+      document.body.classList.toggle("nav-open", open);
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
       navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    navToggle.addEventListener("click", function () {
+      setNav(!nav.classList.contains("is-open"));
     });
     nav.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
-        nav.classList.remove("is-open");
-        navToggle.setAttribute("aria-expanded", "false");
-      }
+      if (e.target.tagName === "A") setNav(false);
+    });
+    if (navOverlay) navOverlay.addEventListener("click", function () { setNav(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) setNav(false);
     });
   }
 
