@@ -207,7 +207,6 @@ body.nav-open { overflow: hidden; }
   width: 100%; max-width: 540px; margin-inline: auto;
   border-radius: var(--radius);
   filter: drop-shadow(0 30px 44px rgba(11,61,52,.18));
-  animation: floaty 6s ease-in-out infinite;
 }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 @media (prefers-reduced-motion: reduce) { .hero__media img { animation: none; } }
