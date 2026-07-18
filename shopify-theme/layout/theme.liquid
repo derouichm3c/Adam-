@@ -71,13 +71,20 @@
         {%- endif -%}
       </a>
       <nav class="nav" id="primaryNav" aria-label="Primary">
-        <button class="nav__close" id="navClose" type="button" aria-label="Close menu">&times;</button>
+        <div class="nav__head">
+          <span class="nav__brand">Lumy<span>Smile</span></span>
+          <button class="nav__close" id="navClose" type="button" aria-label="Close menu">&times;</button>
+        </div>
         <a href="{{ routes.root_url }}"{% if tpl == 'index' %} aria-current="page"{% endif %}>Home</a>
         <a href="{{ routes.all_products_collection_url }}"{% if tpl == 'collection' or tpl == 'product' or tpl == 'list-collections' %} aria-current="page"{% endif %}>Shop</a>
         <a href="/pages/mission"{% if ph == 'mission' %} aria-current="page"{% endif %}>Our Mission</a>
         <a href="/pages/faq"{% if ph == 'faq' %} aria-current="page"{% endif %}>FAQ</a>
         <a href="/pages/about-us"{% if ph == 'about-us' %} aria-current="page"{% endif %}>About</a>
         <a href="/pages/contact"{% if ph == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+        <div class="nav__foot">
+          <a href="/products/the-complete-smile-bundle" class="btn btn--primary btn--lg">Shop the Bundle</a>
+          <a href="mailto:support@lumysmile.com" class="nav__mail">support@lumysmile.com</a>
+        </div>
       </nav>
       <div class="header__actions">
         <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost header__shop-btn">Shop now</a>
