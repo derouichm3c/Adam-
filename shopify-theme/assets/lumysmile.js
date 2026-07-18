@@ -24,6 +24,8 @@
       if (e.target.tagName === "A") setNav(false);
     });
     if (navOverlay) navOverlay.addEventListener("click", function () { setNav(false); });
+    var navClose = $("#navClose");
+    if (navClose) navClose.addEventListener("click", function () { setNav(false); });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && nav.classList.contains("is-open")) setNav(false);
     });

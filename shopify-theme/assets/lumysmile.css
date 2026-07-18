@@ -167,6 +167,7 @@ p  { margin: 0 0 1rem; }
 .nav a[aria-current="page"] { color: var(--green-700); }
 .nav a[aria-current="page"]::after { width: 100%; }
 .nav-overlay { display: none; }
+.nav__close { display: none; }
 body.nav-open { overflow: hidden; }
 
 .page-hero {
@@ -572,6 +573,12 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
     transition: opacity .32s var(--ease), visibility 0s .32s;
   }
   .nav-overlay.is-open { opacity: 1; visibility: visible; transition: opacity .32s var(--ease), visibility 0s; }
+  .nav__close {
+    display: block; position: absolute; top: 20px; right: 20px;
+    width: 46px; height: 46px; background: none; border: none; border-radius: 12px;
+    font-size: 36px; line-height: 1; color: var(--charcoal); cursor: pointer;
+  }
+  .nav__close:hover { background: var(--mint-100); color: var(--green-700); }
   .nav-toggle { display: flex; }
   .header__shop-btn { display: none; }
   .hero__inner { grid-template-columns: 1fr; text-align: center; }
