@@ -183,6 +183,7 @@ body.nav-open { overflow: hidden; }
   padding-block: clamp(2.4rem, 6vw, 4rem);
 }
 .page-hero .eyebrow { margin-bottom: .6rem; }
+.template-collection .page-hero .eyebrow { font-size: 1.01rem; }
 .page-hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: .5rem; }
 .page-hero p { color: var(--muted); max-width: 48ch; margin-inline: auto; }
 
