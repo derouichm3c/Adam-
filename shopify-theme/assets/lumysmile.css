@@ -617,7 +617,10 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
   .hero__media { order: 1; }
   .hero__lead { margin-inline: auto; }
   .hero__cta, .hero__badges { justify-content: center; }
-  .hero__pill { display: none; }
+  .hero__pill { font-size: .72rem; padding: .45rem .7rem; border-radius: 12px; }
+  .hero__pill--1 { top: 6%; left: 6px; }
+  .hero__pill--2 { bottom: 6%; right: 6px; }
+  .hero__pill .stars { font-size: .68rem; }
   .bundle__inner { grid-template-columns: 1fr; }
   .bundle__media { order: 2; }
   .trustbar__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem .7rem; padding-block: 1rem; }
