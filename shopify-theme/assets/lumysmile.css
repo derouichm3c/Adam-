@@ -221,15 +221,20 @@ body.nav-open { overflow: hidden; }
 .hero__pill .stars { font-size: .8rem; }
 
 /* ---------- Trust bar ---------- */
-.trustbar { background: var(--white); border-block: 1px solid var(--line); }
+.trustbar { background: linear-gradient(135deg, var(--green-800), var(--green-900)); color: #fff; }
 .trustbar__grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
-  padding-block: 1.6rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem;
+  padding-block: clamp(1.8rem, 3.5vw, 2.6rem);
 }
-.trustbar__item { display: flex; align-items: center; gap: .7rem; justify-content: center; text-align: left; }
-.trustbar__item svg { width: 30px; height: 30px; color: var(--green-600); flex: none; }
-.trustbar__item strong { display: block; font-size: .95rem; }
-.trustbar__item span { font-size: .82rem; color: var(--muted); }
+.trustbar__item { display: flex; align-items: center; gap: .95rem; justify-content: center; text-align: left; }
+.trustbar__icon {
+  flex: none; width: 54px; height: 54px; border-radius: 50%;
+  background: var(--mint-300); display: grid; place-items: center;
+  box-shadow: 0 8px 18px rgba(9,58,46,.35);
+}
+.trustbar__icon svg { width: 26px; height: 26px; color: var(--green-900); }
+.trustbar__item strong { display: block; font-size: 1rem; color: #fff; }
+.trustbar__item span { font-size: .82rem; color: rgba(255,255,255,.72); }
 
 /* ---------- Section heads ---------- */
 .section-head { text-align: center; max-width: 640px; margin: 0 auto clamp(2rem, 4vw, 3rem); }
