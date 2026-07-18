@@ -477,8 +477,8 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 }
 .footer__cards .pay svg { display: block; }
 .pay--visa { color: #1A1F71; font-weight: 800; font-style: italic; font-size: 12px; letter-spacing: .5px; }
-.pay--amex { background: #1F72CF; color: #fff; font-weight: 800; font-size: 10.5px; letter-spacing: .3px; }
-.pay--shop { background: #5A31F4; color: #fff; font-weight: 800; font-size: 11.5px; font-style: italic; }
+.footer__cards .pay--amex { background: #1F72CF; color: #fff; font-weight: 800; font-size: 10.5px; letter-spacing: .3px; }
+.footer__cards .pay--shop { background: #5A31F4; color: #fff; font-weight: 800; font-size: 11.5px; font-style: italic; }
 .pay .pp1 { fill: #003087; }
 .pay .pp2 { fill: #0079C1; }
 .footer__bottom { border-top: 1px solid rgba(255,255,255,.10); }
