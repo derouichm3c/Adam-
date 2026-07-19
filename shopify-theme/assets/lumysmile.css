@@ -614,7 +614,7 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
   .nav__mail { display: block; margin-top: 16px; text-align: center; color: var(--green-700); font-weight: 600; font-size: .9rem; }
   .nav-toggle { display: grid; }
   .header__shop-btn { display: none; }
-  .hero__inner { grid-template-columns: 1fr; text-align: center; }
+  .hero__inner { grid-template-columns: 1fr; text-align: center; padding-block: .5rem 2rem; }
   .hero__copy { order: 2; }
   .hero__media { order: 1; }
   .hero__lead { margin-inline: auto; }
