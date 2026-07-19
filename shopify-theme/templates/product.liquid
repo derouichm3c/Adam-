@@ -25,11 +25,14 @@
 <section class="product">
   <div class="container product__grid">
     <div class="product__gallery">
-      {%- assign product_video = null -%}
+      {%- comment -%} Gallery shows images only; videos live in the "How to use it" section below. {%- endcomment -%}
       {%- assign first_img = null -%}
+      {%- assign img_count = 0 -%}
       {%- for m in product.media -%}
-        {%- if product_video == null and m.media_type == 'video' -%}{%- assign product_video = m -%}{%- endif -%}
-        {%- if first_img == null and m.media_type == 'image' -%}{%- assign first_img = m -%}{%- endif -%}
+        {%- if m.media_type == 'image' -%}
+          {%- if first_img == null -%}{%- assign first_img = m -%}{%- endif -%}
+          {%- assign img_count = img_count | plus: 1 -%}
+        {%- endif -%}
       {%- endfor -%}
 
       <div class="product__main-img" id="pMainStage">
@@ -38,27 +41,14 @@
         {%- else -%}
           <img id="pMainImg" src="{{ 'product-1' | placeholder_svg_tag }}" alt="{{ product.title | escape }}" width="600" height="600">
         {%- endif -%}
-        {%- if product_video -%}
-          <video id="pMainVideo" class="product__video" controls playsinline muted loop preload="metadata"
-                 poster="{{ product_video.preview_image | image_url: width: 1200 }}" style="display:none">
-            {%- for source in product_video.sources -%}
-              <source src="{{ source.url }}" type="{{ source.mime_type }}">
-            {%- endfor -%}
-          </video>
-        {%- endif -%}
       </div>
 
-      {%- if product.media.size > 1 -%}
+      {%- if img_count > 1 -%}
         <div class="product__thumbs">
           {%- for media in product.media -%}
             {%- if media.media_type == 'image' -%}
               <a href="#" class="pthumb" data-ptype="image" data-pimg="{{ media | image_url: width: 1200 }}" aria-label="View image {{ forloop.index }}">
                 <img src="{{ media | image_url: width: 160 }}" alt="{{ product.title | escape }} view {{ forloop.index }}" width="72" height="72" loading="lazy">
-              </a>
-            {%- elsif media.media_type == 'video' -%}
-              <a href="#" class="pthumb pthumb--video" data-ptype="video" aria-label="Play product video">
-                <img src="{{ media.preview_image | image_url: width: 160 }}" alt="{{ product.title | escape }} video" width="72" height="72" loading="lazy">
-                <span class="pthumb__play" aria-hidden="true"></span>
               </a>
             {%- endif -%}
           {%- endfor -%}
