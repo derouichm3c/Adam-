@@ -139,9 +139,11 @@
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
         </button>
         <div class="product-videos__track" data-pv-track>
+          {%- assign pv_i = 0 -%}
           {%- for m in product.media -%}
             {%- if m.media_type == 'video' -%}
-              <div class="product-videos__item">
+              {%- assign pv_i = pv_i | plus: 1 -%}
+              <div class="product-videos__item{% if pv_i == pv_video_count %} is-last{% endif %}">
                 <video controls playsinline preload="metadata" poster="{{ m.preview_image | image_url: width: 800 }}">
                   {%- for source in m.sources -%}
                     <source src="{{ source.url }}" type="{{ source.mime_type }}">
@@ -191,6 +193,12 @@
       transform:scale(1.06);
       transform-origin:center;
     }
+    .product-videos__item.is-last video{transform:none;}
+    .product-videos__item video::-webkit-media-controls-timeline{display:none !important;}
+    .product-videos__item video::-webkit-media-controls-current-time-display,
+    .product-videos__item video::-webkit-media-controls-time-remaining-display{display:none !important;}
+    .product-videos__item video::-webkit-media-controls-seek-back-button,
+    .product-videos__item video::-webkit-media-controls-seek-forward-button{display:none !important;}
     .product-videos__carousel.is-single .product-videos__track{justify-content:center;}
     .pv-arrow{
       position:absolute;
