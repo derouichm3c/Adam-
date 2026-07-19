@@ -163,6 +163,7 @@
     .product-videos__carousel{position:relative;margin-top:22px;}
     .product-videos__track{
       display:flex;
+      align-items:flex-start;
       gap:16px;
       overflow-x:auto;
       scroll-snap-type:x mandatory;
@@ -174,16 +175,18 @@
     .product-videos__track::-webkit-scrollbar{display:none;}
     .product-videos__item{
       flex:0 0 auto;
-      width:260px;
+      width:280px;
+      aspect-ratio:1/1;
       scroll-snap-align:start;
       border-radius:18px;
       overflow:hidden;
-      background:#000;
+      background:#0d0d0d;
       box-shadow:0 20px 44px rgba(11,61,52,.12);
     }
     .product-videos__item video{
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit:cover;
       display:block;
     }
     .product-videos__carousel.is-single .product-videos__track{justify-content:center;}
