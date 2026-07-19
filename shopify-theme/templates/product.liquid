@@ -118,6 +118,68 @@
   </div>
 </section>
 
+{%- comment -%}
+  Product videos section — shows the product's video(s) so shoppers can see
+  what it looks like and how to use it. Renders whenever the product has at
+  least one video; otherwise it is hidden automatically.
+{%- endcomment -%}
+{%- assign pv_video_count = 0 -%}
+{%- for m in product.media -%}
+  {%- if m.media_type == 'video' -%}{%- assign pv_video_count = pv_video_count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- if pv_video_count > 0 -%}
+  <section class="product-videos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">See it in action</span>
+        <h2>How to use it</h2>
+        <p>Watch {{ product.title }} in action &mdash; see exactly what it looks like and how to get the best results.</p>
+      </div>
+      <div class="product-videos__grid{% if pv_video_count == 1 %} product-videos__grid--single{% endif %}">
+        {%- for m in product.media -%}
+          {%- if m.media_type == 'video' -%}
+            <div class="product-videos__item">
+              <video controls playsinline preload="metadata" poster="{{ m.preview_image | image_url: width: 800 }}">
+                {%- for source in m.sources -%}
+                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                {%- endfor -%}
+              </video>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  <style>
+    .product-videos__grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:24px;
+      margin-top:32px;
+    }
+    .product-videos__grid--single{
+      grid-template-columns:1fr;
+      max-width:560px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .product-videos__item{
+      border-radius:18px;
+      overflow:hidden;
+      background:#000;
+      box-shadow:0 20px 44px rgba(11,61,52,.12);
+    }
+    .product-videos__item video{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    @media (max-width:749px){
+      .product-videos__grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;}
+    }
+  </style>
+{%- endif -%}
+
 {%- comment -%} Related products {%- endcomment -%}
 <section style="padding-top:0">
   <div class="container">
