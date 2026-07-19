@@ -134,37 +134,48 @@
         <span class="eyebrow">See it in action</span>
         <h2>How to use it</h2>
       </div>
-      <div class="product-videos__grid{% if pv_video_count == 1 %} product-videos__grid--single{% endif %}">
-        {%- for m in product.media -%}
-          {%- if m.media_type == 'video' -%}
-            <div class="product-videos__item">
-              <video controls playsinline preload="metadata" poster="{{ m.preview_image | image_url: width: 800 }}">
-                {%- for source in m.sources -%}
-                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
-                {%- endfor -%}
-              </video>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
+      <div class="product-videos__carousel{% if pv_video_count == 1 %} is-single{% endif %}" data-pv-carousel>
+        <button class="pv-arrow pv-arrow--prev" type="button" aria-label="Previous video" data-pv-prev hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="product-videos__track" data-pv-track>
+          {%- for m in product.media -%}
+            {%- if m.media_type == 'video' -%}
+              <div class="product-videos__item">
+                <video controls playsinline preload="metadata" poster="{{ m.preview_image | image_url: width: 800 }}">
+                  {%- for source in m.sources -%}
+                    <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {%- endfor -%}
+                </video>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <button class="pv-arrow pv-arrow--next" type="button" aria-label="Next video" data-pv-next>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
   </section>
   <style>
     .product-videos{padding-block:clamp(1.5rem,4vw,2.75rem);}
     .product-videos .section-head{margin-bottom:0;}
-    .product-videos__grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      margin-top:22px;
+    .product-videos__carousel{position:relative;margin-top:22px;}
+    .product-videos__track{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+      padding:6px 2px;
+      scrollbar-width:none;
     }
-    .product-videos__grid--single{
-      grid-template-columns:1fr;
-      max-width:340px;
-      margin-left:auto;
-      margin-right:auto;
-    }
+    .product-videos__track::-webkit-scrollbar{display:none;}
     .product-videos__item{
+      flex:0 0 auto;
+      width:260px;
+      scroll-snap-align:start;
       border-radius:18px;
       overflow:hidden;
       background:#000;
@@ -175,11 +186,62 @@
       height:auto;
       display:block;
     }
+    .product-videos__carousel.is-single .product-videos__track{justify-content:center;}
+    .pv-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:3;
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      border:1px solid var(--line,#E7E2D6);
+      background:#fff;
+      color:var(--green-800,#0A5A44);
+      box-shadow:0 10px 26px rgba(11,61,52,.18);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:background .2s,color .2s,opacity .2s;
+    }
+    .pv-arrow:hover{background:var(--mint-100,#E8F5F1);color:var(--green-700,#0A745B);}
+    .pv-arrow svg{display:block;}
+    .pv-arrow--prev{left:-10px;}
+    .pv-arrow--next{right:-10px;}
+    .pv-arrow[hidden]{display:none;}
     @media (max-width:749px){
-      .product-videos__grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
-      .product-videos__grid--single{max-width:280px;}
+      .product-videos__item{width:200px;}
+      .pv-arrow{width:40px;height:40px;}
+      .pv-arrow--prev{left:2px;}
+      .pv-arrow--next{right:2px;}
     }
   </style>
+  <script>
+    (function(){
+      function init(car){
+        if(car.dataset.pvInit){return;}
+        car.dataset.pvInit='1';
+        var track=car.querySelector('[data-pv-track]');
+        var prev=car.querySelector('[data-pv-prev]');
+        var next=car.querySelector('[data-pv-next]');
+        if(!track){return;}
+        function step(){var it=track.querySelector('.product-videos__item');return it?it.getBoundingClientRect().width+16:240;}
+        function update(){
+          var max=track.scrollWidth-track.clientWidth-2;
+          if(track.scrollWidth<=track.clientWidth+4){if(prev){prev.hidden=true;}if(next){next.hidden=true;}return;}
+          if(prev){prev.hidden=track.scrollLeft<=2;}
+          if(next){next.hidden=track.scrollLeft>=max;}
+        }
+        if(prev){prev.addEventListener('click',function(){track.scrollBy({left:-step(),behavior:'smooth'});});}
+        if(next){next.addEventListener('click',function(){track.scrollBy({left:step(),behavior:'smooth'});});}
+        track.addEventListener('scroll',update,{passive:true});
+        window.addEventListener('resize',update);
+        setTimeout(update,80);
+      }
+      var cars=document.querySelectorAll('[data-pv-carousel]');
+      for(var i=0;i<cars.length;i++){init(cars[i]);}
+    })();
+  </script>
 {%- endif -%}
 
 {%- comment -%} Related products {%- endcomment -%}
