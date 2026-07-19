@@ -141,9 +141,6 @@
         <p>{{ pwhy_sub }}</p>
       </div>
       <div class="pwhy__grid">
-        <div class="pwhy__media">
-          <img src="{{ product.featured_image | image_url: width: 1100 }}" alt="{{ product.title | escape }}" width="1100" height="1100" loading="lazy">
-        </div>
         <ul class="pwhy__cards">
           {%- case product.handle -%}
           {%- when 'teeth-whitening-strips' -%}
@@ -189,18 +186,13 @@
     .pwhy{padding-block:clamp(1.5rem,4vw,3rem);}
     .pwhy .section-head{margin-bottom:clamp(1.4rem,3vw,2rem);}
     .pwhy .accent{color:var(--green-600,#0C946F);}
-    .pwhy__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3rem);align-items:center;}
-    .pwhy__media{border-radius:22px;overflow:hidden;box-shadow:0 22px 50px rgba(11,61,52,.14);}
-    .pwhy__media img{display:block;width:100%;height:auto;}
+    .pwhy__grid{max-width:860px;margin-inline:auto;}
     .pwhy__cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
     .pwhy__card{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line,#E7E2D6);border-radius:18px;padding:20px 18px;box-shadow:0 10px 26px rgba(11,61,52,.05);}
     .pwhy__ic{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,var(--green-500,#14AE8C),var(--green-700,#0A745B));box-shadow:0 8px 18px rgba(10,116,91,.24);}
     .pwhy__ic svg{width:24px;height:24px;}
     .pwhy__card h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.06rem;margin:0;color:var(--charcoal,#1B211F);}
     .pwhy__card p{margin:.25rem 0 0;color:var(--muted,#566a63);font-size:.9rem;line-height:1.4;}
-    @media (max-width:860px){
-      .pwhy__grid{grid-template-columns:1fr;}
-    }
     @media (max-width:520px){
       .pwhy__cards{grid-template-columns:1fr;}
     }
