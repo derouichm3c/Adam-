@@ -55,6 +55,43 @@
   </div>
 </section>
 
+<!-- Before / after results -->
+<section class="results">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">See the difference</span>
+      <h2>Brighter smiles in as little as 7 days</h2>
+    </div>
+    <div class="results__grid">
+      <a class="results__card" href="/products/teeth-whitening-strips">
+        <img src="{{ cdn }}hf_20260720_061334_86f709f4-ba62-4450-9baa-41e8f75fde24.png?v=1784528092" alt="Teeth whitening before and after with LumySmile whitening strips" width="464" height="576" loading="lazy">
+        <span class="results__label">Whitening Strips</span>
+      </a>
+      <a class="results__card" href="/products/charcoal-whitening-toothpaste">
+        <img src="{{ cdn }}hf_20260720_061340_3e2591b8-5df9-4965-83d3-d9b56d7236ae.png?v=1784528092" alt="Teeth whitening before and after with LumySmile charcoal toothpaste" width="464" height="576" loading="lazy">
+        <span class="results__label">Charcoal Toothpaste</span>
+      </a>
+      <a class="results__card" href="/products/bamboo-toothbrush-4-pack">
+        <img src="{{ cdn }}hf_20260720_064958_1196b6a0-f25a-4941-98c1-0a55d2f79366.png?v=1784530237" alt="Teeth whitening before and after with the LumySmile bamboo toothbrush" width="464" height="576" loading="lazy">
+        <span class="results__label">Bamboo Toothbrush</span>
+      </a>
+      <a class="results__card" href="/products/the-complete-smile-bundle">
+        <img src="{{ cdn }}hf_20260720_061346_048a4646-6376-433d-93a3-692bbf7fd297.png?v=1784528093" alt="Teeth whitening before and after with the LumySmile Complete Smile Bundle" width="464" height="576" loading="lazy">
+        <span class="results__label">Complete Bundle</span>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+  .results{padding-block:clamp(1.5rem,4vw,3rem);}
+  .results__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;}
+  .results__card{position:relative;display:block;border-radius:18px;overflow:hidden;box-shadow:0 14px 32px rgba(11,61,52,.12);transition:transform .28s ease,box-shadow .28s ease;}
+  .results__card:hover{transform:translateY(-4px);box-shadow:0 22px 46px rgba(11,61,52,.18);}
+  .results__card img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;}
+  .results__label{position:absolute;left:12px;bottom:12px;font-family:'Inter',system-ui,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(20,33,29,.55);padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px);}
+  @media (max-width:900px){.results__grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
+</style>
+
 <!-- Reviews -->
 <section class="reviews" id="reviews">
   <div class="container">
