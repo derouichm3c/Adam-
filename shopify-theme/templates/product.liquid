@@ -108,6 +108,62 @@
   </div>
 </section>
 
+{%- comment -%} Before / after slider — visible whitening proof {%- endcomment -%}
+<section class="ba">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Real results</span>
+      <h2>See the difference</h2>
+      <p>Drag the slider &mdash; a visibly brighter smile in as little as 7 days.</p>
+    </div>
+    <div class="ba__wrap" data-ba style="--pos:50%">
+      <img class="ba__img ba__after" src="https://cdn.shopify.com/s/files/1/0832/7469/4871/files/hf_20260720_044212_594a7a42-6387-44ce-b45b-6c3404cc7957.png?v=1784523039" alt="Smile after whitening" width="1000" height="1000" loading="lazy">
+      <img class="ba__img ba__before" src="https://cdn.shopify.com/s/files/1/0832/7469/4871/files/hf_20260720_044759_849afc7b-4750-4cd5-94b0-d670dbcd0991.png?v=1784523038" alt="Smile before whitening" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--before">Before</span>
+      <span class="ba__tag ba__tag--after">After</span>
+      <button class="ba__handle" type="button" data-ba-handle aria-label="Drag to compare before and after">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 4 12l5 6M15 6l5 6-5 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+<style>
+  .ba{padding-block:clamp(1.5rem,4vw,3rem);}
+  .ba__wrap{position:relative;max-width:520px;margin:24px auto 0;aspect-ratio:1/1;border-radius:20px;overflow:hidden;box-shadow:0 20px 44px rgba(11,61,52,.14);background:var(--mint-100,#E8F5F0);user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize;}
+  .ba__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;}
+  .ba__before{clip-path:inset(0 calc(100% - var(--pos)) 0 0);}
+  .ba__tag{position:absolute;top:14px;font-family:'Inter',system-ui,sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(20,33,29,.5);padding:5px 11px;border-radius:999px;pointer-events:none;z-index:2;}
+  .ba__tag--before{left:14px;}
+  .ba__tag--after{right:14px;}
+  .ba__handle{position:absolute;top:0;bottom:0;left:var(--pos);width:46px;transform:translateX(-50%);background:transparent;border:none;padding:0;cursor:ew-resize;display:grid;place-items:center;z-index:3;}
+  .ba__handle::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);background:#fff;box-shadow:0 0 0 1px rgba(11,61,52,.12);}
+  .ba__handle svg{position:relative;width:38px;height:38px;padding:9px;border-radius:50%;background:#fff;color:var(--green-700,#0A745B);box-shadow:0 6px 18px rgba(11,61,52,.30);}
+  @media (max-width:520px){.ba__wrap{max-width:100%;}}
+</style>
+<script>
+  (function(){
+    var wrap=document.querySelector('[data-ba]');
+    if(!wrap||wrap.dataset.baInit){return;} wrap.dataset.baInit='1';
+    var dragging=false;
+    function setPos(x){
+      var r=wrap.getBoundingClientRect();
+      var p=(x-r.left)/r.width*100;
+      p=Math.max(0,Math.min(100,p));
+      wrap.style.setProperty('--pos',p+'%');
+    }
+    function pt(e){return e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX;}
+    function down(e){dragging=true;setPos(pt(e));if(e.cancelable){e.preventDefault();}}
+    function move(e){if(!dragging){return;}setPos(pt(e));if(e.cancelable){e.preventDefault();}}
+    function up(){dragging=false;}
+    wrap.addEventListener('mousedown',down);
+    wrap.addEventListener('touchstart',down,{passive:false});
+    window.addEventListener('mousemove',move);
+    window.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('mouseup',up);
+    window.addEventListener('touchend',up);
+  })();
+</script>
+
 {%- comment -%}
   Product videos section — shows the product's video(s) so shoppers can see
   what it looks like and how to use it. Renders whenever the product has at
