@@ -690,7 +690,7 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); }
 .product__price { display: flex; align-items: baseline; gap: .7rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
 .product__price .price-now { font-size: 2rem; }
 .product__desc { color: var(--muted); margin-bottom: 1.6rem; }
-.product__desc ul { padding-left: 1.1rem; margin: .8rem 0; }
+.product__desc ul { list-style: none; padding-left: 0; margin: .8rem 0; }
 .product__desc li { margin-bottom: .4rem; }
 .product__desc strong { color: var(--charcoal); }
 .product__form { display: grid; gap: 1rem; margin-bottom: 1.6rem; }
