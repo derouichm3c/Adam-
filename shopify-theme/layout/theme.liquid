@@ -157,6 +157,22 @@
     </div>
   </footer>
 
+  {%- comment -%} Cart drawer — opened from the header cart button and on add-to-cart {%- endcomment -%}
+  <div class="drawer-overlay" id="cartOverlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-drawer__head">
+      <h2>Your cart</h2>
+      <button class="cart-drawer__close" id="cartClose" type="button" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody"></div>
+    <div class="cart-drawer__foot" id="cartFoot" hidden>
+      <p class="cart-ship">&#128230; Free tracked shipping on every order</p>
+      <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal"></span></div>
+      <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--lg btn--block">Checkout securely</a>
+      <p class="cart-note">Shipping &amp; taxes calculated at checkout. 30-day money-back guarantee.</p>
+    </div>
+  </aside>
+
   {{ 'lumysmile.js' | asset_url | script_tag }}
 </body>
 </html>
