@@ -42,6 +42,14 @@ gestionnaire de publicités Meta.
 - **Message :** vidéo de démonstration de la brosse bambou (clip boutique, sans watermark).
 - **Fichier :** https://cdn.shopify.com/videos/c/vp/8258cce2c0034bcc8d66ff86519ebd07/8258cce2c0034bcc8d66ff86519ebd07.HD-1080p-3.3Mbps-89161708.mp4
 
+### Pub #4b — Démo brosse (vidéo 9:16 verticale, retravaillée)
+- **Angle :** démonstration produit / UGC — placement recommandé : Reels + Stories + TikTok
+- **Format :** 9:16 vertical (1080×1920), plein écran
+- **Retouches faites en local (ffmpeg + OpenCV) :** bandes blanches latérales supprimées,
+  passage carré → 9:16 plein cadre, et **sous-titre incrusté « GOES ON SMOOTH » retiré par
+  inpainting image par image** (pas de zoom, pas de flou, pas de bandeau).
+- **Fichier (dans le repo) :** `docs/ad-assets/brush-demo-9x16-notext.mp4`
+
 ---
 
 ## 📌 Notes
