@@ -1,0 +1,98 @@
+{% doc %}
+  Glowe Lab look for Horizon's mobile menu drawer (snippets/header-drawer.liquid):
+  a dark brand band with the shop name and a square close button, full-width rows
+  with dividers, and the current page highlighted with a ruby bar.
+  Uses a Liquid style tag (not a stylesheet tag) because the brand band shows the shop name.
+  Rendered once from the glowe-announcement section, which sits in the header group on every page.
+
+  @example
+  {% render 'glowe-drawer-styles' %}
+{% enddoc %}
+{% style %}
+  .header-drawer .menu-drawer {
+    --glowe-drawer-band: 88px;
+
+    width: min(88vw, 380px);
+    padding-block-start: 0;
+    background: #fbf8f4;
+    color: #17131c;
+  }
+
+  .header-drawer .menu-drawer::before {
+    content: {{ shop.name | json }};
+    display: flex;
+    align-items: center;
+    flex: none;
+    min-block-size: calc(var(--glowe-drawer-band) + var(--safe-area-inset-top, 0px));
+    padding: var(--safe-area-inset-top, 0px) 84px 0 24px;
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgb(179 36 59 / 0.35) 0%, transparent 60%),
+      linear-gradient(150deg, #241c29 0%, #17131c 100%);
+    color: #fbf8f4;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.85rem;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .header-drawer .menu-drawer > .menu-drawer__close-button {
+    position: absolute;
+    inset-block-start: calc(var(--safe-area-inset-top, 0px) + (var(--glowe-drawer-band) - 48px) / 2);
+    inset-inline-end: 18px;
+    display: grid;
+    place-items: center;
+    inline-size: 48px;
+    block-size: 48px;
+    padding: 0;
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.12);
+    color: #fbf8f4;
+  }
+
+  .header-drawer .menu-drawer > .menu-drawer__close-button:hover {
+    background: rgb(255 255 255 / 0.2);
+  }
+
+  .header-drawer .menu-drawer__navigation {
+    margin-block-start: 0;
+  }
+
+  .header-drawer .menu-drawer__menu:not(.menu-drawer__menu--childlist):not(.menu-drawer__menu--grandchildlist) {
+    padding-inline: 0;
+  }
+
+  .header-drawer .menu-drawer__menu > li {
+    border-block-end: 1px solid #e7ded4;
+  }
+
+  .header-drawer .menu-drawer__menu-item--mainlist {
+    min-block-size: 72px;
+    padding: 0 24px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #17131c;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .header-drawer .menu-drawer__menu-item--mainlist:hover {
+    background: rgb(179 36 59 / 0.05);
+  }
+
+  .header-drawer .menu-drawer__menu-item--mainlist[aria-current='page'],
+  .header-drawer .menu-drawer__menu-item--mainlist.menu-drawer__menu-item--active {
+    background: rgb(179 36 59 / 0.08);
+    box-shadow: inset 4px 0 0 #b3243b;
+    color: #b3243b;
+    font-weight: 600;
+  }
+
+  [dir='rtl'] .header-drawer .menu-drawer__menu-item--mainlist[aria-current='page'],
+  [dir='rtl'] .header-drawer .menu-drawer__menu-item--mainlist.menu-drawer__menu-item--active {
+    box-shadow: inset -4px 0 0 #b3243b;
+  }
+
+  .header-drawer .menu-drawer__utility-links {
+    padding: 24px;
+  }
+{% endstyle %}
