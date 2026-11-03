@@ -219,12 +219,6 @@
         "padding-block-end": 48
       }
     },
-    "trust": {
-      "type": "glowe-trustbar",
-      "settings": {
-        "tone": "white"
-      }
-    },
     "colors": {
       "type": "glowe-colors",
       "settings": {}
@@ -264,7 +258,6 @@
   },
   "order": [
     "main",
-    "trust",
     "colors",
     "features",
     "steps",

@@ -40,6 +40,13 @@
     list-style: none;
   }
 
+  @media screen and (max-width: 559px) {
+    .glowe-trustbar__list {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+  }
+
   @media screen and (min-width: 990px) {
     .glowe-trustbar__list {
       grid-template-columns: repeat(4, minmax(0, 1fr));
