@@ -35,7 +35,7 @@ shutil.copytree(horizon, out, ignore=shutil.ignore_patterns('.git', '.github', '
 
 for path in OVERLAY.rglob('*'):
     rel = path.relative_to(OVERLAY)
-    if path.is_dir() or rel.parts[0] in ('tools', 'locales') or path.name.startswith('.'):
+    if path.is_dir() or rel.parts[0] in ('tools', 'locales', 'apercu') or path.suffix == '.md' or path.name.startswith('.'):
         continue
     dest = out / rel
     dest.parent.mkdir(parents=True, exist_ok=True)
