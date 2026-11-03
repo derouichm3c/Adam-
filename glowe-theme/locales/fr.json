@@ -367,6 +367,7 @@
       "shipping_short": "Livraison gratuite",
       "returns_short": "Retours sous 30 jours",
       "secure_short": "Paiement sécurisé",
+      "support_short": "Service client réactif",
       "shipping_title": "Livraison gratuite",
       "shipping_text": "Dès 75 $ d'achat, avec numéro de suivi.",
       "returns_title": "Retours sous 30 jours",
@@ -421,11 +422,11 @@
       "each": "Soit {{ amount }} par masque",
       "shipping_included": "Livraison gratuite incluse",
       "li_1": "Livraison gratuite",
-      "li_2": "Retours sous 30 jours",
+      "li_2": "7 couleurs de lumière",
       "li_3": "Paiement sécurisé",
       "add": "Ajouter au panier",
       "sold_out": "Épuisé",
-      "foot": "Satisfaite ou remboursée pendant 30 jours. Commandez l'esprit tranquille."
+      "foot": "Paiement 100 % sécurisé, traité par Shopify. Commandez l'esprit tranquille."
     },
     "steps": {
       "eyebrow": "Mode d'emploi",
@@ -505,7 +506,7 @@
     "announce": {
       "label": "Annonces",
       "m1": "Livraison gratuite dès 75 $",
-      "m2": "Satisfaite ou remboursée pendant 30 jours",
+      "m2": "Paiement 100 % sécurisé",
       "m3": "L'idée cadeau des fêtes"
     },
     "ptrust": {

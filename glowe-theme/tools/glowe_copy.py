@@ -21,6 +21,7 @@ FR = {
         "shipping_short": "Livraison gratuite",
         "returns_short": "Retours sous 30 jours",
         "secure_short": "Paiement sécurisé",
+        "support_short": "Service client réactif",
         "shipping_title": "Livraison gratuite",
         "shipping_text": "Dès 75 $ d'achat, avec numéro de suivi.",
         "returns_title": "Retours sous 30 jours",
@@ -75,11 +76,11 @@ FR = {
         "each": "Soit {{ amount }} par masque",
         "shipping_included": "Livraison gratuite incluse",
         "li_1": "Livraison gratuite",
-        "li_2": "Retours sous 30 jours",
+        "li_2": "7 couleurs de lumière",
         "li_3": "Paiement sécurisé",
         "add": "Ajouter au panier",
         "sold_out": "Épuisé",
-        "foot": "Satisfaite ou remboursée pendant 30 jours. Commandez l'esprit tranquille.",
+        "foot": "Paiement 100 % sécurisé, traité par Shopify. Commandez l'esprit tranquille.",
     },
     "steps": {
         "eyebrow": "Mode d'emploi",
@@ -159,7 +160,7 @@ FR = {
     "announce": {
         "label": "Annonces",
         "m1": "Livraison gratuite dès 75 $",
-        "m2": "Satisfaite ou remboursée pendant 30 jours",
+        "m2": "Paiement 100 % sécurisé",
         "m3": "L'idée cadeau des fêtes",
     },
     "ptrust": {
@@ -199,6 +200,7 @@ EN = {
         "shipping_short": "Free shipping",
         "returns_short": "30-day returns",
         "secure_short": "Secure checkout",
+        "support_short": "Responsive support",
         "shipping_title": "Free shipping",
         "shipping_text": "On orders over $75, with tracking.",
         "returns_title": "30-day returns",
@@ -253,11 +255,11 @@ EN = {
         "each": "That's {{ amount }} per mask",
         "shipping_included": "Free shipping included",
         "li_1": "Free shipping",
-        "li_2": "30-day returns",
+        "li_2": "7 light colors",
         "li_3": "Secure checkout",
         "add": "Add to cart",
         "sold_out": "Sold out",
-        "foot": "30-day money-back guarantee. Order with peace of mind.",
+        "foot": "100% secure checkout, processed by Shopify. Order with peace of mind.",
     },
     "steps": {
         "eyebrow": "How it works",
@@ -337,7 +339,7 @@ EN = {
     "announce": {
         "label": "Announcements",
         "m1": "Free shipping on orders over $75",
-        "m2": "30-day money-back guarantee",
+        "m2": "100% secure checkout",
         "m3": "The holiday gift idea",
     },
     "ptrust": {

@@ -388,6 +388,7 @@
       "shipping_short": "Free shipping",
       "returns_short": "30-day returns",
       "secure_short": "Secure checkout",
+      "support_short": "Responsive support",
       "shipping_title": "Free shipping",
       "shipping_text": "On orders over $75, with tracking.",
       "returns_title": "30-day returns",
@@ -442,11 +443,11 @@
       "each": "That's {{ amount }} per mask",
       "shipping_included": "Free shipping included",
       "li_1": "Free shipping",
-      "li_2": "30-day returns",
+      "li_2": "7 light colors",
       "li_3": "Secure checkout",
       "add": "Add to cart",
       "sold_out": "Sold out",
-      "foot": "30-day money-back guarantee. Order with peace of mind."
+      "foot": "100% secure checkout, processed by Shopify. Order with peace of mind."
     },
     "steps": {
       "eyebrow": "How it works",
@@ -526,7 +527,7 @@
     "announce": {
       "label": "Announcements",
       "m1": "Free shipping on orders over $75",
-      "m2": "30-day money-back guarantee",
+      "m2": "100% secure checkout",
       "m3": "The holiday gift idea"
     },
     "ptrust": {
