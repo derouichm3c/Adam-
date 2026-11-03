@@ -385,11 +385,11 @@
       "badge": "7 light colors"
     },
     "trust": {
-      "shipping_short": "Free shipping in Canada",
+      "shipping_short": "Free shipping",
       "returns_short": "30-day returns",
       "secure_short": "Secure checkout",
       "shipping_title": "Free shipping",
-      "shipping_text": "Across Canada on orders over $75, with tracking.",
+      "shipping_text": "On orders over $75, with tracking.",
       "returns_title": "30-day returns",
       "returns_text": "Changed your mind? You have 30 days to send it back.",
       "secure_title": "100% secure checkout",
@@ -441,7 +441,7 @@
       "save": "You save {{ amount }}",
       "each": "That's {{ amount }} per mask",
       "shipping_included": "Free shipping included",
-      "li_1": "Free shipping in Canada",
+      "li_1": "Free shipping",
       "li_2": "30-day returns",
       "li_3": "Secure checkout",
       "add": "Add to cart",
@@ -500,7 +500,7 @@
       "q4": "Is the mask suitable for everyone?",
       "a4": "Keep your eyes closed during use and never look directly at the LEDs. The mask is not recommended for pregnant women, people who are photosensitive or epileptic, or people taking photosensitizing medication. If in doubt, consult a healthcare professional. This device is a beauty and wellness product; it is not intended to diagnose, treat or cure any disease.",
       "q5": "How much is shipping?",
-      "a5": "Shipping is free across Canada on all orders of $75 or more, so on every mask. You receive a tracking number by email as soon as your order ships.",
+      "a5": "Shipping is free on all orders of $75 or more, so on every mask. You receive a tracking number by email as soon as your order ships.",
       "q6": "Can I return my mask?",
       "a6": "Yes. You have 30 days after delivery to return your mask. Contact us and we will guide you. Full details are in our return policy.",
       "q7": "Can I give it as a gift?",
@@ -525,13 +525,13 @@
     },
     "announce": {
       "label": "Announcements",
-      "m1": "Free shipping in Canada on orders over $75",
+      "m1": "Free shipping on orders over $75",
       "m2": "30-day money-back guarantee",
       "m3": "The holiday gift idea"
     },
     "ptrust": {
       "duo": "Give one: save {{ amount }} with the duo.",
-      "shipping": "Free shipping in Canada",
+      "shipping": "Free shipping",
       "returns": "30-day returns",
       "secure": "Secure checkout",
       "support": "Responsive support"

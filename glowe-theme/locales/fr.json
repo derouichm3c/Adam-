@@ -364,11 +364,11 @@
       "badge": "7 couleurs de lumière"
     },
     "trust": {
-      "shipping_short": "Livraison gratuite au Canada",
+      "shipping_short": "Livraison gratuite",
       "returns_short": "Retours sous 30 jours",
       "secure_short": "Paiement sécurisé",
       "shipping_title": "Livraison gratuite",
-      "shipping_text": "Partout au Canada dès 75 $, avec numéro de suivi.",
+      "shipping_text": "Dès 75 $ d'achat, avec numéro de suivi.",
       "returns_title": "Retours sous 30 jours",
       "returns_text": "Changé d'avis ? Vous avez 30 jours pour nous le retourner.",
       "secure_title": "Paiement 100 % sécurisé",
@@ -420,7 +420,7 @@
       "save": "Vous économisez {{ amount }}",
       "each": "Soit {{ amount }} par masque",
       "shipping_included": "Livraison gratuite incluse",
-      "li_1": "Livraison gratuite au Canada",
+      "li_1": "Livraison gratuite",
       "li_2": "Retours sous 30 jours",
       "li_3": "Paiement sécurisé",
       "add": "Ajouter au panier",
@@ -479,7 +479,7 @@
       "q4": "Le masque convient-il à tout le monde ?",
       "a4": "Gardez les yeux fermés pendant l'utilisation et ne regardez jamais directement les LED. Le masque est déconseillé aux femmes enceintes, aux personnes photosensibles ou épileptiques et aux personnes prenant des médicaments photosensibilisants. En cas de doute, consultez un professionnel de la santé. Cet appareil est un produit de beauté et de bien-être ; il n'est pas destiné à diagnostiquer, traiter ou guérir une maladie.",
       "q5": "Combien coûte la livraison ?",
-      "a5": "La livraison est gratuite partout au Canada pour toute commande de 75 $ et plus, donc pour chaque masque. Vous recevez un numéro de suivi par courriel dès l'expédition de votre commande.",
+      "a5": "La livraison est gratuite pour toute commande de 75 $ et plus, donc pour chaque masque. Vous recevez un numéro de suivi par courriel dès l'expédition de votre commande.",
       "q6": "Puis-je retourner mon masque ?",
       "a6": "Oui. Vous disposez de 30 jours après la réception pour nous retourner votre masque. Contactez-nous et nous vous guiderons. Les détails se trouvent dans notre politique de retour.",
       "q7": "Puis-je l'offrir en cadeau ?",
@@ -504,13 +504,13 @@
     },
     "announce": {
       "label": "Annonces",
-      "m1": "Livraison gratuite au Canada dès 75 $",
+      "m1": "Livraison gratuite dès 75 $",
       "m2": "Satisfaite ou remboursée pendant 30 jours",
       "m3": "L'idée cadeau des fêtes"
     },
     "ptrust": {
       "duo": "Offrez-en un : économisez {{ amount }} avec le duo.",
-      "shipping": "Livraison gratuite au Canada",
+      "shipping": "Livraison gratuite",
       "returns": "Retours sous 30 jours",
       "secure": "Paiement sécurisé",
       "support": "Service client réactif"
