@@ -1,0 +1,106 @@
+{% comment %}
+  Section contract.
+  Glowe Lab reassurance strip: shipping, returns, secure payment and support.
+  @example
+  <!-- Place under the hero or above the footer. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section--compact glowe-trustbar">
+  <ul class="glowe__inner glowe-trustbar__list" role="list">
+    <li>
+      <span class="glowe-trustbar__icon">{% render 'glowe-icon', name: 'truck' %}</span>
+      <span><strong>{{ 'glowe.trust.shipping_title' | t }}</strong>{{ 'glowe.trust.shipping_text' | t }}</span>
+    </li>
+    <li>
+      <span class="glowe-trustbar__icon">{% render 'glowe-icon', name: 'return' %}</span>
+      <span><strong>{{ 'glowe.trust.returns_title' | t }}</strong>{{ 'glowe.trust.returns_text' | t }}</span>
+    </li>
+    <li>
+      <span class="glowe-trustbar__icon">{% render 'glowe-icon', name: 'lock' %}</span>
+      <span><strong>{{ 'glowe.trust.secure_title' | t }}</strong>{{ 'glowe.trust.secure_text' | t }}</span>
+    </li>
+    <li>
+      <span class="glowe-trustbar__icon">{% render 'glowe-icon', name: 'chat' %}</span>
+      <span><strong>{{ 'glowe.trust.support_title' | t }}</strong>{{ 'glowe.trust.support_text' | t }}</span>
+    </li>
+  </ul>
+</div>
+
+{% stylesheet %}
+  .glowe-trustbar {
+    border-block: 1px solid var(--g-line);
+  }
+
+  .glowe-trustbar__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-trustbar__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .glowe-trustbar__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--g-muted);
+  }
+
+  .glowe-trustbar__list strong {
+    display: block;
+    margin-block-end: 2px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--g-ink);
+  }
+
+  .glowe--tone-ink .glowe-trustbar__list strong {
+    color: var(--g-ivory);
+  }
+
+  .glowe-trustbar__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 42px;
+    block-size: 42px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--g-line);
+    color: var(--g-ink);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Confiance",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "white"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Confiance"
+    }
+  ]
+}
+{% endschema %}

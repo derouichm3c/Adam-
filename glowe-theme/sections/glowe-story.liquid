@@ -1,0 +1,111 @@
+{% comment %}
+  Section contract.
+  Glowe Lab brand story with three brand promises. Used on the About page.
+  @example
+  <!-- About page template. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--page-width glowe glowe--tone-ivory glowe-section glowe-story">
+  <div class="glowe__inner">
+    <header class="glowe-head glowe-head--center">
+      <p class="glowe-eyebrow">{{ 'glowe.story.eyebrow' | t }}</p>
+      <h1 class="glowe-title glowe-story__title">{{ 'glowe.story.title_html' | t }}</h1>
+      <p class="glowe-lead">{{ 'glowe.story.intro' | t }}</p>
+    </header>
+
+    <div class="glowe-story__body">
+      <p>{{ 'glowe.story.p1' | t }}</p>
+      <p>{{ 'glowe.story.p2' | t }}</p>
+    </div>
+
+    <ul class="glowe-story__values" role="list">
+      {%- assign icons = 'shield,heart,chat' | split: ',' -%}
+      {%- for icon in icons -%}
+        {%- capture t_key %}glowe.story.v{{ forloop.index }}_title{% endcapture -%}
+        {%- capture d_key %}glowe.story.v{{ forloop.index }}_text{% endcapture -%}
+        <li>
+          <span class="glowe-story__icon">{% render 'glowe-icon', name: icon %}</span>
+          <h2>{{ t_key | t }}</h2>
+          <p>{{ d_key | t }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-story__title {
+    font-size: clamp(2.4rem, 1.5rem + 3.4vw, 4rem);
+  }
+
+  .glowe-story__body {
+    max-inline-size: 68ch;
+    margin: 0 auto;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--g-ink-soft);
+  }
+
+  .glowe-story__body p {
+    margin: 0 0 20px;
+  }
+
+  .glowe-story__values {
+    display: grid;
+    gap: 16px;
+    margin: clamp(40px, 6vw, 72px) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .glowe-story__values {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .glowe-story__values li {
+    min-width: 0;
+    padding: 30px 26px;
+    border: 1px solid var(--g-line);
+    border-radius: var(--g-radius);
+    background: #fff;
+  }
+
+  .glowe-story__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 48px;
+    block-size: 48px;
+    margin-block-end: 18px;
+    border-radius: 14px;
+    background: var(--g-sand);
+    color: var(--g-accent);
+  }
+
+  .glowe-story__values h2 {
+    margin: 0 0 8px;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.3rem;
+  }
+
+  .glowe-story__values p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--g-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Notre histoire",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Glowe – Notre histoire"
+    }
+  ]
+}
+{% endschema %}

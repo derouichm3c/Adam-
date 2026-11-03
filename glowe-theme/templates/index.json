@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "hero": {
+      "type": "glowe-hero",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs",
+        "tone": "ivory"
+      }
+    },
+    "trust": {
+      "type": "glowe-trustbar",
+      "settings": {
+        "tone": "white"
+      }
+    },
+    "features": {
+      "type": "glowe-features",
+      "settings": {
+        "tone": "ivory"
+      }
+    },
+    "colors": {
+      "type": "glowe-colors",
+      "settings": {}
+    },
+    "offer": {
+      "type": "glowe-offer",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs",
+        "tone": "sand"
+      }
+    },
+    "steps": {
+      "type": "glowe-steps",
+      "settings": {
+        "tone": "ivory"
+      }
+    },
+    "compare": {
+      "type": "glowe-compare",
+      "settings": {
+        "tone": "sand"
+      }
+    },
+    "guarantee": {
+      "type": "glowe-guarantee",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs",
+        "show_cta": true
+      }
+    },
+    "faq": {
+      "type": "glowe-faq",
+      "settings": {
+        "open_first": true,
+        "tone": "ivory"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "features",
+    "colors",
+    "offer",
+    "steps",
+    "compare",
+    "guarantee",
+    "faq"
+  ]
+}

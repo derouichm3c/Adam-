@@ -1,0 +1,210 @@
+{% comment %}
+  Section contract.
+  Interactive "7 colors" explorer: each swatch recolors the LED mask visual and shows its description.
+  Works without JavaScript (first color shown); the inline script only adds selection.
+  @example
+  <!-- Home and product pages. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- assign colors = '#ff4d5a,#3d8bff,#35d07f,#ffc93c,#a46bff,#2fd6e0,#f4f1ea' | split: ',' -%}
+<div class="section section--page-width glowe glowe--tone-ink glowe-section glowe-colors" id="GloweColors-{{ section.id }}">
+  <div class="glowe__inner glowe-colors__grid">
+    <div class="glowe-colors__visual" style="--glowe-art-color: {{ colors[0] }};" data-glowe-visual>
+      {% render 'glowe-mask-art', uid: section.id %}
+    </div>
+
+    <div class="glowe-colors__content">
+      <p class="glowe-eyebrow">{{ 'glowe.colors.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.colors.title_html' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.colors.subtitle' | t }}</p>
+
+      <div class="glowe-colors__swatches" role="radiogroup" aria-label="{{ 'glowe.colors.picker_label' | t }}">
+        {%- for color in colors -%}
+          {%- capture name_key %}glowe.colors.c{{ forloop.index }}_name{% endcapture -%}
+          <button
+            type="button"
+            class="glowe-colors__swatch"
+            role="radio"
+            aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-color="{{ color }}"
+            data-index="{{ forloop.index }}"
+            style="--c: {{ color }};"
+          >
+            <span class="glowe-colors__dot" aria-hidden="true"></span>
+            <span class="glowe-colors__swatch-name">{{ name_key | t }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="glowe-colors__panels" aria-live="polite">
+        {%- for color in colors -%}
+          {%- capture name_key %}glowe.colors.c{{ forloop.index }}_name{% endcapture -%}
+          {%- capture text_key %}glowe.colors.c{{ forloop.index }}_text{% endcapture -%}
+          <div class="glowe-colors__panel" data-panel="{{ forloop.index }}" {% unless forloop.first %}hidden{% endunless %}>
+            <h3 style="--c: {{ color }};">{{ name_key | t }}</h3>
+            <p>{{ text_key | t }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <p class="glowe-colors__note">{{ 'glowe.colors.note' | t }}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const root = document.getElementById('GloweColors-{{ section.id }}');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = 'true';
+    const visual = root.querySelector('[data-glowe-visual]');
+    const swatches = root.querySelectorAll('.glowe-colors__swatch');
+    const panels = root.querySelectorAll('.glowe-colors__panel');
+
+    function select(button) {
+      for (const item of swatches) item.setAttribute('aria-checked', item === button ? 'true' : 'false');
+      for (const panel of panels) panel.hidden = panel.dataset.panel !== button.dataset.index;
+      if (visual) visual.style.setProperty('--glowe-art-color', button.dataset.color);
+    }
+
+    for (const button of swatches) {
+      button.addEventListener('click', () => select(button));
+      button.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        const list = Array.from(swatches);
+        const step = event.key === 'ArrowRight' ? 1 : -1;
+        const next = list[(list.indexOf(button) + step + list.length) % list.length];
+        next.focus();
+        select(next);
+      });
+    }
+  })();
+</script>
+
+{% stylesheet %}
+  .glowe-colors__grid {
+    display: grid;
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-colors__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  .glowe-colors__visual {
+    aspect-ratio: 1 / 1;
+    max-block-size: 560px;
+    border-radius: 32px;
+    background: radial-gradient(circle at 50% 40%, #2b2131 0%, #0f0c12 75%);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .glowe-colors .glowe-eyebrow {
+    color: #ffb4a8;
+  }
+
+  .glowe-colors .glowe-title em {
+    color: #ffb4a8;
+  }
+
+  .glowe-colors__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-block-start: 30px;
+  }
+
+  .glowe-colors__swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-block-size: 44px;
+    padding: 0 16px 0 10px;
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.04);
+    color: inherit;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .glowe-colors__swatch:hover {
+    border-color: rgb(255 255 255 / 0.4);
+  }
+
+  .glowe-colors__swatch[aria-checked='true'] {
+    border-color: var(--c);
+    background: rgb(255 255 255 / 0.1);
+  }
+
+  .glowe-colors__swatch:focus-visible {
+    outline: 2px solid #fbf8f4;
+    outline-offset: 2px;
+  }
+
+  .glowe-colors__dot {
+    inline-size: 22px;
+    block-size: 22px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 14px var(--c);
+  }
+
+  .glowe-colors__panels {
+    min-block-size: 120px;
+    margin-block-start: 26px;
+    padding: 22px 24px;
+    border-radius: var(--g-radius-sm);
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .glowe-colors__panel h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.35rem;
+  }
+
+  .glowe-colors__panel h3::before {
+    content: '';
+    inline-size: 10px;
+    block-size: 10px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 10px var(--c);
+  }
+
+  .glowe-colors__panel p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--g-muted);
+  }
+
+  .glowe-colors__note {
+    margin: 16px 0 0;
+    font-size: 0.78rem;
+    color: rgb(251 248 244 / 0.5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – 7 couleurs",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Glowe – 7 couleurs"
+    }
+  ]
+}
+{% endschema %}

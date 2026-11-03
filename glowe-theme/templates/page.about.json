@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "story": {
+      "type": "glowe-story",
+      "settings": {}
+    },
+    "features": {
+      "type": "glowe-features",
+      "settings": {
+        "tone": "sand"
+      }
+    },
+    "guarantee": {
+      "type": "glowe-guarantee",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs",
+        "show_cta": true
+      }
+    },
+    "trust": {
+      "type": "glowe-trustbar",
+      "settings": {
+        "tone": "white"
+      }
+    }
+  },
+  "order": [
+    "story",
+    "features",
+    "guarantee",
+    "trust"
+  ]
+}

@@ -1,0 +1,133 @@
+{% comment %}
+  Section contract.
+  Satisfaction guarantee band with a link to the refund policy and a final call to action.
+  @example
+  <!-- Home and product pages, near the end. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- liquid
+  assign product = section.settings.product
+  assign product_url = routes.all_products_collection_url
+  if product != blank
+    assign product_url = product.url
+  endif
+-%}
+<div class="section section--page-width glowe glowe--tone-ivory glowe-section glowe-guarantee">
+  <div class="glowe__inner glowe-guarantee__card">
+    <div class="glowe-guarantee__seal" aria-hidden="true">
+      <span class="glowe-guarantee__days">30</span>
+      <span class="glowe-guarantee__label">{{ 'glowe.guarantee.seal' | t }}</span>
+    </div>
+    <div class="glowe-guarantee__content">
+      <h2 class="glowe-title">{{ 'glowe.guarantee.title_html' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.guarantee.text' | t }}</p>
+      <div class="glowe-guarantee__actions">
+        {%- if section.settings.show_cta -%}
+          <a class="glowe-btn glowe-btn--light" href="{{ product_url }}">
+            {{ 'glowe.guarantee.cta' | t }}
+            {% render 'glowe-icon', name: 'arrow' %}
+          </a>
+        {%- endif -%}
+        {%- if shop.refund_policy != blank -%}
+          <a class="glowe-guarantee__link" href="{{ shop.refund_policy.url }}">{{ 'glowe.guarantee.policy_link' | t }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-guarantee__card {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+    padding: clamp(36px, 6vw, 72px);
+    border-radius: 32px;
+    background:
+      radial-gradient(80% 120% at 100% 0%, rgb(255 77 90 / 0.28) 0%, transparent 55%),
+      linear-gradient(150deg, #241c29 0%, #120e15 100%);
+    color: #fbf8f4;
+    box-shadow: var(--g-shadow);
+  }
+
+  @media screen and (min-width: 750px) {
+    .glowe-guarantee__card {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: clamp(32px, 5vw, 64px);
+    }
+  }
+
+  .glowe-guarantee .glowe-lead {
+    color: rgb(251 248 244 / 0.75);
+  }
+
+  .glowe-guarantee .glowe-title em {
+    color: #ffb4a8;
+  }
+
+  .glowe-guarantee__seal {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    inline-size: 150px;
+    block-size: 150px;
+    border-radius: 50%;
+    border: 1px dashed rgb(255 180 168 / 0.6);
+    box-shadow: inset 0 0 0 10px rgb(255 255 255 / 0.03);
+    text-align: center;
+  }
+
+  .glowe-guarantee__days {
+    font-family: var(--font-heading--family);
+    font-size: 3.4rem;
+    line-height: 1;
+    color: #ffb4a8;
+  }
+
+  .glowe-guarantee__label {
+    max-inline-size: 90px;
+    margin-block-start: 4px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .glowe-guarantee__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 26px;
+    margin-block-start: 28px;
+  }
+
+  .glowe-guarantee__link {
+    color: inherit;
+    font-size: 0.92rem;
+    text-underline-offset: 4px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Garantie",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Afficher le bouton vers le produit",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Garantie"
+    }
+  ]
+}
+{% endschema %}

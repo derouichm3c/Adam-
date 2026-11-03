@@ -1,0 +1,258 @@
+{% comment %}
+  Section contract.
+  Offer cards built from the selected product's variants, each with its own add-to-cart form.
+  Savings show only for multi-unit variants whose title starts with the quantity ("2 ...").
+  @example
+  <!-- Home page, after the benefits. Choose the LED mask product. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- assign product = section.settings.product -%}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-offer" id="offre">
+  <div class="glowe__inner">
+    <header class="glowe-head glowe-head--center">
+      <p class="glowe-eyebrow">{{ 'glowe.offer.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.offer.title_html' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.offer.subtitle' | t }}</p>
+    </header>
+
+    {%- if product != blank -%}
+      {%- assign unit_price = product.variants.first.price -%}
+      <div class="glowe-offer__grid">
+        {%- for variant in product.variants -%}
+          {%- liquid
+            assign qty = variant.title | split: ' ' | first | plus: 0
+            if qty < 1
+              assign qty = 1
+            endif
+            assign full_price = unit_price | times: qty
+            assign savings = full_price | minus: variant.price
+            assign featured = false
+            if qty > 1
+              assign featured = true
+            endif
+          -%}
+          <div class="glowe-offer__card{% if featured %} glowe-offer__card--featured{% endif %}">
+            {%- if featured -%}
+              <span class="glowe-offer__ribbon">{% render 'glowe-icon', name: 'gift' %}{{ 'glowe.offer.gift_badge' | t }}</span>
+            {%- endif -%}
+            <h3 class="glowe-offer__name">{{ variant.title }}</h3>
+            <p class="glowe-offer__desc">
+              {%- if featured -%}
+                {{ 'glowe.offer.duo_text' | t }}
+              {%- else -%}
+                {{ 'glowe.offer.single_text' | t }}
+              {%- endif -%}
+            </p>
+            <div class="glowe-offer__price">
+              <span class="glowe-offer__amount">{{ variant.price | money }}</span>
+              {%- if savings > 0 -%}
+                <s class="glowe-offer__was">{{ full_price | money }}</s>
+              {%- endif -%}
+            </div>
+            {%- if savings > 0 -%}
+              {%- assign savings_money = savings | money -%}
+              {%- assign each_money = variant.price | divided_by: qty | money -%}
+              <p class="glowe-offer__save">{{ 'glowe.offer.save' | t: amount: savings_money }}</p>
+              <p class="glowe-offer__each">{{ 'glowe.offer.each' | t: amount: each_money }}</p>
+            {%- else -%}
+              <p class="glowe-offer__each">{{ 'glowe.offer.shipping_included' | t }}</p>
+            {%- endif -%}
+
+            <ul class="glowe-offer__list" role="list">
+              <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.offer.li_1' | t }}</li>
+              <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.offer.li_2' | t }}</li>
+              <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.offer.li_3' | t }}</li>
+            </ul>
+
+            {%- form 'product', product, class: 'glowe-offer__form' -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button
+                type="submit"
+                class="glowe-btn glowe-btn--block{% unless featured %} glowe-btn--ghost{% endunless %}"
+                {% unless variant.available %}
+                  disabled
+                {% endunless %}
+              >
+                {%- if variant.available -%}
+                  {{ 'glowe.offer.add' | t }}
+                {%- else -%}
+                  {{ 'glowe.offer.sold_out' | t }}
+                {%- endif -%}
+              </button>
+            {%- endform -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <p class="glowe-offer__foot">
+        {% render 'glowe-icon', name: 'shield' %}
+        {{ 'glowe.offer.foot' | t }}
+      </p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-offer__grid {
+    display: grid;
+    gap: 20px;
+    max-inline-size: 920px;
+    margin-inline: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .glowe-offer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+
+  .glowe-offer__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 34px 30px 30px;
+    border: 1px solid var(--g-line);
+    border-radius: 26px;
+    background: #fff;
+  }
+
+  .glowe-offer__card--featured {
+    border: 2px solid var(--g-ink);
+    box-shadow: var(--g-shadow);
+  }
+
+  .glowe-offer__ribbon {
+    position: absolute;
+    inset-block-start: -15px;
+    inset-inline-start: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--g-ink);
+    color: var(--g-ivory);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .glowe-offer__ribbon .glowe-icon {
+    inline-size: 15px;
+    block-size: 15px;
+    color: #ffb4a8;
+  }
+
+  .glowe-offer__name {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .glowe-offer__desc {
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--g-muted);
+  }
+
+  .glowe-offer__price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-block-start: 22px;
+  }
+
+  .glowe-offer__amount {
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .glowe-offer__was {
+    font-size: 1.05rem;
+    color: var(--g-muted);
+  }
+
+  .glowe-offer__save {
+    display: inline-block;
+    align-self: flex-start;
+    margin: 8px 0 0;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgb(47 122 85 / 0.12);
+    color: var(--g-success);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .glowe-offer__each {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    color: var(--g-muted);
+  }
+
+  .glowe-offer__list {
+    display: grid;
+    gap: 10px;
+    margin: 22px 0 26px;
+    padding: 20px 0 0;
+    border-block-start: 1px solid var(--g-line);
+    list-style: none;
+    font-size: 0.92rem;
+  }
+
+  .glowe-offer__list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .glowe-offer__form {
+    margin-block-start: auto;
+  }
+
+  .glowe-offer__foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 28px 0 0;
+    font-size: 0.88rem;
+    color: var(--g-muted);
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Offres",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "sand"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Offres"
+    }
+  ]
+}
+{% endschema %}

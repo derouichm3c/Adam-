@@ -1,0 +1,112 @@
+{% comment %}
+  Section contract.
+  Slim announcement bar for the header group. Shows three messages on desktop and rotates them on mobile.
+  @example
+  <!-- Header group, above the header. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="glowe glowe-announce" role="region" aria-label="{{ 'glowe.announce.label' | t | escape }}">
+  <ul class="glowe-announce__list" role="list">
+    <li>{% render 'glowe-icon', name: 'truck' %}{{ 'glowe.announce.m1' | t }}</li>
+    <li>{% render 'glowe-icon', name: 'return' %}{{ 'glowe.announce.m2' | t }}</li>
+    <li>{% render 'glowe-icon', name: 'gift' %}{{ 'glowe.announce.m3' | t }}</li>
+  </ul>
+</div>
+
+{% stylesheet %}
+  .glowe-announce {
+    background: var(--g-ink);
+    color: var(--g-ivory);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+  }
+
+  .glowe-announce__list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 10px 16px;
+    list-style: none;
+  }
+
+  .glowe-announce__list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .glowe-announce .glowe-icon {
+    inline-size: 15px;
+    block-size: 15px;
+    color: #ffb4a8;
+  }
+
+  @media screen and (max-width: 749px) {
+    .glowe-announce__list {
+      position: relative;
+      display: grid;
+      block-size: 38px;
+      padding: 0 16px;
+    }
+
+    .glowe-announce__list li {
+      grid-area: 1 / 1;
+      justify-content: center;
+      opacity: 0;
+      animation: glowe-announce 12s infinite;
+    }
+
+    .glowe-announce__list li:nth-child(2) {
+      animation-delay: 4s;
+    }
+
+    .glowe-announce__list li:nth-child(3) {
+      animation-delay: 8s;
+    }
+  }
+
+  @keyframes glowe-announce {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    5%,
+    30% {
+      opacity: 1;
+      transform: none;
+    }
+    35%,
+    100% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+
+  @media screen and (max-width: 749px) and (prefers-reduced-motion: reduce) {
+    .glowe-announce__list li {
+      animation: none;
+    }
+
+    .glowe-announce__list li:first-child {
+      opacity: 1;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Annonce",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Glowe – Annonce"
+    }
+  ]
+}
+{% endschema %}

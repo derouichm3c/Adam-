@@ -1,0 +1,227 @@
+{% doc %}
+  Shared Glowe Lab design tokens and utilities. Render from every glowe-* section or block
+  so the stylesheet is included wherever Glowe components appear.
+
+  @example
+  {% render 'glowe-styles' %}
+{% enddoc %}
+
+{% stylesheet %}
+  .glowe {
+    --g-ink: #17131c;
+    --g-ink-soft: #2a2330;
+    --g-ivory: #fbf8f4;
+    --g-sand: #f4eee7;
+    --g-line: #e7ded4;
+    --g-muted: #6d6472;
+    --g-accent: #c8553d;
+    --g-glow: #ff4d5a;
+    --g-success: #2f7a55;
+    --g-radius: 22px;
+    --g-radius-sm: 14px;
+    --g-shadow: 0 24px 60px -28px rgb(23 19 28 / 0.35);
+    --g-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    color: var(--g-ink);
+    font-family: var(--font-body--family);
+  }
+
+  .glowe *,
+  .glowe *::before,
+  .glowe *::after {
+    box-sizing: border-box;
+  }
+
+  .glowe__inner {
+    min-width: 0;
+  }
+
+  .glowe-section {
+    padding-block: clamp(64px, 9vw, 120px);
+  }
+
+  .glowe-section--compact {
+    padding-block: clamp(28px, 4vw, 44px);
+  }
+
+  .glowe--tone-ivory {
+    background: var(--g-ivory);
+  }
+
+  .glowe--tone-sand {
+    background: var(--g-sand);
+  }
+
+  .glowe--tone-white {
+    background: #fff;
+  }
+
+  .glowe--tone-ink {
+    --g-muted: rgb(251 248 244 / 0.72);
+    --g-line: rgb(251 248 244 / 0.14);
+
+    background: var(--g-ink);
+    color: var(--g-ivory);
+  }
+
+  .glowe-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--g-accent);
+  }
+
+  .glowe-eyebrow::before {
+    content: '';
+    inline-size: 18px;
+    block-size: 1px;
+    background: currentColor;
+  }
+
+  .glowe-title {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-style: var(--font-heading--style);
+    font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: inherit;
+  }
+
+  .glowe-title em {
+    font-style: italic;
+    color: var(--g-accent);
+  }
+
+  .glowe-lead {
+    margin: 16px 0 0;
+    max-inline-size: 60ch;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    line-height: 1.65;
+    color: var(--g-muted);
+    text-wrap: pretty;
+  }
+
+  .glowe-head {
+    margin-block-end: clamp(32px, 4vw, 56px);
+  }
+
+  .glowe-head--center {
+    text-align: center;
+  }
+
+  .glowe-head--center .glowe-lead {
+    margin-inline: auto;
+  }
+
+  .glowe-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-block-size: 54px;
+    padding: 0 30px;
+    border: 1px solid var(--g-ink);
+    border-radius: 999px;
+    background: var(--g-ink);
+    color: var(--g-ivory);
+    font: inherit;
+    font-size: 0.975rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s var(--g-ease), box-shadow 0.3s var(--g-ease), background-color 0.3s var(--g-ease);
+  }
+
+  .glowe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -14px rgb(23 19 28 / 0.6);
+  }
+
+  .glowe-btn:focus-visible {
+    outline: 2px solid var(--g-accent);
+    outline-offset: 3px;
+  }
+
+  .glowe-btn--ghost {
+    background: transparent;
+    color: var(--g-ink);
+  }
+
+  .glowe-btn--ghost:hover {
+    background: var(--g-ink);
+    color: var(--g-ivory);
+  }
+
+  .glowe-btn--light {
+    border-color: var(--g-ivory);
+    background: var(--g-ivory);
+    color: var(--g-ink);
+  }
+
+  .glowe-btn--block {
+    inline-size: 100%;
+  }
+
+  .glowe-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .glowe-icon {
+    flex: none;
+    inline-size: 22px;
+    block-size: 22px;
+  }
+
+  .glowe-check {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    inline-size: 22px;
+    block-size: 22px;
+    border-radius: 50%;
+    background: rgb(47 122 85 / 0.12);
+    color: var(--g-success);
+  }
+
+  .glowe-check svg {
+    inline-size: 12px;
+    block-size: 12px;
+  }
+
+  .glowe-reveal {
+    animation: glowe-rise 0.9s var(--g-ease) both;
+  }
+
+  @keyframes glowe-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glowe *,
+    .glowe *::before,
+    .glowe *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}

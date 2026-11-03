@@ -1,0 +1,52 @@
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "glowe_footer": {
+      "type": "glowe-footer",
+      "settings": {
+        "menu_1": "main-menu",
+        "menu_2": "footer"
+      }
+    },
+    "footer_utilities": {
+      "type": "footer-utilities",
+      "blocks": {
+        "copyright": {
+          "type": "footer-copyright",
+          "settings": {
+            "show_powered_by": false,
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "policies": {
+          "type": "footer-policy-list",
+          "settings": {
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "copyright",
+        "policies"
+      ],
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 1,
+        "divider_color": "rgba(251,248,244,0.14)",
+        "background_color": "#17131c",
+        "padding-block-start": 20,
+        "padding-block-end": 32
+      }
+    }
+  },
+  "order": [
+    "glowe_footer",
+    "footer_utilities"
+  ]
+}

@@ -1,0 +1,172 @@
+{% comment %}
+  Section contract.
+  Frequently asked questions as native disclosure widgets, with FAQPage structured data.
+  @example
+  <!-- Home, product and FAQ pages. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- assign count = 9 -%}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-faq" id="faq">
+  <div class="glowe__inner glowe-faq__grid">
+    <header class="glowe-faq__head">
+      <p class="glowe-eyebrow">{{ 'glowe.faq.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.faq.title_html' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.faq.subtitle' | t }}</p>
+      <a class="glowe-btn glowe-btn--ghost glowe-faq__contact" href="{{ pages.contact.url | default: routes.root_url }}">
+        {% render 'glowe-icon', name: 'chat' %}
+        {{ 'glowe.faq.contact' | t }}
+      </a>
+    </header>
+
+    <div class="glowe-faq__list">
+      {%- for i in (1..count) -%}
+        {%- capture q_key %}glowe.faq.q{{ i }}{% endcapture -%}
+        {%- capture a_key %}glowe.faq.a{{ i }}{% endcapture -%}
+        <details class="glowe-faq__item"{% if forloop.first and section.settings.open_first %} open{% endif %}>
+          <summary>
+            <span>{{ q_key | t }}</span>
+            <span class="glowe-faq__plus" aria-hidden="true"></span>
+          </summary>
+          <div class="glowe-faq__answer">{{ a_key | t }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- for i in (1..count) -%}
+        {%- capture q_key %}glowe.faq.q{{ i }}{% endcapture -%}
+        {%- capture a_key %}glowe.faq.a{{ i }}{% endcapture -%}
+        {
+          "@type": "Question",
+          "name": {{ q_key | t | json }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ a_key | t | json }} }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+{% stylesheet %}
+  .glowe-faq__grid {
+    display: grid;
+    gap: clamp(32px, 5vw, 80px);
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-faq__grid {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: start;
+    }
+
+    .glowe-faq__head {
+      position: sticky;
+      inset-block-start: calc(var(--header-height, 60px) + 24px);
+    }
+  }
+
+  .glowe-faq__contact {
+    margin-block-start: 28px;
+  }
+
+  .glowe-faq__list {
+    border-block-start: 1px solid var(--g-line);
+  }
+
+  .glowe-faq__item {
+    border-block-end: 1px solid var(--g-line);
+  }
+
+  .glowe-faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .glowe-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .glowe-faq__item summary:focus-visible {
+    outline: 2px solid var(--g-accent);
+    outline-offset: 4px;
+  }
+
+  .glowe-faq__plus {
+    position: relative;
+    flex: none;
+    inline-size: 30px;
+    block-size: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--g-line);
+  }
+
+  .glowe-faq__plus::before,
+  .glowe-faq__plus::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: 11px;
+    block-size: 1.5px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s var(--g-ease);
+  }
+
+  .glowe-faq__plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .glowe-faq__item[open] .glowe-faq__plus::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .glowe-faq__answer {
+    padding: 0 48px 24px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--g-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – FAQ",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Ouvrir la première question",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "ivory"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – FAQ"
+    }
+  ]
+}
+{% endschema %}

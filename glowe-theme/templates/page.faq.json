@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "faq": {
+      "type": "glowe-faq",
+      "settings": {
+        "open_first": true,
+        "tone": "ivory"
+      }
+    },
+    "trust": {
+      "type": "glowe-trustbar",
+      "settings": {
+        "tone": "white"
+      }
+    }
+  },
+  "order": [
+    "faq",
+    "trust"
+  ]
+}

@@ -1,0 +1,107 @@
+{% comment %}
+  Section contract.
+  "How it works" in four numbered steps.
+  @example
+  <!-- Home and product pages. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-steps" id="comment-ca-marche">
+  <div class="glowe__inner">
+    <header class="glowe-head glowe-head--center">
+      <p class="glowe-eyebrow">{{ 'glowe.steps.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.steps.title_html' | t }}</h2>
+    </header>
+
+    <ol class="glowe-steps__list" role="list">
+      {%- for i in (1..4) -%}
+        {%- capture title_key %}glowe.steps.s{{ i }}_title{% endcapture -%}
+        {%- capture text_key %}glowe.steps.s{{ i }}_text{% endcapture -%}
+        <li class="glowe-steps__item">
+          <span class="glowe-steps__num" aria-hidden="true">0{{ i }}</span>
+          <h3 class="glowe-steps__title">{{ title_key | t }}</h3>
+          <p class="glowe-steps__text">{{ text_key | t }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-steps__list {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .glowe-steps__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .glowe-steps__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .glowe-steps__item {
+    position: relative;
+    min-width: 0;
+    padding: 28px 26px;
+    border-radius: var(--g-radius);
+    background: #fff;
+    border: 1px solid var(--g-line);
+  }
+
+  .glowe-steps__num {
+    display: block;
+    margin-block-end: 18px;
+    font-family: var(--font-heading--family);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--g-accent);
+    opacity: 0.85;
+  }
+
+  .glowe-steps__title {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--g-ink);
+  }
+
+  .glowe-steps__text {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--g-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Étapes",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "ivory"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Étapes"
+    }
+  ]
+}
+{% endschema %}

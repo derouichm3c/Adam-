@@ -1,0 +1,116 @@
+{% comment %}
+  Section contract.
+  Glowe Lab benefits grid: four reasons to choose the LED mask, with an optional lifestyle image.
+  @example
+  <!-- Home and product pages, after the trust strip. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-features">
+  <div class="glowe__inner">
+    <header class="glowe-head glowe-head--center">
+      <p class="glowe-eyebrow">{{ 'glowe.features.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.features.title_html' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.features.subtitle' | t }}</p>
+    </header>
+
+    <ul class="glowe-features__grid" role="list">
+      {%- assign icons = 'face,palette,home,gift' | split: ',' -%}
+      {%- for icon in icons -%}
+        {%- capture title_key %}glowe.features.item_{{ forloop.index }}_title{% endcapture -%}
+        {%- capture text_key %}glowe.features.item_{{ forloop.index }}_text{% endcapture -%}
+        <li class="glowe-features__card">
+          <span class="glowe-features__icon">{% render 'glowe-icon', name: icon %}</span>
+          <h3 class="glowe-features__title">{{ title_key | t }}</h3>
+          <p class="glowe-features__text">{{ text_key | t }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-features__grid {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .glowe-features__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .glowe-features__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .glowe-features__card {
+    min-width: 0;
+    padding: 30px 26px;
+    border: 1px solid var(--g-line);
+    border-radius: var(--g-radius);
+    background: #fff;
+    transition: transform 0.4s var(--g-ease), box-shadow 0.4s var(--g-ease);
+  }
+
+  .glowe-features__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--g-shadow);
+  }
+
+  .glowe-features__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 52px;
+    block-size: 52px;
+    margin-block-end: 22px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #2a2030, #17131c);
+    color: #ffb4a8;
+  }
+
+  .glowe-features__title {
+    margin: 0 0 8px;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.3rem;
+    line-height: 1.25;
+    color: var(--g-ink);
+  }
+
+  .glowe-features__text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--g-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Avantages",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "ivory"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Avantages"
+    }
+  ]
+}
+{% endschema %}

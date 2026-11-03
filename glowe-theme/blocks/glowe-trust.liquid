@@ -1,0 +1,102 @@
+{% doc %}
+  Product-page reassurance block: duo savings hint, shipping, returns and secure checkout.
+  Place it under the buy buttons inside the product details.
+{% enddoc %}
+{% render 'glowe-styles' %}
+{%- liquid
+  assign product = closest.product
+  assign duo_savings = 0
+  if product != blank and product.variants.size > 1
+    assign unit_price = product.variants.first.price
+    for variant in product.variants
+      assign qty = variant.title | split: ' ' | first | plus: 0
+      if qty > 1
+        assign full = unit_price | times: qty
+        assign duo_savings = full | minus: variant.price
+        break
+      endif
+    endfor
+  endif
+-%}
+<div class="glowe glowe-ptrust" {{ block.shopify_attributes }}>
+  {%- if duo_savings > 0 and block.settings.show_duo -%}
+    {%- assign duo_money = duo_savings | money -%}
+    <p class="glowe-ptrust__duo">
+      {% render 'glowe-icon', name: 'gift' %}
+      <span>{{ 'glowe.ptrust.duo' | t: amount: duo_money }}</span>
+    </p>
+  {%- endif -%}
+  <ul class="glowe-ptrust__list" role="list">
+    <li>{% render 'glowe-icon', name: 'truck' %}<span>{{ 'glowe.ptrust.shipping' | t }}</span></li>
+    <li>{% render 'glowe-icon', name: 'return' %}<span>{{ 'glowe.ptrust.returns' | t }}</span></li>
+    <li>{% render 'glowe-icon', name: 'lock' %}<span>{{ 'glowe.ptrust.secure' | t }}</span></li>
+    <li>{% render 'glowe-icon', name: 'chat' %}<span>{{ 'glowe.ptrust.support' | t }}</span></li>
+  </ul>
+</div>
+
+{% stylesheet %}
+  .glowe-ptrust {
+    inline-size: 100%;
+  }
+
+  .glowe-ptrust__duo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgb(200 85 61 / 0.08);
+    color: var(--g-ink);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .glowe-ptrust__duo .glowe-icon {
+    color: var(--g-accent);
+  }
+
+  .glowe-ptrust__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+    margin: 0;
+    padding: 16px;
+    border: 1px solid var(--g-line);
+    border-radius: 14px;
+    list-style: none;
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .glowe-ptrust__list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .glowe-ptrust__list .glowe-icon {
+    inline-size: 20px;
+    block-size: 20px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Confiance produit",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_duo",
+      "label": "Afficher l'économie du duo",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Confiance produit"
+    }
+  ]
+}
+{% endschema %}

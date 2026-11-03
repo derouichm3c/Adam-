@@ -1,0 +1,120 @@
+{% comment %}
+  Section contract.
+  Comparison table: Glowe Lab mask at home versus repeated salon sessions.
+  @example
+  <!-- Home and product pages. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-compare">
+  <div class="glowe__inner">
+    <header class="glowe-head glowe-head--center">
+      <p class="glowe-eyebrow">{{ 'glowe.compare.eyebrow' | t }}</p>
+      <h2 class="glowe-title">{{ 'glowe.compare.title_html' | t }}</h2>
+    </header>
+
+    <div class="glowe-compare__table" role="table" aria-label="{{ 'glowe.compare.table_label' | t | escape }}">
+      <div class="glowe-compare__row glowe-compare__row--head" role="row">
+        <span role="columnheader"><span class="visually-hidden">{{ 'glowe.compare.feature' | t }}</span></span>
+        <span role="columnheader" class="glowe-compare__us">{{ 'glowe.compare.us' | t }}</span>
+        <span role="columnheader">{{ 'glowe.compare.them' | t }}</span>
+      </div>
+      {%- for i in (1..5) -%}
+        {%- capture row_key %}glowe.compare.r{{ i }}{% endcapture -%}
+        {%- capture them_key %}glowe.compare.r{{ i }}_them{% endcapture -%}
+        <div class="glowe-compare__row" role="row">
+          <span role="rowheader">{{ row_key | t }}</span>
+          <span role="cell" class="glowe-compare__us">
+            <span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>
+            <span class="visually-hidden">{{ 'glowe.compare.yes' | t }}</span>
+          </span>
+          <span role="cell" class="glowe-compare__them">{{ them_key | t }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-compare__table {
+    max-inline-size: 860px;
+    margin-inline: auto;
+    border: 1px solid var(--g-line);
+    border-radius: var(--g-radius);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .glowe-compare__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 18px clamp(16px, 3vw, 32px);
+    border-block-start: 1px solid var(--g-line);
+    font-size: 0.95rem;
+  }
+
+  .glowe-compare__row--head {
+    border-block-start: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--g-muted);
+  }
+
+  .glowe-compare__row > span {
+    min-width: 0;
+  }
+
+  .glowe-compare__us {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .glowe-compare__row--head .glowe-compare__us {
+    color: var(--g-ink);
+  }
+
+  .glowe-compare__them {
+    text-align: center;
+    color: var(--g-muted);
+    font-size: 0.88rem;
+  }
+
+  .glowe-compare__row--head > span:last-child {
+    text-align: center;
+  }
+
+  .glowe-compare__row:not(.glowe-compare__row--head) > :nth-child(2) {
+    align-self: stretch;
+    align-items: center;
+    margin-block: -18px;
+    background: rgb(200 85 61 / 0.05);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Comparatif",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "sand"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Comparatif"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{% doc %}
+  Decorative LED mask illustration, used as an elegant visual until real product photos are added.
+  The glow color follows the `--glowe-art-color` custom property; `cycle` animates through the 7 colors.
+
+  @param {string} uid - Unique id suffix for SVG defs
+  @param {boolean} [cycle] - Animate through the 7 light colors
+
+  @example
+  {% render 'glowe-mask-art', uid: section.id, cycle: true %}
+{% enddoc %}
+<div class="glowe-art{% if cycle %} glowe-art--cycle{% endif %}" aria-hidden="true">
+  <div class="glowe-art__halo"></div>
+  <svg class="glowe-art__svg" viewBox="0 0 300 400" focusable="false">
+    <defs>
+      <pattern id="GloweDots-{{ uid }}" width="11" height="11" patternUnits="userSpaceOnUse">
+        <circle cx="5.5" cy="5.5" r="2.1" fill="currentColor"/>
+      </pattern>
+      <clipPath id="GloweClip-{{ uid }}">
+        <path
+          clip-rule="evenodd"
+          d="M55 150a95 120 0 1 0 190 0a95 120 0 1 0 -190 0Z M90 140a22 10 0 1 0 44 0a22 10 0 1 0 -44 0Z M166 140a22 10 0 1 0 44 0a22 10 0 1 0 -44 0Z M124 222a26 9 0 1 0 52 0a26 9 0 1 0 -52 0Z"
+        />
+      </clipPath>
+      <clipPath id="GloweNeck-{{ uid }}">
+        <path d="M98 262Q150 290 202 262L224 362Q150 388 76 362Z"/>
+      </clipPath>
+      <filter id="GloweBlur-{{ uid }}" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="14"/>
+      </filter>
+    </defs>
+
+    <g class="glowe-art__bloom" filter="url(#GloweBlur-{{ uid }})">
+      <ellipse cx="150" cy="150" rx="92" ry="116" fill="currentColor"/>
+      <path d="M98 262Q150 290 202 262L224 362Q150 388 76 362Z" fill="currentColor"/>
+    </g>
+
+    <path
+      class="glowe-art__shell"
+      fill-rule="evenodd"
+      d="M55 150a95 120 0 1 0 190 0a95 120 0 1 0 -190 0Z M90 140a22 10 0 1 0 44 0a22 10 0 1 0 -44 0Z M166 140a22 10 0 1 0 44 0a22 10 0 1 0 -44 0Z M124 222a26 9 0 1 0 52 0a26 9 0 1 0 -52 0Z"
+    />
+    <path class="glowe-art__shell" d="M98 262Q150 290 202 262L224 362Q150 388 76 362Z"/>
+
+    <g class="glowe-art__leds">
+      <rect width="300" height="300" fill="url(#GloweDots-{{ uid }})" clip-path="url(#GloweClip-{{ uid }})"/>
+      <rect y="250" width="300" height="150" fill="url(#GloweDots-{{ uid }})" clip-path="url(#GloweNeck-{{ uid }})"/>
+    </g>
+
+    <path
+      class="glowe-art__rim"
+      fill="none"
+      d="M55 150a95 120 0 1 0 190 0a95 120 0 1 0 -190 0Z M98 262Q150 290 202 262L224 362Q150 388 76 362Z"
+    />
+  </svg>
+</div>
+
+{% stylesheet %}
+  .glowe-art {
+    --glowe-art-color: #ff4d5a;
+
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    color: var(--glowe-art-color);
+    transition: color 0.6s ease;
+  }
+
+  .glowe-art--cycle {
+    animation: glowe-art-cycle 14s linear infinite;
+  }
+
+  .glowe-art__halo {
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    background: radial-gradient(circle, currentColor 0%, transparent 68%);
+    opacity: 0.28;
+    filter: blur(30px);
+  }
+
+  .glowe-art__svg {
+    position: relative;
+    inline-size: min(78%, 340px);
+    block-size: auto;
+    overflow: visible;
+  }
+
+  .glowe-art__bloom {
+    opacity: 0.55;
+  }
+
+  .glowe-art__shell {
+    fill: rgb(255 255 255 / 0.06);
+    stroke: rgb(255 255 255 / 0.18);
+    stroke-width: 1;
+  }
+
+  .glowe-art__leds {
+    animation: glowe-art-pulse 3.2s ease-in-out infinite;
+  }
+
+  .glowe-art__rim {
+    stroke: rgb(255 255 255 / 0.35);
+    stroke-width: 1.4;
+  }
+
+  @keyframes glowe-art-pulse {
+    0%,
+    100% {
+      opacity: 0.95;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes glowe-art-cycle {
+    0%,
+    10% {
+      color: #ff4d5a;
+    }
+    14%,
+    24% {
+      color: #3d8bff;
+    }
+    28%,
+    38% {
+      color: #35d07f;
+    }
+    42%,
+    52% {
+      color: #ffc93c;
+    }
+    56%,
+    66% {
+      color: #a46bff;
+    }
+    70%,
+    80% {
+      color: #2fd6e0;
+    }
+    84%,
+    94% {
+      color: #f4f1ea;
+    }
+    100% {
+      color: #ff4d5a;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glowe-art--cycle,
+    .glowe-art__leds {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
