@@ -241,13 +241,6 @@
         "tone": "ivory"
       }
     },
-    "guarantee": {
-      "type": "glowe-guarantee",
-      "settings": {
-        "product": "masque-led-visage-cou-7-couleurs",
-        "show_cta": false
-      }
-    },
     "faq": {
       "type": "glowe-faq",
       "settings": {
@@ -262,7 +255,6 @@
     "features",
     "steps",
     "compare",
-    "guarantee",
     "faq"
   ]
 }
