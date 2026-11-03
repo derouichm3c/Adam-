@@ -409,7 +409,7 @@
       "item_3_title": "No appointment",
       "item_3_text": "Settle into your couch and enjoy your session whenever you like, no travel required.",
       "item_4_title": "The perfect gift",
-      "item_4_text": "A real spa moment she will use long after the holidays. Also available as a duo to share."
+      "item_4_text": "A real spa moment that lasts long after the holidays. Also available as a duo to share."
     },
     "colors": {
       "eyebrow": "7 light colors",
@@ -441,7 +441,7 @@
       "single_text": "Your LED face & neck mask, ready for your first ritual.",
       "save": "You save {{ amount }}",
       "each": "That's {{ amount }} per mask",
-      "shipping_included": "Free shipping included",
+      "shipping_included": "One-time payment, no subscription",
       "li_1": "Free shipping",
       "li_2": "7 light colors",
       "li_3": "Secure checkout",
@@ -497,7 +497,7 @@
       "q2": "How long is a session?",
       "a2": "Sessions are short and fit easily into your evening routine. Follow the duration and frequency given in the user guide included with your mask.",
       "q3": "When will I notice a difference?",
-      "a3": "Every skin is unique. Consistency is key: make your session part of your routine and be patient. Results vary from person to person.",
+      "a3": "Every skin is unique. Consistency is key: make your session part of your routine and give it a little time. Results vary from person to person.",
       "q4": "Is the mask suitable for everyone?",
       "a4": "Keep your eyes closed during use and never look directly at the LEDs. The mask is not recommended for pregnant women, people who are photosensitive or epileptic, or people taking photosensitizing medication. If in doubt, consult a healthcare professional. This device is a beauty and wellness product; it is not intended to diagnose, treat or cure any disease.",
       "q5": "How much is shipping?",
@@ -523,6 +523,16 @@
       "v2_text": "A product chosen for its comfort and ease of use.",
       "v3_title": "Here for you",
       "v3_text": "A question before or after your purchase? We reply quickly by email."
+    },
+    "cta": {
+      "eyebrow": "Ready for your ritual?",
+      "title_html": "Your LED ritual <em>starts tonight</em>",
+      "text": "Face and neck, 7 light colors, at home and with no appointment.",
+      "button": "Choose my mask"
+    },
+    "specs": {
+      "eyebrow": "Specifications",
+      "title_html": "The <em>details</em>"
     },
     "announce": {
       "label": "Announcements",

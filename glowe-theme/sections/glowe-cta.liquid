@@ -1,0 +1,139 @@
+{% comment %}
+  Section contract.
+  Closing call to action: short promise, price and a button to the product, with two reassurances.
+  @example
+  <!-- Home, product and About pages, near the end. Choose the LED mask product. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- liquid
+  assign product = section.settings.product
+  assign product_url = routes.all_products_collection_url
+  if product != blank
+    assign product_url = product.url
+  endif
+-%}
+<div class="section section--page-width glowe glowe--tone-ivory glowe-section glowe-cta">
+  <div class="glowe__inner glowe-cta__card">
+    <div class="glowe-cta__glow" aria-hidden="true"></div>
+    <p class="glowe-eyebrow">{{ 'glowe.cta.eyebrow' | t }}</p>
+    <h2 class="glowe-title">{{ 'glowe.cta.title_html' | t }}</h2>
+    <p class="glowe-lead">{{ 'glowe.cta.text' | t }}</p>
+    <div class="glowe-cta__actions">
+      <a class="glowe-btn glowe-btn--light" href="{{ product_url }}">
+        {{ 'glowe.cta.button' | t }}
+        {% render 'glowe-icon', name: 'arrow' %}
+      </a>
+      {%- if product != blank -%}
+        <p class="glowe-cta__price">
+          {{ 'glowe.hero.price_from' | t }}
+          <strong>{{ product.price_min | money }}</strong>
+        </p>
+      {%- endif -%}
+    </div>
+    <ul class="glowe-cta__trust" role="list">
+      <li>{% render 'glowe-icon', name: 'truck' %}{{ 'glowe.trust.shipping_short' | t }}</li>
+      <li>{% render 'glowe-icon', name: 'lock' %}{{ 'glowe.trust.secure_short' | t }}</li>
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-cta__card {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 64px);
+    border-radius: 32px;
+    overflow: hidden;
+    background: linear-gradient(150deg, #241c29 0%, #120e15 100%);
+    color: #fbf8f4;
+    text-align: center;
+    box-shadow: var(--g-shadow);
+  }
+
+  .glowe-cta__glow {
+    position: absolute;
+    inset: -40% 20% auto;
+    block-size: 120%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(179 36 59 / 0.45) 0%, transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  .glowe-cta__card > :not(.glowe-cta__glow) {
+    position: relative;
+  }
+
+  .glowe-cta .glowe-eyebrow,
+  .glowe-cta .glowe-title em {
+    color: #ff9aa8;
+  }
+
+  .glowe-cta .glowe-lead {
+    margin-inline: auto;
+    color: rgb(251 248 244 / 0.75);
+  }
+
+  .glowe-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px 24px;
+    margin-block-start: 30px;
+  }
+
+  .glowe-cta__price {
+    margin: 0;
+    color: rgb(251 248 244 / 0.7);
+    font-size: 0.95rem;
+  }
+
+  .glowe-cta__price strong {
+    color: #fbf8f4;
+    font-size: 1.15rem;
+  }
+
+  .glowe-cta__trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 24px;
+    margin: 26px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+    color: rgb(251 248 244 / 0.7);
+  }
+
+  .glowe-cta__trust li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .glowe-cta__trust .glowe-icon {
+    inline-size: 18px;
+    block-size: 18px;
+    color: #ff9aa8;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Appel à l'achat",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Appel à l'achat"
+    }
+  ]
+}
+{% endschema %}

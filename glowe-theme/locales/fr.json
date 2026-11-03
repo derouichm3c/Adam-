@@ -388,7 +388,7 @@
       "item_3_title": "Sans rendez-vous",
       "item_3_text": "Installez-vous dans votre canapé et profitez de votre séance quand vous le voulez, sans déplacement.",
       "item_4_title": "Le cadeau parfait",
-      "item_4_text": "Un vrai moment spa qu'elle utilisera longtemps, bien après les fêtes. Existe en duo pour l'offrir."
+      "item_4_text": "Un vrai moment spa qu'on utilise longtemps, bien après les fêtes. Existe en duo pour l'offrir."
     },
     "colors": {
       "eyebrow": "7 couleurs de lumière",
@@ -420,7 +420,7 @@
       "single_text": "Votre masque LED visage & cou, prêt pour votre premier rituel.",
       "save": "Vous économisez {{ amount }}",
       "each": "Soit {{ amount }} par masque",
-      "shipping_included": "Livraison gratuite incluse",
+      "shipping_included": "Paiement unique, sans abonnement",
       "li_1": "Livraison gratuite",
       "li_2": "7 couleurs de lumière",
       "li_3": "Paiement sécurisé",
@@ -476,7 +476,7 @@
       "q2": "Combien de temps dure une séance ?",
       "a2": "Les séances sont courtes et s'intègrent facilement à votre routine du soir. Suivez la durée et la fréquence indiquées dans le guide d'utilisation fourni avec votre masque.",
       "q3": "Quand vais-je voir une différence ?",
-      "a3": "Chaque peau est unique. La régularité est la clé : intégrez votre séance à votre routine et soyez patiente. Les résultats varient d'une personne à l'autre.",
+      "a3": "Chaque peau est unique. La régularité est la clé : intégrez votre séance à votre routine et laissez-lui un peu de temps. Les résultats varient d'une personne à l'autre.",
       "q4": "Le masque convient-il à tout le monde ?",
       "a4": "Gardez les yeux fermés pendant l'utilisation et ne regardez jamais directement les LED. Le masque est déconseillé aux femmes enceintes, aux personnes photosensibles ou épileptiques et aux personnes prenant des médicaments photosensibilisants. En cas de doute, consultez un professionnel de la santé. Cet appareil est un produit de beauté et de bien-être ; il n'est pas destiné à diagnostiquer, traiter ou guérir une maladie.",
       "q5": "Combien coûte la livraison ?",
@@ -503,6 +503,16 @@
       "v3_title": "À votre écoute",
       "v3_text": "Une question avant ou après votre achat ? Nous vous répondons rapidement par courriel."
     },
+    "cta": {
+      "eyebrow": "Prêt pour votre rituel ?",
+      "title_html": "Votre rituel LED <em>commence ce soir</em>",
+      "text": "Visage et cou, 7 couleurs de lumière, chez vous et sans rendez-vous.",
+      "button": "Je choisis mon masque"
+    },
+    "specs": {
+      "eyebrow": "Fiche technique",
+      "title_html": "Les <em>détails</em>"
+    },
     "announce": {
       "label": "Annonces",
       "m1": "Livraison gratuite dès 75 $",
@@ -525,7 +535,7 @@
       "news_label": "Adresse courriel",
       "news_placeholder": "Votre adresse courriel",
       "news_button": "S'inscrire",
-      "news_ok": "Merci ! Vous êtes bien inscrite.",
+      "news_ok": "Merci ! Votre inscription est confirmée.",
       "payments": "Moyens de paiement acceptés"
     }
   }

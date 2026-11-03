@@ -15,11 +15,18 @@
       "settings": {
         "tone": "white"
       }
+    },
+    "cta": {
+      "type": "glowe-cta",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs"
+      }
     }
   },
   "order": [
     "story",
     "features",
+    "cta",
     "trust"
   ]
 }

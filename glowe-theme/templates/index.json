@@ -48,6 +48,12 @@
         "open_first": true,
         "tone": "ivory"
       }
+    },
+    "cta": {
+      "type": "glowe-cta",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs"
+      }
     }
   },
   "order": [
@@ -58,6 +64,7 @@
     "offer",
     "steps",
     "compare",
-    "faq"
+    "faq",
+    "cta"
   ]
 }

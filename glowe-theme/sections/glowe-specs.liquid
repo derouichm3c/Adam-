@@ -1,0 +1,108 @@
+{% comment %}
+  Section contract.
+  Product specifications table filled by the merchant with "Spec" blocks (label + value).
+  Renders nothing until at least one spec is added, so it never shows invented numbers.
+  @example
+  <!-- Product page. Add blocks such as "Wavelengths" / "630 nm red, 415 nm blue". -->
+{% endcomment %}
+{%- if section.blocks.size > 0 -%}
+  {% render 'glowe-styles' %}
+  <div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-specs">
+    <div class="glowe__inner">
+      <header class="glowe-head glowe-head--center">
+        <p class="glowe-eyebrow">{{ 'glowe.specs.eyebrow' | t }}</p>
+        <h2 class="glowe-title">{{ 'glowe.specs.title_html' | t }}</h2>
+      </header>
+      <dl class="glowe-specs__list">
+        {%- for block in section.blocks -%}
+          <div class="glowe-specs__row" {{ block.shopify_attributes }}>
+            <dt>{{ block.settings.label | escape }}</dt>
+            <dd>{{ block.settings.value | escape }}</dd>
+          </div>
+        {%- endfor -%}
+      </dl>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .glowe-specs__list {
+    max-inline-size: 760px;
+    margin: 0 auto;
+    border: 1px solid var(--g-line);
+    border-radius: var(--g-radius);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .glowe-specs__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 16px;
+    padding: 18px clamp(18px, 3vw, 32px);
+    border-block-start: 1px solid var(--g-line);
+    font-size: 0.95rem;
+  }
+
+  .glowe-specs__row:first-child {
+    border-block-start: 0;
+  }
+
+  .glowe-specs__row dt {
+    font-weight: 600;
+    color: var(--g-ink);
+  }
+
+  .glowe-specs__row dd {
+    margin: 0;
+    color: var(--g-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Fiche technique",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Ajoutez une ligne par caractéristique, avec uniquement les informations confirmées par votre fournisseur. La section reste cachée tant qu'elle est vide."
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Ivoire" },
+        { "value": "sand", "label": "Sable" },
+        { "value": "white", "label": "Blanc" }
+      ],
+      "default": "sand"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Caractéristique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Nom",
+          "default": "Couleurs"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "7"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Fiche technique"
+    }
+  ]
+}
+{% endschema %}

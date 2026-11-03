@@ -193,10 +193,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "rating": {
+              "type": "review",
+              "settings": {},
+              "blocks": {}
             }
           },
           "block_order": [
             "title",
+            "rating",
             "price",
             "divider",
             "variant_picker",
@@ -247,6 +253,18 @@
         "open_first": true,
         "tone": "ivory"
       }
+    },
+    "specs": {
+      "type": "glowe-specs",
+      "settings": {
+        "tone": "sand"
+      }
+    },
+    "cta": {
+      "type": "glowe-cta",
+      "settings": {
+        "product": "masque-led-visage-cou-7-couleurs"
+      }
     }
   },
   "order": [
@@ -255,6 +273,8 @@
     "features",
     "steps",
     "compare",
-    "faq"
+    "specs",
+    "faq",
+    "cta"
   ]
 }
