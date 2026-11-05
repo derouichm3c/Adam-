@@ -1,8 +1,8 @@
 {% comment %}
   Section contract.
-  Full-width black hero with a large glowing red headline and one call to action.
+  Full-width hero (cream or black) with a large red headline, price and one call to action.
   Shows the promo headline while the promotion runs, the brand headline otherwise.
-  An optional background image sits under a dark overlay.
+  Shows the product photo beside the text (section image, or the product's main photo).
   @example
   <!-- Home page, first section. Choose the LED mask product. -->
 {% endcomment %}
@@ -22,30 +22,48 @@
     endif
   endif
 -%}
-<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero glowe-hero--{{ section.settings.tone }}">
-  {%- if section.settings.image != blank -%}
-    {{
-      section.settings.image
-      | image_url: width: 2400
-      | image_tag:
-        widths: '800, 1200, 1600, 2000, 2400',
-        sizes: '100vw',
-        loading: 'eager',
-        fetchpriority: 'high',
-        class: 'glowe-hero__bg',
-        alt: section.settings.image.alt
-    }}
-  {%- endif -%}
-  <div class="glowe__inner glowe-hero__content">
-    {%- if promo_active -%}
-      <p class="glowe-hero__kicker">{{ 'glowe.hero.promo_kicker' | t }}</p>
-      <h1 class="glowe-hero__title">{{ 'glowe.hero.promo_title' | t }}</h1>
-    {%- else -%}
-      <p class="glowe-hero__kicker">{{ 'glowe.hero.eyebrow' | t }}</p>
-      <h1 class="glowe-hero__title">{{ 'glowe.hero.big_title' | t }}</h1>
+{%- liquid
+  assign photo = section.settings.image
+  if photo == blank and product != blank
+    assign photo = product.featured_image
+  endif
+  assign variant = product.selected_or_first_available_variant
+-%}
+<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero glowe-hero--{{ section.settings.tone }}{% if photo != blank %} glowe-hero--split{% endif %}">
+  <div class="glowe__inner glowe-hero__grid">
+    {%- if photo != blank -%}
+      <a class="glowe-hero__photo" href="{{ product_url }}" tabindex="-1" aria-hidden="true">
+        {{
+          photo
+          | image_url: width: 1400
+          | image_tag:
+            widths: '500, 700, 900, 1100, 1400',
+            sizes: '(min-width: 990px) 50vw, 100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: ''
+        }}
+      </a>
     {%- endif -%}
-    <p class="glowe-hero__sub">{{ 'glowe.hero.big_sub' | t }}</p>
-    <a class="glowe-btn {% if section.settings.tone == 'black' %}glowe-btn--outline-light{% else %}glowe-btn--red{% endif %}" href="{{ product_url }}">{{ 'glowe.hero.shop' | t }}</a>
+    <div class="glowe-hero__content">
+      {%- if promo_active -%}
+        <p class="glowe-hero__kicker">{{ 'glowe.hero.promo_kicker' | t }}</p>
+        <h1 class="glowe-hero__title">{{ 'glowe.hero.promo_title' | t }}</h1>
+      {%- else -%}
+        <p class="glowe-hero__kicker">{{ 'glowe.hero.eyebrow' | t }}</p>
+        <h1 class="glowe-hero__title">{{ 'glowe.hero.big_title' | t }}</h1>
+      {%- endif -%}
+      <p class="glowe-hero__sub">{{ 'glowe.hero.big_sub' | t }}</p>
+      {%- if variant != blank -%}
+        <p class="glowe-hero__price">
+          <span class="glowe-hero__now">{{ variant.price | money }}</span>
+          {%- if variant.compare_at_price > variant.price -%}
+            <s class="glowe-hero__was">{{ variant.compare_at_price | money }}</s>
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+      <a class="glowe-btn {% if section.settings.tone == 'black' %}glowe-btn--outline-light{% else %}glowe-btn--red{% endif %}" href="{{ product_url }}">{{ 'glowe.hero.shop' | t }}</a>
+    </div>
   </div>
 </div>
 
@@ -67,10 +85,6 @@
       var(--g-ivory);
   }
 
-  .glowe-hero--ivory .glowe-hero__bg {
-    opacity: 0.18;
-  }
-
   .glowe-hero--ivory .glowe-hero__kicker {
     color: var(--g-red);
   }
@@ -84,13 +98,75 @@
     color: var(--g-ink-soft);
   }
 
-  .glowe-hero__bg {
-    position: absolute;
-    inset: 0;
+  .glowe-hero__grid {
+    display: grid;
+    align-items: center;
+    gap: 24px;
+    inline-size: 100%;
+    max-inline-size: 1280px;
+    margin-inline: auto;
+  }
+
+  .glowe-hero--split .glowe-hero__grid {
+    padding: 24px 16px 8px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-hero--split .glowe-hero__grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 56px;
+      padding: 48px 40px;
+    }
+
+    .glowe-hero--split .glowe-hero__content {
+      justify-items: start;
+      padding: 0;
+      text-align: start;
+    }
+  }
+
+  .glowe-hero--split .glowe-hero__title {
+    font-size: clamp(2.4rem, 1rem + 3.6vw, 4.25rem);
+  }
+
+  .glowe-hero__photo {
+    display: block;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--g-sand);
+    aspect-ratio: 1 / 1;
+  }
+
+  .glowe-hero__photo img {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
-    opacity: 0.45;
+  }
+
+  .glowe-hero--split .glowe-hero__content {
+    padding-block: 8px 48px;
+  }
+
+  .glowe-hero__price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 22px;
+  }
+
+  .glowe-hero__now {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--g-red);
+  }
+
+  .glowe-hero--black .glowe-hero__now {
+    color: #fff;
+  }
+
+  .glowe-hero__was {
+    font-size: 1rem;
+    color: var(--g-muted);
   }
 
   .glowe-hero__content {
@@ -154,8 +230,8 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image de fond (facultatif)",
-      "info": "Une photo sombre fonctionne le mieux. Format conseillé : 2400 × 1200 px."
+      "label": "Photo du masque (facultatif)",
+      "info": "Laissez vide pour afficher automatiquement la photo principale du produit. Format carré conseillé."
     },
     {
       "type": "text",
