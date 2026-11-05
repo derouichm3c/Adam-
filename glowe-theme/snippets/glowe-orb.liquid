@@ -1,0 +1,106 @@
+{% doc %}
+  Decorative light visual: a glowing core with thin concentric rings and a fine grid,
+  used until real product photos are added. Its color follows `--glowe-art-color`.
+
+  @param {string} [size] - 'sm' for compact placements, otherwise fills the container
+
+  @example
+  {% render 'glowe-orb' %}
+{% enddoc %}
+<div class="glowe-orb{% if size == 'sm' %} glowe-orb--sm{% endif %}" aria-hidden="true">
+  <span class="glowe-orb__grid"></span>
+  <span class="glowe-orb__ring glowe-orb__ring--1"></span>
+  <span class="glowe-orb__ring glowe-orb__ring--2"></span>
+  <span class="glowe-orb__ring glowe-orb__ring--3"></span>
+  <span class="glowe-orb__core"></span>
+</div>
+
+{% stylesheet %}
+  .glowe-orb {
+    --glowe-orb-color: var(--glowe-art-color, #ff2a2a);
+
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 200px;
+    overflow: hidden;
+  }
+
+  .glowe-orb > * {
+    grid-area: 1 / 1;
+  }
+
+  .glowe-orb__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%);
+  }
+
+  .glowe-orb__core {
+    inline-size: min(46%, 220px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, var(--glowe-orb-color) 28%, transparent 70%);
+    filter: blur(2px);
+    opacity: 0.95;
+    box-shadow: 0 0 80px 10px var(--glowe-orb-color);
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+    animation: glowe-orb-pulse 4s ease-in-out infinite;
+  }
+
+  .glowe-orb__ring {
+    aspect-ratio: 1;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    border-radius: 50%;
+  }
+
+  .glowe-orb__ring--1 {
+    inline-size: min(58%, 280px);
+  }
+
+  .glowe-orb__ring--2 {
+    inline-size: min(74%, 360px);
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .glowe-orb__ring--3 {
+    inline-size: min(90%, 440px);
+    border-style: dashed;
+    border-color: rgb(255 255 255 / 0.08);
+    animation: glowe-orb-spin 40s linear infinite;
+  }
+
+  .glowe-orb--sm .glowe-orb__core {
+    inline-size: min(40%, 120px);
+    box-shadow: 0 0 50px 6px var(--glowe-orb-color);
+  }
+
+  @keyframes glowe-orb-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.06);
+    }
+  }
+
+  @keyframes glowe-orb-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glowe-orb__core,
+    .glowe-orb__ring--3 {
+      animation: none;
+    }
+  }
+{% endstylesheet %}

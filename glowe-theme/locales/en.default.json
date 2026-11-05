@@ -375,7 +375,7 @@
   "glowe": {
     "hero": {
       "eyebrow": "LED care for face & neck",
-      "title_html": "Your LED spa,<br><em>at home.</em>",
+      "title_html": "Your LED spa,<br>at home.",
       "subtitle": "The Glowe Lab mask wraps your face and neck in soft LED light, in 7 colors. A relaxing beauty ritual whenever you want, no appointment needed.",
       "point_1": "Face + neck, full coverage",
       "point_2": "7 light colors to choose from",
@@ -407,7 +407,7 @@
     },
     "features": {
       "eyebrow": "Why Glowe Lab",
-      "title_html": "Designed to become <em>your</em> favorite ritual",
+      "title_html": "Designed to become your favorite ritual",
       "subtitle": "A glowing ritual that slips into your evening routine, effortlessly.",
       "item_1_title": "Face and neck",
       "item_1_text": "Where many masks stop at the face, ours also covers the neck, an area that often gets forgotten.",
@@ -420,7 +420,7 @@
     },
     "colors": {
       "eyebrow": "7 light colors",
-      "title_html": "A color for <em>every mood</em>",
+      "title_html": "A color for every mood",
       "subtitle": "Tap a color to explore it. Switch lights from one session to the next, depending on your mood.",
       "picker_label": "Choose a light color",
       "c1_name": "Red",
@@ -441,7 +441,7 @@
     },
     "offer": {
       "eyebrow": "Our offers",
-      "title_html": "Choose <em>your</em> ritual",
+      "title_html": "Choose your ritual",
       "subtitle": "For you, or for you and someone you love.",
       "gift_badge": "Gift idea",
       "duo_text": "One mask for you, one to give. The gift that truly delights.",
@@ -458,7 +458,7 @@
     },
     "steps": {
       "eyebrow": "How it works",
-      "title_html": "Your session in <em>4 steps</em>",
+      "title_html": "Your session in 4 steps",
       "s1_title": "Prep your skin",
       "s1_text": "Cleanse and dry your face and neck.",
       "s2_title": "Put on the mask",
@@ -470,7 +470,7 @@
     },
     "compare": {
       "eyebrow": "The comparison",
-      "title_html": "LED care, <em>without the appointments</em>",
+      "title_html": "LED care, without the appointments",
       "table_label": "Comparison between the Glowe Lab mask and salon sessions",
       "feature": "Feature",
       "us": "Glowe Lab",
@@ -489,14 +489,14 @@
     },
     "guarantee": {
       "seal": "day money-back guarantee",
-      "title_html": "Try it <em>risk-free</em>",
+      "title_html": "Try it risk-free",
       "text": "We want you to love your mask. If it isn't right for you, you have 30 days after delivery to send it back for a refund.",
       "cta": "Order my mask",
       "policy_link": "Read the return policy"
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title_html": "Everything you <em>want to know</em>",
+      "title_html": "Everything you want to know",
       "subtitle": "Can't find your answer? Write to us, we reply quickly.",
       "contact": "Contact us",
       "q1": "How do I use the mask?",
@@ -521,7 +521,7 @@
     },
     "story": {
       "eyebrow": "Our story",
-      "title_html": "Light, <em>simply.</em>",
+      "title_html": "Light, simply.",
       "intro": "Glowe Lab was born from a simple idea: bring the salon LED ritual into your home.",
       "p1": "LED treatments are often reserved for salons, by appointment, with a price for every session. We wanted an elegant, easy-to-use mask that also covers the neck, so you can enjoy that moment of relaxation whenever you like.",
       "p2": "At Glowe Lab, we choose our products carefully and speak to you with transparency: no miracle promises, just a beautiful ritual for your routine. And if anything goes wrong, our team is here for you.",
@@ -534,13 +534,13 @@
     },
     "cta": {
       "eyebrow": "Ready for your ritual?",
-      "title_html": "Your LED ritual <em>starts tonight</em>",
+      "title_html": "Your LED ritual starts tonight",
       "text": "Face and neck, 7 light colors, at home and with no appointment.",
       "button": "Choose my mask"
     },
     "specs": {
       "eyebrow": "Specifications",
-      "title_html": "The <em>details</em>"
+      "title_html": "The details"
     },
     "announce": {
       "label": "Announcements",
@@ -611,12 +611,12 @@
       "f4_text": "Your spa, whenever you want."
     },
     "band": {
-      "title_html": "LED light, <em>reimagined for home</em>",
+      "title_html": "LED light, reimagined for home",
       "text": "A mask designed for the face and neck, for a glowing ritual with no trip to the salon.",
       "button": "Learn more"
     },
     "why": {
-      "title_html": "So, <em>why Glowe Lab?</em>",
+      "title_html": "So, why Glowe Lab?",
       "text": "We believe LED care shouldn't be reserved for salons. We chose an easy-to-use face and neck mask at an accessible price, with tracked shipping and caring customer service.",
       "button": "Grab the deal"
     }

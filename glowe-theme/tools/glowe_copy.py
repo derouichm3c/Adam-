@@ -8,7 +8,7 @@ Keys ending in _html may contain markup; all other values are plain text.
 FR = {
     "hero": {
         "eyebrow": "Soin LED visage & cou",
-        "title_html": "Votre spa LED,<br><em>à la maison.</em>",
+        "title_html": "Votre spa LED,<br>à la maison.",
         "subtitle": "Le masque Glowe Lab enveloppe le visage et le cou d'une douce lumière LED, en 7 couleurs. Un rituel beauté relaxant, quand vous le voulez, sans rendez-vous.",
         "point_1": "Visage + cou, une couverture complète",
         "point_2": "7 couleurs de lumière au choix",
@@ -33,7 +33,7 @@ FR = {
     },
     "features": {
         "eyebrow": "Pourquoi Glowe Lab",
-        "title_html": "Pensé pour devenir <em>votre</em> rituel préféré",
+        "title_html": "Pensé pour devenir votre rituel préféré",
         "subtitle": "Un soin lumineux qui s'invite dans votre routine du soir, en toute simplicité.",
         "item_1_title": "Visage et cou",
         "item_1_text": "Là où beaucoup de masques s'arrêtent au visage, le nôtre couvre aussi le cou, une zone souvent oubliée.",
@@ -46,7 +46,7 @@ FR = {
     },
     "colors": {
         "eyebrow": "7 couleurs de lumière",
-        "title_html": "Une couleur pour <em>chaque envie</em>",
+        "title_html": "Une couleur pour chaque envie",
         "subtitle": "Touchez une couleur pour la découvrir. Changez de lumière d'une séance à l'autre, selon votre humeur.",
         "picker_label": "Choisir une couleur de lumière",
         "c1_name": "Rouge",
@@ -67,7 +67,7 @@ FR = {
     },
     "offer": {
         "eyebrow": "Nos offres",
-        "title_html": "Choisissez <em>votre</em> rituel",
+        "title_html": "Choisissez votre rituel",
         "subtitle": "Pour vous, ou pour vous et une personne que vous aimez.",
         "gift_badge": "Idée cadeau",
         "duo_text": "Un masque pour vous, un masque à offrir. Le cadeau qui fait vraiment plaisir.",
@@ -84,7 +84,7 @@ FR = {
     },
     "steps": {
         "eyebrow": "Mode d'emploi",
-        "title_html": "Votre séance en <em>4 étapes</em>",
+        "title_html": "Votre séance en 4 étapes",
         "s1_title": "Préparez votre peau",
         "s1_text": "Nettoyez et séchez votre visage et votre cou.",
         "s2_title": "Installez le masque",
@@ -96,7 +96,7 @@ FR = {
     },
     "compare": {
         "eyebrow": "Le comparatif",
-        "title_html": "Le soin LED, <em>sans les rendez-vous</em>",
+        "title_html": "Le soin LED, sans les rendez-vous",
         "table_label": "Comparaison entre le masque Glowe Lab et les séances en institut",
         "feature": "Critère",
         "us": "Glowe Lab",
@@ -115,14 +115,14 @@ FR = {
     },
     "guarantee": {
         "seal": "jours satisfaite ou remboursée",
-        "title_html": "Essayez-le <em>sans risque</em>",
+        "title_html": "Essayez-le sans risque",
         "text": "Nous voulons que vous adoriez votre masque. S'il ne vous convient pas, vous avez 30 jours après la réception pour nous le retourner et être remboursée.",
         "cta": "Je commande mon masque",
         "policy_link": "Lire la politique de retour",
     },
     "faq": {
         "eyebrow": "Questions fréquentes",
-        "title_html": "Tout ce que vous <em>voulez savoir</em>",
+        "title_html": "Tout ce que vous voulez savoir",
         "subtitle": "Vous ne trouvez pas votre réponse ? Écrivez-nous, nous répondons rapidement.",
         "contact": "Nous contacter",
         "q1": "Comment utiliser le masque ?",
@@ -146,7 +146,7 @@ FR = {
     },
     "story": {
         "eyebrow": "Notre histoire",
-        "title_html": "La lumière, <em>simplement.</em>",
+        "title_html": "La lumière, simplement.",
         "intro": "Glowe Lab est née d'une idée simple : rendre le rituel LED des instituts accessible à la maison.",
         "p1": "Les soins LED sont souvent réservés aux instituts, sur rendez-vous, et à chaque séance son prix. Nous voulions un masque élégant et simple à utiliser, qui couvre aussi le cou, pour vivre ce moment de détente quand on le souhaite.",
         "p2": "Chez Glowe Lab, nous choisissons nos produits avec soin et nous vous parlons avec transparence : pas de promesses miracles, seulement un beau rituel à intégrer à votre routine. Et si quelque chose ne va pas, notre équipe est là pour vous.",
@@ -159,13 +159,13 @@ FR = {
     },
     "cta": {
         "eyebrow": "Prêt pour votre rituel ?",
-        "title_html": "Votre rituel LED <em>commence ce soir</em>",
+        "title_html": "Votre rituel LED commence ce soir",
         "text": "Visage et cou, 7 couleurs de lumière, chez vous et sans rendez-vous.",
         "button": "Je choisis mon masque",
     },
     "specs": {
         "eyebrow": "Fiche technique",
-        "title_html": "Les <em>détails</em>",
+        "title_html": "Les détails",
     },
     "announce": {
         "label": "Annonces",
@@ -197,7 +197,7 @@ FR = {
 EN = {
     "hero": {
         "eyebrow": "LED care for face & neck",
-        "title_html": "Your LED spa,<br><em>at home.</em>",
+        "title_html": "Your LED spa,<br>at home.",
         "subtitle": "The Glowe Lab mask wraps your face and neck in soft LED light, in 7 colors. A relaxing beauty ritual whenever you want, no appointment needed.",
         "point_1": "Face + neck, full coverage",
         "point_2": "7 light colors to choose from",
@@ -222,7 +222,7 @@ EN = {
     },
     "features": {
         "eyebrow": "Why Glowe Lab",
-        "title_html": "Designed to become <em>your</em> favorite ritual",
+        "title_html": "Designed to become your favorite ritual",
         "subtitle": "A glowing ritual that slips into your evening routine, effortlessly.",
         "item_1_title": "Face and neck",
         "item_1_text": "Where many masks stop at the face, ours also covers the neck, an area that often gets forgotten.",
@@ -235,7 +235,7 @@ EN = {
     },
     "colors": {
         "eyebrow": "7 light colors",
-        "title_html": "A color for <em>every mood</em>",
+        "title_html": "A color for every mood",
         "subtitle": "Tap a color to explore it. Switch lights from one session to the next, depending on your mood.",
         "picker_label": "Choose a light color",
         "c1_name": "Red",
@@ -256,7 +256,7 @@ EN = {
     },
     "offer": {
         "eyebrow": "Our offers",
-        "title_html": "Choose <em>your</em> ritual",
+        "title_html": "Choose your ritual",
         "subtitle": "For you, or for you and someone you love.",
         "gift_badge": "Gift idea",
         "duo_text": "One mask for you, one to give. The gift that truly delights.",
@@ -273,7 +273,7 @@ EN = {
     },
     "steps": {
         "eyebrow": "How it works",
-        "title_html": "Your session in <em>4 steps</em>",
+        "title_html": "Your session in 4 steps",
         "s1_title": "Prep your skin",
         "s1_text": "Cleanse and dry your face and neck.",
         "s2_title": "Put on the mask",
@@ -285,7 +285,7 @@ EN = {
     },
     "compare": {
         "eyebrow": "The comparison",
-        "title_html": "LED care, <em>without the appointments</em>",
+        "title_html": "LED care, without the appointments",
         "table_label": "Comparison between the Glowe Lab mask and salon sessions",
         "feature": "Feature",
         "us": "Glowe Lab",
@@ -304,14 +304,14 @@ EN = {
     },
     "guarantee": {
         "seal": "day money-back guarantee",
-        "title_html": "Try it <em>risk-free</em>",
+        "title_html": "Try it risk-free",
         "text": "We want you to love your mask. If it isn't right for you, you have 30 days after delivery to send it back for a refund.",
         "cta": "Order my mask",
         "policy_link": "Read the return policy",
     },
     "faq": {
         "eyebrow": "FAQ",
-        "title_html": "Everything you <em>want to know</em>",
+        "title_html": "Everything you want to know",
         "subtitle": "Can't find your answer? Write to us, we reply quickly.",
         "contact": "Contact us",
         "q1": "How do I use the mask?",
@@ -335,7 +335,7 @@ EN = {
     },
     "story": {
         "eyebrow": "Our story",
-        "title_html": "Light, <em>simply.</em>",
+        "title_html": "Light, simply.",
         "intro": "Glowe Lab was born from a simple idea: bring the salon LED ritual into your home.",
         "p1": "LED treatments are often reserved for salons, by appointment, with a price for every session. We wanted an elegant, easy-to-use mask that also covers the neck, so you can enjoy that moment of relaxation whenever you like.",
         "p2": "At Glowe Lab, we choose our products carefully and speak to you with transparency: no miracle promises, just a beautiful ritual for your routine. And if anything goes wrong, our team is here for you.",
@@ -348,13 +348,13 @@ EN = {
     },
     "cta": {
         "eyebrow": "Ready for your ritual?",
-        "title_html": "Your LED ritual <em>starts tonight</em>",
+        "title_html": "Your LED ritual starts tonight",
         "text": "Face and neck, 7 light colors, at home and with no appointment.",
         "button": "Choose my mask",
     },
     "specs": {
         "eyebrow": "Specifications",
-        "title_html": "The <em>details</em>",
+        "title_html": "The details",
     },
     "announce": {
         "label": "Announcements",
@@ -460,22 +460,22 @@ EN["facts"] = {
     "f4_num": "0", "f4_title": "Appointments", "f4_text": "Your spa, whenever you want.",
 }
 FR["band"] = {
-    "title_html": "La lumière LED, <em>réinventée pour la maison</em>",
+    "title_html": "La lumière LED, réinventée pour la maison",
     "text": "Un masque conçu pour le visage et le cou, pour un rituel lumineux sans déplacement.",
     "button": "En savoir plus",
 }
 EN["band"] = {
-    "title_html": "LED light, <em>reimagined for home</em>",
+    "title_html": "LED light, reimagined for home",
     "text": "A mask designed for the face and neck, for a glowing ritual with no trip to the salon.",
     "button": "Learn more",
 }
 FR["why"] = {
-    "title_html": "Alors, <em>pourquoi Glowe Lab ?</em>",
+    "title_html": "Alors, pourquoi Glowe Lab ?",
     "text": "Nous pensons que le soin LED ne devrait pas être réservé aux instituts. Nous avons choisi un masque visage et cou simple à utiliser, à un prix accessible, avec une livraison suivie et un service client à l'écoute.",
     "button": "Profiter de l'offre",
 }
 EN["why"] = {
-    "title_html": "So, <em>why Glowe Lab?</em>",
+    "title_html": "So, why Glowe Lab?",
     "text": "We believe LED care shouldn't be reserved for salons. We chose an easy-to-use face and neck mask at an accessible price, with tracked shipping and caring customer service.",
     "button": "Grab the deal",
 }

@@ -10,7 +10,7 @@
 <div class="section section--page-width glowe glowe--tone-ink glowe-section glowe-colors" id="GloweColors-{{ section.id }}">
   <div class="glowe__inner glowe-colors__grid">
     <div class="glowe-colors__visual" style="--glowe-art-color: {{ colors[0] }};" data-glowe-visual>
-      {% render 'glowe-mask-art', uid: section.id %}
+      {% render 'glowe-orb' %}
     </div>
 
     <div class="glowe-colors__content">
@@ -98,7 +98,7 @@
   .glowe-colors__visual {
     aspect-ratio: 1 / 1;
     max-block-size: 560px;
-    border-radius: 32px;
+    border-radius: 16px;
     background: radial-gradient(circle at 50% 40%, #2a0b10 0%, #000000 75%);
     border: 1px solid rgb(255 255 255 / 0.08);
   }
@@ -108,7 +108,7 @@
       aspect-ratio: auto;
       block-size: 230px;
       overflow: hidden;
-      border-radius: 20px;
+      border-radius: 12px;
     }
 
     .glowe-colors__visual .glowe-art__svg {
@@ -118,11 +118,11 @@
   }
 
   .glowe-colors .glowe-eyebrow {
-    color: #e9c47a;
+    color: #ffffff;
   }
 
   .glowe-colors .glowe-title em {
-    color: #e9c47a;
+    color: #ffffff;
   }
 
   .glowe-colors__swatches {

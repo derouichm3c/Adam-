@@ -30,7 +30,7 @@
             }}
           {%- else -%}
             <span class="glowe-best__tile-art" style="--glowe-art-color: #ff2a2a;">
-              {% render 'glowe-mask-art', uid: section.id %}
+              {% render 'glowe-orb', size: 'sm' %}
             </span>
           {%- endif -%}
           <span class="glowe-best__tile-name">{{ 'glowe.best.tile' | t }}</span>
@@ -52,7 +52,7 @@
                 {{ image | image_url: width: 700 | image_tag: widths: '350, 500, 700', sizes: '(min-width: 990px) 25vw, 80vw', loading: 'lazy', alt: '' }}
               {%- else -%}
                 <span class="glowe-best__art" style="--glowe-art-color: #ff3b3b;">
-                  {% render 'glowe-mask-art', uid: variant.id %}
+                  {% render 'glowe-orb', size: 'sm' %}
                 </span>
               {%- endif -%}
               {%- if savings > 0 -%}
