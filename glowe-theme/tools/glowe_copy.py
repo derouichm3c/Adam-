@@ -502,3 +502,6 @@ EN["hero"].update({
     "slot_title": "Add the mask photo here",
     "slot_text": "Add a photo to the product (Products > Media) or pick one in this block: \"Mask photo\". This frame only shows in the theme editor.",
 })
+
+FR["faq"]["see_all"] = "Voir toutes les questions"
+EN["faq"]["see_all"] = "See all questions"

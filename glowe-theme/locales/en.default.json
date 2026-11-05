@@ -516,7 +516,8 @@
       "q8": "Is checkout secure?",
       "a8": "Yes. Payments are processed by Shopify over an encrypted connection. We never have access to your card details.",
       "q9": "How do I care for the mask?",
-      "a9": "After each use, gently wipe the inner surface with a soft, slightly damp cloth, then let it dry. Never immerse the mask in water and store it away from heat."
+      "a9": "After each use, gently wipe the inner surface with a soft, slightly damp cloth, then let it dry. Never immerse the mask in water and store it away from heat.",
+      "see_all": "See all questions"
     },
     "story": {
       "eyebrow": "Our story",

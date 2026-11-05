@@ -5,7 +5,7 @@
   <!-- Home, product and FAQ pages. -->
 {% endcomment %}
 {% render 'glowe-styles' %}
-{%- assign count = 9 -%}
+{%- assign count = section.settings.limit | default: 9 -%}
 <div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-section glowe-faq" id="faq">
   <div class="glowe__inner glowe-faq__grid">
     <header class="glowe-faq__head">
@@ -30,6 +30,12 @@
           <div class="glowe-faq__answer">{{ a_key | t }}</div>
         </details>
       {%- endfor -%}
+      {%- if count < 9 and section.settings.show_all_link and pages.faq != blank -%}
+        <a class="glowe-faq__all" href="{{ pages.faq.url }}">
+          {{ 'glowe.faq.see_all' | t }}
+          {% render 'glowe-icon', name: 'arrow' %}
+        </a>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -133,6 +139,24 @@
     transform: translate(-50%, -50%) rotate(0deg);
   }
 
+  .glowe-faq__all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-block-start: 22px;
+    color: var(--g-red);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .glowe-faq__all .glowe-icon {
+    inline-size: 18px;
+    block-size: 18px;
+  }
+
   .glowe-faq__answer {
     padding: 0 48px 24px 0;
     font-size: 0.97rem;
@@ -149,6 +173,22 @@
       "type": "checkbox",
       "id": "open_first",
       "label": "Ouvrir la première question",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Nombre de questions affichées",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "default": 9
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_link",
+      "label": "Lien « Voir toutes les questions »",
+      "info": "S'affiche quand toutes les questions ne sont pas montrées.",
       "default": true
     },
     {

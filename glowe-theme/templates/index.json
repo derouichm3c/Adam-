@@ -44,14 +44,17 @@
         "copy": "why",
         "tone": "red",
         "layout": "text-first",
-        "link": "shopify://products/masque-led-visage-cou-7-couleurs"
+        "link": "shopify://products/masque-led-visage-cou-7-couleurs",
+        "hide_visual_mobile": true
       }
     },
     "faq": {
       "type": "glowe-faq",
       "settings": {
         "open_first": true,
-        "tone": "ivory"
+        "tone": "ivory",
+        "limit": 5,
+        "show_all_link": true
       }
     }
   },

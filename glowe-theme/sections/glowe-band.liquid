@@ -21,7 +21,7 @@
     echo 'glowe.' | append: section.settings.copy | append: '.button'
   endcapture
 -%}
-<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-band glowe-band--{{ section.settings.layout }}">
+<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-band glowe-band--{{ section.settings.layout }}{% if section.settings.hide_visual_mobile %} glowe-band--text-only-mobile{% endif %}">
   <div class="glowe-band__grid">
     <div class="glowe-band__visual">
       {%- if section.settings.image != blank -%}
@@ -58,6 +58,12 @@
 
     .glowe-band--text-first .glowe-band__visual {
       order: 2;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .glowe-band--text-only-mobile .glowe-band__visual {
+      display: none;
     }
   }
 
@@ -146,6 +152,12 @@
       "id": "link",
       "label": "Lien du bouton",
       "info": "Laissez vide pour la page À propos."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_visual_mobile",
+      "label": "Masquer l'image sur téléphone",
+      "default": false
     }
   ],
   "presets": [
