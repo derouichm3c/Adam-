@@ -126,9 +126,9 @@
   }
 
   .glowe-colors__swatches {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+    gap: 8px;
     margin-block-start: 30px;
   }
 
@@ -136,10 +136,10 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    min-block-size: 44px;
-    padding: 0 16px 0 10px;
+    min-block-size: 46px;
+    padding: 0 12px 0 10px;
     border: 1px solid rgb(255 255 255 / 0.16);
-    border-radius: 999px;
+    border-radius: 8px;
     background: rgb(255 255 255 / 0.04);
     color: inherit;
     font: inherit;
@@ -163,9 +163,10 @@
   }
 
   .glowe-colors__dot {
-    inline-size: 22px;
-    block-size: 22px;
-    border-radius: 50%;
+    flex: none;
+    inline-size: 20px;
+    block-size: 20px;
+    border-radius: 4px;
     background: var(--c);
     box-shadow: 0 0 14px var(--c);
   }
@@ -193,7 +194,7 @@
     content: '';
     inline-size: 10px;
     block-size: 10px;
-    border-radius: 50%;
+    border-radius: 2px;
     background: var(--c);
     box-shadow: 0 0 10px var(--c);
   }
