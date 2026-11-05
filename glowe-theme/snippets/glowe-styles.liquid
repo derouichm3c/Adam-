@@ -78,6 +78,35 @@
     color: #fff;
   }
 
+  /* Horizon base.css clears section backgrounds with
+     `.shopify-section:not(.header-section) :is(.section)` (specificity 0,3,0).
+     These 0,4,0 selectors put the Glowe tone backgrounds back. */
+  .shopify-section .section.glowe--tone-ivory {
+    background: var(--g-ivory);
+  }
+
+  .shopify-section .section.glowe--tone-sand {
+    background: var(--g-sand);
+  }
+
+  .shopify-section .section.glowe--tone-white {
+    background: #fff;
+  }
+
+  .shopify-section .section.glowe--tone-black {
+    background: var(--g-black);
+  }
+
+  .shopify-section .section.glowe--tone-ink {
+    background: var(--g-ink);
+  }
+
+  .shopify-section .section.glowe--tone-red {
+    background:
+      radial-gradient(90% 120% at 50% 0%, rgb(255 255 255 / 0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #a5112b 0%, var(--g-red-deep) 55%, #6e0a1d 100%);
+  }
+
   .glowe--tone-black .glowe-eyebrow,
   .glowe--tone-red .glowe-eyebrow,
   .glowe--tone-black .glowe-title em,
