@@ -28,8 +28,12 @@
     assign photo = product.featured_image
   endif
   assign variant = product.selected_or_first_available_variant
+  assign show_slot = false
+  if photo == blank and request.design_mode
+    assign show_slot = true
+  endif
 -%}
-<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero glowe-hero--{{ section.settings.tone }}{% if photo != blank %} glowe-hero--split{% endif %}">
+<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero glowe-hero--{{ section.settings.tone }}{% if photo != blank or show_slot %} glowe-hero--split{% endif %}">
   <div class="glowe__inner glowe-hero__grid">
     {%- if photo != blank -%}
       <a class="glowe-hero__photo" href="{{ product_url }}" tabindex="-1" aria-hidden="true">
@@ -44,6 +48,13 @@
             alt: ''
         }}
       </a>
+    {%- elsif show_slot -%}
+      {%- comment -%} Editor-only frame: shows where the mask photo goes until one is added. {%- endcomment -%}
+      <div class="glowe-hero__photo glowe-hero__slot">
+        {% render 'glowe-icon', name: 'face' %}
+        <p><strong>{{ 'glowe.hero.slot_title' | t }}</strong></p>
+        <p>{{ 'glowe.hero.slot_text' | t }}</p>
+      </div>
     {%- endif -%}
     <div class="glowe-hero__content">
       {%- if promo_active -%}
@@ -135,6 +146,30 @@
     border-radius: 16px;
     background: var(--g-sand);
     aspect-ratio: 1 / 1;
+  }
+
+  .glowe-hero__slot {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 6px;
+    padding: 24px;
+    border: 2px dashed rgb(167 0 2 / 0.35);
+    color: var(--g-ink-soft);
+    text-align: center;
+  }
+
+  .glowe-hero__slot .glowe-icon {
+    inline-size: 44px;
+    block-size: 44px;
+    color: var(--g-red);
+  }
+
+  .glowe-hero__slot p {
+    max-inline-size: 32ch;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .glowe-hero__photo img {

@@ -366,7 +366,9 @@
       "promo_title": "Prix Black Friday",
       "big_title": "Spa LED à la maison",
       "big_sub": "Le masque LED visage et cou, en 7 couleurs. Votre rituel beauté, sans rendez-vous.",
-      "shop": "Magasiner"
+      "shop": "Magasiner",
+      "slot_title": "Ajoutez la photo du masque ici",
+      "slot_text": "Ajoutez une photo au produit (Produits > Médias) ou choisissez-la dans ce bloc : « Photo du masque ». Ce cadre n'est visible que dans l'éditeur."
     },
     "trust": {
       "shipping_short": "Livraison gratuite",

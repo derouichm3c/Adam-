@@ -493,3 +493,12 @@ EN["footer"].update({
     "col_4": "Stay in touch",
     "rights": "All rights reserved.",
 })
+
+FR["hero"].update({
+    "slot_title": "Ajoutez la photo du masque ici",
+    "slot_text": "Ajoutez une photo au produit (Produits > Médias) ou choisissez-la dans ce bloc : « Photo du masque ». Ce cadre n'est visible que dans l'éditeur.",
+})
+EN["hero"].update({
+    "slot_title": "Add the mask photo here",
+    "slot_text": "Add a photo to the product (Products > Media) or pick one in this block: \"Mask photo\". This frame only shows in the theme editor.",
+})

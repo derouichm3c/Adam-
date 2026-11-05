@@ -387,7 +387,9 @@
       "promo_title": "Black Friday Prices",
       "big_title": "LED spa at home",
       "big_sub": "The LED face and neck mask, in 7 colors. Your beauty ritual, no appointment needed.",
-      "shop": "Shop now"
+      "shop": "Shop now",
+      "slot_title": "Add the mask photo here",
+      "slot_text": "Add a photo to the product (Products > Media) or pick one in this block: \"Mask photo\". This frame only shows in the theme editor."
     },
     "trust": {
       "shipping_short": "Free shipping",
