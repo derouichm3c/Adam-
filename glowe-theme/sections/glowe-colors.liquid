@@ -7,7 +7,7 @@
 {% endcomment %}
 {% render 'glowe-styles' %}
 {%- assign colors = '#ff4d5a,#3d8bff,#35d07f,#ffc93c,#a46bff,#2fd6e0,#f4f1ea' | split: ',' -%}
-<div class="section section--page-width glowe glowe--tone-ink glowe-section glowe-colors" id="GloweColors-{{ section.id }}">
+<div class="section section--page-width glowe glowe--tone-sand glowe-section glowe-colors" id="GloweColors-{{ section.id }}">
   <div class="glowe__inner glowe-colors__grid">
     <div class="glowe-colors__visual" style="--glowe-art-color: {{ colors[0] }};" data-glowe-visual>
       {% render 'glowe-orb' %}
@@ -117,14 +117,6 @@
     }
   }
 
-  .glowe-colors .glowe-eyebrow {
-    color: #ffffff;
-  }
-
-  .glowe-colors .glowe-title em {
-    color: #ffffff;
-  }
-
   .glowe-colors__swatches {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
@@ -138,9 +130,9 @@
     gap: 10px;
     min-block-size: 46px;
     padding: 0 12px 0 10px;
-    border: 1px solid rgb(255 255 255 / 0.16);
+    border: 1px solid rgb(17 17 17 / 0.12);
     border-radius: 8px;
-    background: rgb(255 255 255 / 0.04);
+    background: #fff;
     color: inherit;
     font: inherit;
     font-size: 0.9rem;
@@ -149,16 +141,16 @@
   }
 
   .glowe-colors__swatch:hover {
-    border-color: rgb(255 255 255 / 0.4);
+    border-color: rgb(17 17 17 / 0.35);
   }
 
   .glowe-colors__swatch[aria-checked='true'] {
-    border-color: var(--c);
-    background: rgb(255 255 255 / 0.1);
+    border-color: var(--g-ink);
+    box-shadow: inset 0 0 0 1px var(--g-ink);
   }
 
   .glowe-colors__swatch:focus-visible {
-    outline: 2px solid #fbf8f4;
+    outline: 2px solid var(--g-red);
     outline-offset: 2px;
   }
 
@@ -168,7 +160,7 @@
     block-size: 20px;
     border-radius: 4px;
     background: var(--c);
-    box-shadow: 0 0 14px var(--c);
+    box-shadow: 0 0 10px var(--c), inset 0 0 0 1px rgb(17 17 17 / 0.12);
   }
 
   .glowe-colors__panels {
@@ -176,8 +168,8 @@
     margin-block-start: 26px;
     padding: 22px 24px;
     border-radius: var(--g-radius-sm);
-    background: rgb(255 255 255 / 0.05);
-    border: 1px solid rgb(255 255 255 / 0.08);
+    background: #fff;
+    border: 1px solid var(--g-line);
   }
 
   .glowe-colors__panel h3 {
@@ -208,7 +200,7 @@
   .glowe-colors__note {
     margin: 16px 0 0;
     font-size: 0.78rem;
-    color: rgb(251 248 244 / 0.5);
+    color: var(--g-muted);
   }
 {% endstylesheet %}
 
