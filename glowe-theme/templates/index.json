@@ -4,7 +4,8 @@
       "type": "glowe-hero",
       "settings": {
         "product": "masque-led-visage-cou-7-couleurs",
-        "promo_end": "2026-12-01 23:59:59 -0500"
+        "promo_end": "2026-12-01 23:59:59 -0500",
+        "tone": "ivory"
       }
     },
     "best": {

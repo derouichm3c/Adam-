@@ -22,7 +22,7 @@
     endif
   endif
 -%}
-<div class="section section--full-width glowe glowe--tone-black glowe-hero">
+<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero glowe-hero--{{ section.settings.tone }}">
   {%- if section.settings.image != blank -%}
     {{
       section.settings.image
@@ -45,7 +45,7 @@
       <h1 class="glowe-hero__title">{{ 'glowe.hero.big_title' | t }}</h1>
     {%- endif -%}
     <p class="glowe-hero__sub">{{ 'glowe.hero.big_sub' | t }}</p>
-    <a class="glowe-btn glowe-btn--outline-light" href="{{ product_url }}">{{ 'glowe.hero.shop' | t }}</a>
+    <a class="glowe-btn {% if section.settings.tone == 'black' %}glowe-btn--outline-light{% else %}glowe-btn--red{% endif %}" href="{{ product_url }}">{{ 'glowe.hero.shop' | t }}</a>
   </div>
 </div>
 
@@ -59,6 +59,29 @@
     background:
       radial-gradient(70% 60% at 50% 45%, rgb(167 0 2 / 0.14) 0%, transparent 70%),
       #0a0808;
+  }
+
+  .glowe.glowe-hero--ivory {
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgb(167 0 2 / 0.06) 0%, transparent 70%),
+      var(--g-ivory);
+  }
+
+  .glowe-hero--ivory .glowe-hero__bg {
+    opacity: 0.18;
+  }
+
+  .glowe-hero--ivory .glowe-hero__kicker {
+    color: var(--g-red);
+  }
+
+  .glowe-hero--ivory .glowe-hero__title {
+    color: var(--g-red);
+    text-shadow: none;
+  }
+
+  .glowe-hero--ivory .glowe-hero__sub {
+    color: var(--g-ink-soft);
   }
 
   .glowe-hero__bg {
@@ -117,6 +140,16 @@
       "type": "product",
       "id": "product",
       "label": "Produit"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "ivory", "label": "Crème" },
+        { "value": "black", "label": "Noir (idéal avec une photo sombre)" }
+      ],
+      "default": "ivory"
     },
     {
       "type": "image_picker",
