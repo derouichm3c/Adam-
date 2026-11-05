@@ -4,7 +4,10 @@
   "sections": {
     "glowe_announce": {
       "type": "glowe-announcement",
-      "settings": {}
+      "settings": {
+        "show_promo": true,
+        "promo_end": "2026-12-01 23:59:59 -0500"
+      }
     },
     "header_section": {
       "type": "header",
@@ -41,8 +44,8 @@
         }
       },
       "settings": {
-        "logo_position": "center",
-        "menu_position": "left",
+        "logo_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "show_search": true,
         "search_position": "right",
@@ -57,13 +60,14 @@
         "section_width": "page-width",
         "section_height": "standard",
         "enable_sticky_header": "always",
-        "divider_width": 1,
+        "divider_width": 0,
         "divider_size": "full-width",
         "border_width": 0,
-        "background_color_top": "{{ settings.color_palette.background }}",
+        "background_color_top": "#070606",
         "enable_transparent_header_home": false,
         "enable_transparent_header_product": false,
-        "enable_transparent_header_collection": false
+        "enable_transparent_header_collection": false,
+        "text_color_top": "#ffffff"
       }
     }
   },

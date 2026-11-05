@@ -68,13 +68,13 @@
     "palette_input_border": "{{ settings.color_palette.color3 }}",
     "palette_variant_border": "{{ settings.color_palette.color3 }}",
     "color_palette": {
-      "background": "#fbf8f4",
-      "foreground": "#17131c",
-      "color1": "#4a4150",
-      "color2": "#e7ded4",
-      "color3": "#e7ded4"
+      "background": "#faf5ef",
+      "foreground": "#111111",
+      "color1": "#2b2b2b",
+      "color2": "#e6dcd0",
+      "color3": "#e6dcd0"
     },
-    "badge_sale_background_color": "#b3243b",
+    "badge_sale_background_color": "#e0141f",
     "badge_sale_text_color": "#ffffff"
   },
   "presets": {

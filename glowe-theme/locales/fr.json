@@ -361,7 +361,12 @@
       "point_3": "Simple à utiliser, chez vous",
       "cta": "Découvrir le masque",
       "price_from": "À partir de",
-      "badge": "7 couleurs de lumière"
+      "badge": "7 couleurs de lumière",
+      "promo_kicker": "Black Friday · Jusqu'au 1er décembre",
+      "promo_title": "Prix Black Friday",
+      "big_title": "Spa LED à la maison",
+      "big_sub": "Le masque LED visage et cou, en 7 couleurs. Votre rituel beauté, sans rendez-vous.",
+      "shop": "Magasiner"
     },
     "trust": {
       "shipping_short": "Livraison gratuite",
@@ -536,7 +541,60 @@
       "news_placeholder": "Votre adresse courriel",
       "news_button": "S'inscrire",
       "news_ok": "Merci ! Votre inscription est confirmée.",
-      "payments": "Moyens de paiement acceptés"
+      "payments": "Moyens de paiement acceptés",
+      "col_1": "Entreprise",
+      "col_2": "Aide",
+      "col_3": "Légal",
+      "col_4": "Restez informé",
+      "rights": "Tous droits réservés."
+    },
+    "promo": {
+      "text": "Black Friday : se termine dans",
+      "ends_in": "La promo se termine dans",
+      "days": "Jours",
+      "hours": "Heures",
+      "mins": "Min",
+      "secs": "Sec"
+    },
+    "best": {
+      "title": "Nos meilleures ventes",
+      "subtitle": "Le masque LED visage et cou qui transforme votre routine du soir en moment spa.",
+      "tile": "Soin LED",
+      "see_all": "Voir le masque",
+      "reviews": "{{ count }} avis",
+      "single_1": "7 couleurs de lumière",
+      "single_2": "Visage et cou",
+      "duo_1": "Un masque pour vous, un à offrir",
+      "duo_2": "Le cadeau des fêtes",
+      "save": "Économisez {{ amount }}",
+      "shop": "Magasiner"
+    },
+    "facts": {
+      "title": "Le soin LED, sans compromis",
+      "subtitle": "Tout ce qu'il faut pour un rituel complet, à la maison.",
+      "button": "Voir le masque",
+      "f1_num": "7",
+      "f1_title": "Couleurs",
+      "f1_text": "Choisissez la lumière de chaque séance.",
+      "f2_num": "2",
+      "f2_title": "Zones",
+      "f2_text": "Le visage et le cou, souvent oublié.",
+      "f3_num": "4",
+      "f3_title": "Étapes",
+      "f3_text": "Une routine simple, chaque soir.",
+      "f4_num": "0",
+      "f4_title": "Rendez-vous",
+      "f4_text": "Votre spa, quand vous le voulez."
+    },
+    "band": {
+      "title_html": "La lumière LED, <em>réinventée pour la maison</em>",
+      "text": "Un masque conçu pour le visage et le cou, pour un rituel lumineux sans déplacement.",
+      "button": "En savoir plus"
+    },
+    "why": {
+      "title_html": "Alors, <em>pourquoi Glowe Lab ?</em>",
+      "text": "Nous pensons que le soin LED ne devrait pas être réservé aux instituts. Nous avons choisi un masque visage et cou simple à utiliser, à un prix accessible, avec une livraison suivie et un service client à l'écoute.",
+      "button": "Profiter de l'offre"
     }
   }
 }

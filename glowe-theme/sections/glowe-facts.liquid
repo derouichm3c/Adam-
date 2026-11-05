@@ -1,0 +1,116 @@
+{% comment %}
+  Section contract.
+  Deep-red band with four key product facts in translucent cards (no test results or invented statistics).
+  @example
+  <!-- Home page, after the best sellers. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+<div class="section section--full-width glowe glowe--tone-red glowe-section glowe-facts">
+  <div class="glowe__inner glowe-facts__inner">
+    <header class="glowe-head glowe-head--center">
+      <h2 class="glowe-title">{{ 'glowe.facts.title' | t }}</h2>
+      <p class="glowe-lead">{{ 'glowe.facts.subtitle' | t }}</p>
+      {%- if section.settings.product != blank -%}
+        <a class="glowe-btn glowe-facts__btn" href="{{ section.settings.product.url }}">{{ 'glowe.facts.button' | t }}</a>
+      {%- endif -%}
+    </header>
+    <ul class="glowe-facts__grid" role="list">
+      {%- for i in (1..4) -%}
+        {%- capture n_key %}glowe.facts.f{{ i }}_num{% endcapture -%}
+        {%- capture t_key %}glowe.facts.f{{ i }}_title{% endcapture -%}
+        {%- capture d_key %}glowe.facts.f{{ i }}_text{% endcapture -%}
+        <li class="glowe-facts__card">
+          <h3>{{ t_key | t }}</h3>
+          <p class="glowe-facts__num">{{ n_key | t }}</p>
+          <p class="glowe-facts__text">{{ d_key | t }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-facts__inner {
+    inline-size: 100%;
+    max-inline-size: 1100px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  .glowe-facts .glowe-lead {
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .glowe-facts .glowe-facts__btn {
+    margin-block-start: 24px;
+    border-color: var(--g-gold);
+    background: var(--g-gold);
+    color: #3a0008;
+  }
+
+  .glowe-facts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-facts__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+  }
+
+  .glowe-facts__card {
+    min-width: 0;
+    padding: 22px 16px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 12px;
+    background: rgb(0 0 0 / 0.14);
+    text-align: center;
+  }
+
+  .glowe-facts__card h3 {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #fff;
+  }
+
+  .glowe-facts__num {
+    margin: 6px 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(2.4rem, 1.8rem + 2vw, 3.2rem);
+    line-height: 1;
+    color: var(--g-gold);
+  }
+
+  .glowe-facts__text {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgb(255 255 255 / 0.85);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Chiffres clés",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit (bouton)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Chiffres clés"
+    }
+  ]
+}
+{% endschema %}

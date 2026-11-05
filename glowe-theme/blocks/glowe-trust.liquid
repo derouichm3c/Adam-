@@ -11,8 +11,13 @@
     for variant in product.variants
       assign qty = variant.title | split: ' ' | first | plus: 0
       if qty > 1
-        assign full = unit_price | times: qty
-        assign duo_savings = full | minus: variant.price
+        # Prefer the duo's own compare-at price so this matches the sale badges elsewhere.
+        if variant.compare_at_price > variant.price
+          assign duo_savings = variant.compare_at_price | minus: variant.price
+        else
+          assign full = unit_price | times: qty
+          assign duo_savings = full | minus: variant.price
+        endif
         break
       endif
     endfor
@@ -20,7 +25,7 @@
 -%}
 <div class="glowe glowe-ptrust" {{ block.shopify_attributes }}>
   {%- if duo_savings > 0 and block.settings.show_duo -%}
-    {%- assign duo_money = duo_savings | money -%}
+    {%- assign duo_money = duo_savings | money_without_trailing_zeros -%}
     <p class="glowe-ptrust__duo">
       {% render 'glowe-icon', name: 'gift' %}
       <span>{{ 'glowe.ptrust.duo' | t: amount: duo_money }}</span>
@@ -46,7 +51,7 @@
     margin: 0 0 14px;
     padding: 12px 14px;
     border-radius: 12px;
-    background: rgb(179 36 59 / 0.08);
+    background: rgb(167 0 2 / 0.08);
     color: var(--g-ink);
     font-size: 0.9rem;
     line-height: 1.4;

@@ -1,72 +1,111 @@
 {% comment %}
   Section contract.
-  Slim announcement bar for the header group. Shows three messages on desktop and rotates them on mobile.
+  Header-group bars: a slim black message bar, plus a red promo bar with a live countdown
+  that only shows while the promotion is running (checked in Liquid and again in JavaScript).
+  Also renders the mobile drawer styles, since this section is on every page.
   @example
-  <!-- Header group, above the header. -->
+  <!-- Header group, above the header. Set the promo end date as "YYYY-MM-DD HH:MM:SS -0500". -->
 {% endcomment %}
 {% render 'glowe-styles' %}
 {% render 'glowe-drawer-styles' %}
+{%- liquid
+  assign promo_active = false
+  if section.settings.show_promo and section.settings.promo_end != blank
+    assign now_s = 'now' | date: '%s' | plus: 0
+    assign end_s = section.settings.promo_end | date: '%s' | plus: 0
+    if end_s > now_s
+      assign promo_active = true
+    endif
+  endif
+-%}
 <div class="glowe glowe-announce" role="region" aria-label="{{ 'glowe.announce.label' | t | escape }}">
   <ul class="glowe-announce__list" role="list">
-    <li>{% render 'glowe-icon', name: 'truck' %}{{ 'glowe.announce.m1' | t }}</li>
-    <li>{% render 'glowe-icon', name: 'lock' %}{{ 'glowe.announce.m2' | t }}</li>
-    <li>{% render 'glowe-icon', name: 'gift' %}{{ 'glowe.announce.m3' | t }}</li>
+    <li>{{ 'glowe.announce.m1' | t }}</li>
+    <li>{{ 'glowe.announce.m2' | t }}</li>
+    <li>{{ 'glowe.announce.m3' | t }}</li>
   </ul>
 </div>
+{%- if promo_active -%}
+  <div
+    class="glowe glowe-promo"
+    id="GlowePromo-{{ section.id }}"
+    data-end="{{ section.settings.promo_end | date: '%s' }}"
+  >
+    <p class="glowe-promo__text">{{ 'glowe.promo.text' | t }}</p>
+    <div class="glowe-promo__timer" role="timer" aria-label="{{ 'glowe.promo.ends_in' | t | escape }}">
+      {%- assign units = 'days,hours,mins,secs' | split: ',' -%}
+      {%- for unit in units -%}
+        {%- capture unit_key %}glowe.promo.{{ unit }}{% endcapture -%}
+        <span class="glowe-promo__unit">
+          <span class="glowe-promo__num" data-unit="{{ unit }}">00</span>
+          <span class="glowe-promo__label">{{ unit_key | t }}</span>
+        </span>
+        {%- unless forloop.last -%}<span class="glowe-promo__sep" aria-hidden="true">:</span>{%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <script>
+    (function () {
+      const bar = document.getElementById('GlowePromo-{{ section.id }}');
+      if (!bar || bar.dataset.ready) return;
+      bar.dataset.ready = 'true';
+      const end = Number(bar.dataset.end) * 1000;
+      const nums = {};
+      for (const el of bar.querySelectorAll('[data-unit]')) nums[el.dataset.unit] = el;
+      const pad = (n) => String(n).padStart(2, '0');
+      function tick() {
+        const left = end - Date.now();
+        if (left <= 0) {
+          bar.hidden = true;
+          clearInterval(timer);
+          return;
+        }
+        const s = Math.floor(left / 1000);
+        nums.days.textContent = pad(Math.floor(s / 86400));
+        nums.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+        nums.mins.textContent = pad(Math.floor((s % 3600) / 60));
+        nums.secs.textContent = pad(s % 60);
+      }
+      const timer = setInterval(tick, 1000);
+      tick();
+    })();
+  </script>
+{%- endif -%}
 
 {% stylesheet %}
   .glowe.glowe-announce {
-    background: var(--g-ink);
-    color: var(--g-ivory);
-    font-size: 0.78rem;
+    background: #000;
+    color: #fff;
+    font-size: 0.75rem;
     letter-spacing: 0.02em;
     overflow: hidden;
   }
 
   .glowe-announce__list {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
+    position: relative;
+    display: grid;
+    block-size: 34px;
     margin: 0;
-    padding: 10px 16px;
+    padding: 0 16px;
     list-style: none;
   }
 
   .glowe-announce__list li {
-    display: inline-flex;
+    grid-area: 1 / 1;
+    display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     white-space: nowrap;
+    opacity: 0;
+    animation: glowe-announce 12s infinite;
   }
 
-  .glowe-announce .glowe-icon {
-    inline-size: 15px;
-    block-size: 15px;
-    color: #ff9aa8;
+  .glowe-announce__list li:nth-child(2) {
+    animation-delay: 4s;
   }
 
-  @media screen and (max-width: 749px) {
-    .glowe-announce__list {
-      position: relative;
-      display: grid;
-      block-size: 38px;
-      padding: 0 16px;
-    }
-
-    .glowe-announce__list li {
-      grid-area: 1 / 1;
-      justify-content: center;
-      opacity: 0;
-      animation: glowe-announce 12s infinite;
-    }
-
-    .glowe-announce__list li:nth-child(2) {
-      animation-delay: 4s;
-    }
-
-    .glowe-announce__list li:nth-child(3) {
-      animation-delay: 8s;
-    }
+  .glowe-announce__list li:nth-child(3) {
+    animation-delay: 8s;
   }
 
   @keyframes glowe-announce {
@@ -86,7 +125,7 @@
     }
   }
 
-  @media screen and (max-width: 749px) and (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
     .glowe-announce__list li {
       animation: none;
     }
@@ -94,6 +133,63 @@
     .glowe-announce__list li:first-child {
       opacity: 1;
     }
+  }
+
+  .glowe.glowe-promo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 18px;
+    padding: 10px 16px;
+    background: #b00000;
+    color: #fff;
+  }
+
+  .glowe-promo[hidden] {
+    display: none;
+  }
+
+  .glowe-promo__text {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .glowe-promo__timer {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .glowe-promo__unit {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+  }
+
+  .glowe-promo__num {
+    display: grid;
+    place-items: center;
+    min-inline-size: 28px;
+    block-size: 26px;
+    padding: 0 4px;
+    border-radius: 4px;
+    background: #000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .glowe-promo__label {
+    font-size: 0.6rem;
+    opacity: 0.9;
+  }
+
+  .glowe-promo__sep {
+    padding-block-start: 3px;
+    font-weight: 700;
   }
 {% endstylesheet %}
 
@@ -103,7 +199,21 @@
   "enabled_on": {
     "groups": ["header"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_promo",
+      "label": "Afficher la barre promo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "promo_end",
+      "label": "Fin de la promo",
+      "info": "Format : 2026-12-01 23:59:59 -0500. La barre disparaît automatiquement après cette date.",
+      "default": "2026-12-01 23:59:59 -0500"
+    }
+  ],
   "presets": [
     {
       "name": "Glowe – Annonce"

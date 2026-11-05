@@ -1,135 +1,197 @@
 {% comment %}
   Section contract.
-  Glowe Lab footer: brand promise, two link menus and a newsletter sign-up.
+  Black footer: company, help and legal link columns, newsletter sign-up, payment icons and copyright.
+  The legal column lists the store policies that exist in Shopify.
   @example
-  <!-- Footer group, before the footer utilities. -->
+  <!-- Footer group. Choose the company and help menus. -->
 {% endcomment %}
 {% render 'glowe-styles' %}
-<div class="section section--page-width glowe glowe--tone-ink glowe-footer">
-  <div class="glowe__inner glowe-footer__grid">
-    <div class="glowe-footer__brand">
-      <p class="glowe-footer__logo">{{ shop.name }}</p>
-      <p class="glowe-footer__about">{{ 'glowe.footer.about' | t }}</p>
-      <ul class="glowe-footer__badges" role="list">
-        <li>{% render 'glowe-icon', name: 'truck' %}{{ 'glowe.trust.shipping_short' | t }}</li>
-        <li>{% render 'glowe-icon', name: 'chat' %}{{ 'glowe.trust.support_short' | t }}</li>
-        <li>{% render 'glowe-icon', name: 'lock' %}{{ 'glowe.trust.secure_short' | t }}</li>
-      </ul>
-      {%- if shop.enabled_payment_types.size > 0 -%}
-        <ul class="glowe-footer__pay" role="list" aria-label="{{ 'glowe.footer.payments' | t | escape }}">
-          {%- for type in shop.enabled_payment_types -%}
-            <li>{{ type | payment_type_svg_tag }}</li>
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
-    </div>
+<div class="section section--page-width glowe glowe--tone-black glowe-footer">
+  <div class="glowe__inner">
+    <div class="glowe-footer__grid">
+      {%- for menu_id in (1..2) -%}
+        {%- capture setting_key %}menu_{{ menu_id }}{% endcapture -%}
+        {%- capture title_key %}glowe.footer.col_{{ menu_id }}{% endcapture -%}
+        {%- assign menu = section.settings[setting_key] -%}
+        {%- if menu != blank and menu.links.size > 0 -%}
+          <nav class="glowe-footer__nav" aria-label="{{ title_key | t | escape }}">
+            <h2 class="glowe-footer__heading">{{ title_key | t }}</h2>
+            <ul role="list">
+              {%- for link in menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+      {%- endfor -%}
 
-    {%- for menu_id in (1..2) -%}
-      {%- capture setting_key %}menu_{{ menu_id }}{% endcapture -%}
-      {%- capture title_key %}glowe.footer.menu_{{ menu_id }}{% endcapture -%}
-      {%- assign menu = section.settings[setting_key] -%}
-      {%- if menu != blank and menu.links.size > 0 -%}
-        <nav class="glowe-footer__nav" aria-label="{{ title_key | t | escape }}">
-          <h2 class="glowe-footer__heading">{{ title_key | t }}</h2>
+      {%- if shop.policies.size > 0 -%}
+        <nav class="glowe-footer__nav" aria-label="{{ 'glowe.footer.col_3' | t | escape }}">
+          <h2 class="glowe-footer__heading">{{ 'glowe.footer.col_3' | t }}</h2>
           <ul role="list">
-            {%- for link in menu.links -%}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- for policy in shop.policies -%}
+              <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
             {%- endfor -%}
           </ul>
         </nav>
       {%- endif -%}
-    {%- endfor -%}
 
-    <div class="glowe-footer__news">
-      <h2 class="glowe-footer__heading">{{ 'glowe.footer.news_title' | t }}</h2>
-      <p>{{ 'glowe.footer.news_text' | t }}</p>
-      {%- form 'customer', id: 'GloweNewsletter', class: 'glowe-footer__form' -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        {%- if form.posted_successfully? -%}
-          <p class="glowe-footer__ok" role="status">{{ 'glowe.footer.news_ok' | t }}</p>
-        {%- else -%}
-          <label class="visually-hidden" for="GloweNewsletterEmail">{{ 'glowe.footer.news_label' | t }}</label>
-          <div class="glowe-footer__field">
-            <input
-              id="GloweNewsletterEmail"
-              type="email"
-              name="contact[email]"
-              autocomplete="email"
-              required
-              placeholder="{{ 'glowe.footer.news_placeholder' | t | escape }}"
-              {% if form.errors %}
-                aria-invalid="true" aria-describedby="GloweNewsletterError"
-              {% endif %}
-            >
-            <button type="submit" class="glowe-btn glowe-btn--light">{{ 'glowe.footer.news_button' | t }}</button>
-          </div>
-          {%- if form.errors -%}
-            <p id="GloweNewsletterError" class="glowe-footer__error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+      <div class="glowe-footer__news">
+        <h2 class="glowe-footer__heading">{{ 'glowe.footer.col_4' | t }}</h2>
+        {%- form 'customer', id: 'GloweNewsletter', class: 'glowe-footer__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="glowe-footer__ok" role="status">{{ 'glowe.footer.news_ok' | t }}</p>
+          {%- else -%}
+            <label class="visually-hidden" for="GloweNewsletterEmail">{{ 'glowe.footer.news_label' | t }}</label>
+            <div class="glowe-footer__field">
+              <input
+                id="GloweNewsletterEmail"
+                type="email"
+                name="contact[email]"
+                autocomplete="email"
+                required
+                placeholder="{{ 'glowe.footer.news_placeholder' | t | escape }}"
+                {% if form.errors %}
+                  aria-invalid="true" aria-describedby="GloweNewsletterError"
+                {% endif %}
+              >
+              <button type="submit" aria-label="{{ 'glowe.footer.news_button' | t | escape }}">
+                {% render 'glowe-icon', name: 'arrow' %}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <p id="GloweNewsletterError" class="glowe-footer__error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+            {%- endif -%}
           {%- endif -%}
+        {%- endform -%}
+        <p class="glowe-footer__news-text">{{ 'glowe.footer.news_text' | t }}</p>
+        {%- if shop.enabled_payment_types.size > 0 -%}
+          <ul class="glowe-footer__pay" role="list" aria-label="{{ 'glowe.footer.payments' | t | escape }}">
+            {%- for type in shop.enabled_payment_types -%}
+              <li>{{ type | payment_type_svg_tag }}</li>
+            {%- endfor -%}
+          </ul>
         {%- endif -%}
-      {%- endform -%}
+      </div>
     </div>
+
+    <p class="glowe-footer__copy">© {{ 'now' | date: '%Y' }}, {{ shop.name }}. {{ 'glowe.footer.rights' | t }}</p>
   </div>
 </div>
 
 {% stylesheet %}
-  .glowe-footer {
-    padding-block: clamp(56px, 7vw, 88px) 40px;
+  .glowe.glowe-footer {
+    padding-block: clamp(48px, 6vw, 72px) 28px;
   }
 
   .glowe-footer__grid {
     display: grid;
-    gap: 40px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 24px;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .glowe-footer__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .glowe-footer__grid {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr) minmax(0, 0.7fr) minmax(0, 1.4fr);
+      grid-template-columns: repeat(3, minmax(0, 0.8fr)) minmax(0, 1.6fr);
       gap: 48px;
     }
   }
 
-  .glowe-footer__logo {
-    margin: 0 0 14px;
-    font-family: var(--font-heading--family);
-    font-size: 1.8rem;
-    line-height: 1;
+  .glowe-footer__news {
+    grid-column: 1 / -1;
   }
 
-  .glowe-footer__about,
-  .glowe-footer__news p {
-    margin: 0;
-    max-inline-size: 42ch;
-    font-size: 0.92rem;
-    line-height: 1.65;
-    color: var(--g-muted);
+  @media screen and (min-width: 990px) {
+    .glowe-footer__news {
+      grid-column: auto;
+    }
   }
 
-  .glowe-footer__badges {
+  .glowe-footer__heading {
+    margin: 0 0 18px;
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .glowe-footer__nav ul {
     display: grid;
     gap: 10px;
-    margin: 22px 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 0.85rem;
   }
 
-  .glowe-footer__badges li {
+  .glowe-footer__nav a {
+    color: rgb(255 255 255 / 0.85);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .glowe-footer__nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .glowe-footer__field {
     display: flex;
     align-items: center;
-    gap: 10px;
+    border-block-end: 1px solid rgb(255 255 255 / 0.5);
   }
 
-  .glowe-footer__badges .glowe-icon {
-    inline-size: 18px;
-    block-size: 18px;
-    color: #ff9aa8;
+  .glowe-footer__field input {
+    flex: 1;
+    min-inline-size: 0;
+    min-block-size: 46px;
+    padding: 0 4px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+  }
+
+  .glowe-footer__field input::placeholder {
+    color: rgb(255 255 255 / 0.6);
+  }
+
+  .glowe-footer__field input:focus-visible,
+  .glowe-footer__field button:focus-visible {
+    outline: 2px solid var(--g-gold);
+    outline-offset: 2px;
+  }
+
+  .glowe-footer__field button {
+    display: grid;
+    place-items: center;
+    inline-size: 44px;
+    block-size: 44px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .glowe-footer__news-text {
+    margin: 14px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  .glowe-footer__ok {
+    color: #9be3bd;
+  }
+
+  .glowe-footer__error {
+    margin-block-start: 8px;
+    color: var(--g-gold);
+    font-size: 0.85rem;
   }
 
   .glowe-footer__pay {
@@ -146,76 +208,12 @@
     block-size: 24px;
   }
 
-  .glowe-footer__heading {
-    margin: 0 0 16px;
-    font-family: var(--font-body--family);
+  .glowe-footer__copy {
+    margin: clamp(40px, 5vw, 64px) 0 0;
+    padding-block-start: 20px;
+    border-block-start: 1px solid rgb(255 255 255 / 0.14);
     font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #ff9aa8;
-  }
-
-  .glowe-footer__nav ul {
-    display: grid;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .glowe-footer__nav a {
-    color: var(--g-ivory);
-    font-size: 0.93rem;
-    text-decoration: none;
-    opacity: 0.85;
-  }
-
-  .glowe-footer__nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  .glowe-footer__form {
-    margin-block-start: 18px;
-  }
-
-  .glowe-footer__field {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .glowe-footer__field input {
-    flex: 1 1 200px;
-    min-inline-size: 0;
-    min-block-size: 54px;
-    padding: 0 20px;
-    border: 1px solid rgb(251 248 244 / 0.25);
-    border-radius: 999px;
-    background: rgb(255 255 255 / 0.06);
-    color: var(--g-ivory);
-    font: inherit;
-  }
-
-  .glowe-footer__field input::placeholder {
-    color: rgb(251 248 244 / 0.55);
-  }
-
-  .glowe-footer__field input:focus-visible {
-    outline: 2px solid #ff9aa8;
-    outline-offset: 2px;
-  }
-
-  .glowe-footer__ok {
-    color: #9be3bd;
-  }
-
-  .glowe-footer__error {
-    margin-block-start: 8px;
-    color: #ff9aa8;
-    font-size: 0.85rem;
+    color: rgb(255 255 255 / 0.7);
   }
 {% endstylesheet %}
 
@@ -229,7 +227,7 @@
     {
       "type": "link_list",
       "id": "menu_1",
-      "label": "Menu « Boutique »"
+      "label": "Menu « Entreprise »"
     },
     {
       "type": "link_list",

@@ -1,9 +1,10 @@
 {% comment %}
   Section contract.
-  Glowe Lab home hero: headline, offer summary, primary call to action and product visual.
-  Uses the selected product for price and link; shows the LED mask illustration until an image is chosen.
+  Full-width black hero with a large glowing red headline and one call to action.
+  Shows the promo headline while the promotion runs, the brand headline otherwise.
+  An optional background image sits under a dark overlay.
   @example
-  <!-- Home page, first section. Choose the LED mask product and, later, a hero image. -->
+  <!-- Home page, first section. Choose the LED mask product. -->
 {% endcomment %}
 {% render 'glowe-styles' %}
 {%- liquid
@@ -12,212 +13,108 @@
   if product != blank
     assign product_url = product.url
   endif
+  assign promo_active = false
+  if section.settings.promo_end != blank
+    assign now_s = 'now' | date: '%s' | plus: 0
+    assign end_s = section.settings.promo_end | date: '%s' | plus: 0
+    if end_s > now_s
+      assign promo_active = true
+    endif
+  endif
 -%}
-<div class="section section--page-width glowe glowe--tone-{{ section.settings.tone }} glowe-hero">
-  <div class="glowe__inner glowe-hero__grid">
-    <div class="glowe-hero__content glowe-reveal">
-      <p class="glowe-eyebrow">{{ 'glowe.hero.eyebrow' | t }}</p>
-      <h1 class="glowe-title glowe-hero__title">{{ 'glowe.hero.title_html' | t }}</h1>
-      <p class="glowe-lead">{{ 'glowe.hero.subtitle' | t }}</p>
-
-      <ul class="glowe-hero__points" role="list">
-        <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.hero.point_1' | t }}</li>
-        <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.hero.point_2' | t }}</li>
-        <li><span class="glowe-check">{% render 'glowe-icon', name: 'check' %}</span>{{ 'glowe.hero.point_3' | t }}</li>
-      </ul>
-
-      <div class="glowe-hero__actions">
-        <a class="glowe-btn" href="{{ product_url }}">
-          {{ 'glowe.hero.cta' | t }}
-          {% render 'glowe-icon', name: 'arrow' %}
-        </a>
-        {%- if product != blank -%}
-          <p class="glowe-hero__price">
-            {{ 'glowe.hero.price_from' | t }}
-            <strong>{{ product.price_min | money }}</strong>
-          </p>
-        {%- endif -%}
-      </div>
-
-      <ul class="glowe-hero__trust" role="list">
-        <li>{% render 'glowe-icon', name: 'truck' %}{{ 'glowe.trust.shipping_short' | t }}</li>
-        <li>{% render 'glowe-icon', name: 'chat' %}{{ 'glowe.trust.support_short' | t }}</li>
-        <li>{% render 'glowe-icon', name: 'lock' %}{{ 'glowe.trust.secure_short' | t }}</li>
-      </ul>
-    </div>
-
-    <div class="glowe-hero__visual">
-      {%- if section.settings.image != blank -%}
-        {{
-          section.settings.image
-          | image_url: width: 1600
-          | image_tag:
-            widths: '600, 800, 1000, 1200, 1600',
-            sizes: '(min-width: 990px) 50vw, 100vw',
-            loading: 'eager',
-            fetchpriority: 'high',
-            class: 'glowe-hero__img',
-            alt: section.settings.image.alt
-        }}
-      {%- else -%}
-        {% render 'glowe-mask-art', uid: section.id, cycle: true %}
-      {%- endif -%}
-      <div class="glowe-hero__badge">
-        <span class="glowe-hero__badge-dots" aria-hidden="true">
-          <i style="--c:#ff4d5a"></i><i style="--c:#3d8bff"></i><i style="--c:#35d07f"></i><i style="--c:#ffc93c"></i><i style="--c:#a46bff"></i><i style="--c:#2fd6e0"></i><i style="--c:#f4f1ea"></i>
-        </span>
-        {{ 'glowe.hero.badge' | t }}
-      </div>
-    </div>
+<div class="section section--full-width glowe glowe--tone-black glowe-hero">
+  {%- if section.settings.image != blank -%}
+    {{
+      section.settings.image
+      | image_url: width: 2400
+      | image_tag:
+        widths: '800, 1200, 1600, 2000, 2400',
+        sizes: '100vw',
+        loading: 'eager',
+        fetchpriority: 'high',
+        class: 'glowe-hero__bg',
+        alt: section.settings.image.alt
+    }}
+  {%- endif -%}
+  <div class="glowe__inner glowe-hero__content">
+    {%- if promo_active -%}
+      <p class="glowe-hero__kicker">{{ 'glowe.hero.promo_kicker' | t }}</p>
+      <h1 class="glowe-hero__title">{{ 'glowe.hero.promo_title' | t }}</h1>
+    {%- else -%}
+      <p class="glowe-hero__kicker">{{ 'glowe.hero.eyebrow' | t }}</p>
+      <h1 class="glowe-hero__title">{{ 'glowe.hero.big_title' | t }}</h1>
+    {%- endif -%}
+    <p class="glowe-hero__sub">{{ 'glowe.hero.big_sub' | t }}</p>
+    <a class="glowe-btn glowe-btn--outline-light" href="{{ product_url }}">{{ 'glowe.hero.shop' | t }}</a>
   </div>
 </div>
 
 {% stylesheet %}
-  .glowe-hero {
-    padding-block: clamp(32px, 6vw, 88px) clamp(48px, 7vw, 104px);
-    overflow: hidden;
-  }
-
-  .glowe-hero__grid {
-    display: grid;
-    gap: clamp(36px, 5vw, 72px);
-    align-items: center;
-  }
-
-  @media screen and (min-width: 990px) {
-    .glowe-hero__grid {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    }
-  }
-
-  .glowe-title.glowe-hero__title {
-    font-size: clamp(2.5rem, 1.4rem + 4.2vw, 4.5rem);
-    line-height: 1.02;
-  }
-
-  .glowe-hero__points {
-    display: grid;
-    gap: 12px;
-    margin: 28px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .glowe-hero__points li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1rem;
-  }
-
-  .glowe-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px 24px;
-    margin-block-start: 34px;
-  }
-
-  .glowe-hero__price {
-    margin: 0;
-    color: var(--g-muted);
-    font-size: 0.95rem;
-  }
-
-  .glowe-hero__price strong {
-    color: var(--g-ink);
-    font-size: 1.15rem;
-  }
-
-  .glowe-hero__trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    margin: 30px 0 0;
-    padding: 22px 0 0;
-    border-block-start: 1px solid var(--g-line);
-    list-style: none;
-    font-size: 0.85rem;
-    color: var(--g-muted);
-  }
-
-  .glowe-hero__trust li {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .glowe-hero__trust .glowe-icon {
-    inline-size: 18px;
-    block-size: 18px;
-    color: var(--g-ink);
-  }
-
-  .glowe-hero__visual {
+  .glowe.glowe-hero {
     position: relative;
     display: grid;
-    place-items: center;
-    aspect-ratio: 4 / 5;
-    border-radius: 32px;
+    align-items: center;
+    min-block-size: clamp(420px, 62vh, 640px);
     overflow: hidden;
     background:
-      radial-gradient(120% 80% at 50% 0%, #3a2c3f 0%, transparent 60%),
-      linear-gradient(160deg, #241c29 0%, #120e15 100%);
-    box-shadow: var(--g-shadow);
+      radial-gradient(60% 55% at 50% 50%, rgb(167 0 2 / 0.28) 0%, transparent 70%),
+      #030101;
   }
 
-  @media screen and (max-width: 989px) {
-    .glowe-hero__visual {
-      order: -1;
-      aspect-ratio: 1 / 1;
-      max-block-size: 520px;
-      inline-size: 100%;
-    }
-  }
-
-  .glowe-hero__img {
+  .glowe-hero__bg {
+    position: absolute;
+    inset: 0;
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
+    opacity: 0.45;
   }
 
-  .glowe-hero__badge {
-    position: absolute;
-    inset-block-end: 18px;
-    inset-inline-start: 50%;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border: 1px solid rgb(255 255 255 / 0.16);
-    border-radius: 999px;
-    background: rgb(18 14 21 / 0.55);
-    backdrop-filter: blur(10px);
-    color: #fbf8f4;
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-    transform: translateX(-50%);
+  .glowe-hero__content {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding: clamp(64px, 10vw, 120px) 20px;
+    text-align: center;
   }
 
-  .glowe-hero__badge-dots {
-    display: inline-flex;
-    gap: 4px;
+  .glowe-hero__kicker {
+    margin: 0 0 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.75);
   }
 
-  .glowe-hero__badge-dots i {
-    inline-size: 8px;
-    block-size: 8px;
-    border-radius: 50%;
-    background: var(--c);
-    box-shadow: 0 0 8px var(--c);
+  .glowe-hero__title {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 1rem + 8vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #e0141f;
+    text-shadow:
+      0 0 18px rgb(255 20 30 / 0.85),
+      0 0 48px rgb(255 0 10 / 0.6),
+      0 0 110px rgb(200 0 10 / 0.5);
+    text-wrap: balance;
+  }
+
+  .glowe-hero__sub {
+    max-inline-size: 46ch;
+    margin: 22px 0 30px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgb(255 255 255 / 0.8);
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "Glowe – Hero",
-  "class": "shopify-section--glowe",
   "settings": [
     {
       "type": "product",
@@ -227,19 +124,15 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image",
-      "info": "Laissez vide pour afficher l'illustration lumineuse du masque. Format conseillé : 1200 × 1500 px."
+      "label": "Image de fond (facultatif)",
+      "info": "Une photo sombre fonctionne le mieux. Format conseillé : 2400 × 1200 px."
     },
     {
-      "type": "select",
-      "id": "tone",
-      "label": "Fond",
-      "options": [
-        { "value": "ivory", "label": "Ivoire" },
-        { "value": "sand", "label": "Sable" },
-        { "value": "white", "label": "Blanc" }
-      ],
-      "default": "ivory"
+      "type": "text",
+      "id": "promo_end",
+      "label": "Fin de la promo",
+      "info": "Même date que la barre promo. Après cette date, le titre de marque remplace le titre promo.",
+      "default": "2026-12-01 23:59:59 -0500"
     }
   ],
   "presets": [

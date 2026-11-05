@@ -382,3 +382,114 @@ EN = {
         "payments": "Accepted payment methods",
     },
 }
+
+
+# --- MEGELIN-style layout (Nov 2026) ---------------------------------------
+FR["hero"].update({
+    "promo_kicker": "Black Friday · Jusqu'au 1er décembre",
+    "promo_title": "Prix Black Friday",
+    "big_title": "Spa LED à la maison",
+    "big_sub": "Le masque LED visage et cou, en 7 couleurs. Votre rituel beauté, sans rendez-vous.",
+    "shop": "Magasiner",
+})
+EN["hero"].update({
+    "promo_kicker": "Black Friday · Until December 1",
+    "promo_title": "Black Friday Prices",
+    "big_title": "LED spa at home",
+    "big_sub": "The LED face and neck mask, in 7 colors. Your beauty ritual, no appointment needed.",
+    "shop": "Shop now",
+})
+FR["promo"] = {
+    "text": "Black Friday : se termine dans",
+    "ends_in": "La promo se termine dans",
+    "days": "Jours",
+    "hours": "Heures",
+    "mins": "Min",
+    "secs": "Sec",
+}
+EN["promo"] = {
+    "text": "Black Friday ends in",
+    "ends_in": "The sale ends in",
+    "days": "Days",
+    "hours": "Hours",
+    "mins": "Mins",
+    "secs": "Secs",
+}
+FR["best"] = {
+    "title": "Nos meilleures ventes",
+    "subtitle": "Le masque LED visage et cou qui transforme votre routine du soir en moment spa.",
+    "tile": "Soin LED",
+    "see_all": "Voir le masque",
+    "reviews": "{{ count }} avis",
+    "single_1": "7 couleurs de lumière",
+    "single_2": "Visage et cou",
+    "duo_1": "Un masque pour vous, un à offrir",
+    "duo_2": "Le cadeau des fêtes",
+    "save": "Économisez {{ amount }}",
+    "shop": "Magasiner",
+}
+EN["best"] = {
+    "title": "Best sellers",
+    "subtitle": "The LED face and neck mask that turns your evening routine into a spa moment.",
+    "tile": "LED care",
+    "see_all": "See the mask",
+    "reviews": "{{ count }} reviews",
+    "single_1": "7 light colors",
+    "single_2": "Face and neck",
+    "duo_1": "One for you, one to give",
+    "duo_2": "The holiday gift",
+    "save": "Save {{ amount }}",
+    "shop": "Shop now",
+}
+FR["facts"] = {
+    "title": "Le soin LED, sans compromis",
+    "subtitle": "Tout ce qu'il faut pour un rituel complet, à la maison.",
+    "button": "Voir le masque",
+    "f1_num": "7", "f1_title": "Couleurs", "f1_text": "Choisissez la lumière de chaque séance.",
+    "f2_num": "2", "f2_title": "Zones", "f2_text": "Le visage et le cou, souvent oublié.",
+    "f3_num": "4", "f3_title": "Étapes", "f3_text": "Une routine simple, chaque soir.",
+    "f4_num": "0", "f4_title": "Rendez-vous", "f4_text": "Votre spa, quand vous le voulez.",
+}
+EN["facts"] = {
+    "title": "LED care, no compromise",
+    "subtitle": "Everything you need for a complete ritual, at home.",
+    "button": "See the mask",
+    "f1_num": "7", "f1_title": "Colors", "f1_text": "Choose the light for every session.",
+    "f2_num": "2", "f2_title": "Zones", "f2_text": "Face and the often-forgotten neck.",
+    "f3_num": "4", "f3_title": "Steps", "f3_text": "A simple routine, every evening.",
+    "f4_num": "0", "f4_title": "Appointments", "f4_text": "Your spa, whenever you want.",
+}
+FR["band"] = {
+    "title_html": "La lumière LED, <em>réinventée pour la maison</em>",
+    "text": "Un masque conçu pour le visage et le cou, pour un rituel lumineux sans déplacement.",
+    "button": "En savoir plus",
+}
+EN["band"] = {
+    "title_html": "LED light, <em>reimagined for home</em>",
+    "text": "A mask designed for the face and neck, for a glowing ritual with no trip to the salon.",
+    "button": "Learn more",
+}
+FR["why"] = {
+    "title_html": "Alors, <em>pourquoi Glowe Lab ?</em>",
+    "text": "Nous pensons que le soin LED ne devrait pas être réservé aux instituts. Nous avons choisi un masque visage et cou simple à utiliser, à un prix accessible, avec une livraison suivie et un service client à l'écoute.",
+    "button": "Profiter de l'offre",
+}
+EN["why"] = {
+    "title_html": "So, <em>why Glowe Lab?</em>",
+    "text": "We believe LED care shouldn't be reserved for salons. We chose an easy-to-use face and neck mask at an accessible price, with tracked shipping and caring customer service.",
+    "button": "Grab the deal",
+}
+FR["footer"].update({
+    "col_1": "Entreprise",
+    "col_2": "Aide",
+    "col_3": "Légal",
+    "col_4": "Restez informé",
+    "rights": "Tous droits réservés.",
+})
+EN["footer"].update({
+    "col_1": "Company",
+    "col_2": "Help",
+    "col_3": "Legal",
+    "col_4": "Stay in touch",
+    "rights": "All rights reserved.",
+})

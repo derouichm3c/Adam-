@@ -4,30 +4,31 @@
       "type": "glowe-hero",
       "settings": {
         "product": "masque-led-visage-cou-7-couleurs",
-        "tone": "ivory"
+        "promo_end": "2026-12-01 23:59:59 -0500"
       }
     },
-    "trust": {
-      "type": "glowe-trustbar",
+    "best": {
+      "type": "glowe-bestsellers",
       "settings": {
-        "tone": "white"
+        "product": "masque-led-visage-cou-7-couleurs"
       }
     },
-    "features": {
-      "type": "glowe-features",
+    "facts": {
+      "type": "glowe-facts",
       "settings": {
-        "tone": "ivory"
+        "product": "masque-led-visage-cou-7-couleurs"
       }
     },
     "colors": {
       "type": "glowe-colors",
       "settings": {}
     },
-    "offer": {
-      "type": "glowe-offer",
+    "band": {
+      "type": "glowe-band",
       "settings": {
-        "product": "masque-led-visage-cou-7-couleurs",
-        "tone": "sand"
+        "copy": "band",
+        "tone": "black",
+        "layout": "image-first"
       }
     },
     "steps": {
@@ -36,10 +37,13 @@
         "tone": "ivory"
       }
     },
-    "compare": {
-      "type": "glowe-compare",
+    "why": {
+      "type": "glowe-band",
       "settings": {
-        "tone": "sand"
+        "copy": "why",
+        "tone": "red",
+        "layout": "text-first",
+        "link": "shopify://products/masque-led-visage-cou-7-couleurs"
       }
     },
     "faq": {
@@ -48,23 +52,16 @@
         "open_first": true,
         "tone": "ivory"
       }
-    },
-    "cta": {
-      "type": "glowe-cta",
-      "settings": {
-        "product": "masque-led-visage-cou-7-couleurs"
-      }
     }
   },
   "order": [
     "hero",
-    "trust",
-    "features",
+    "best",
+    "facts",
     "colors",
-    "offer",
+    "band",
     "steps",
-    "compare",
-    "faq",
-    "cta"
+    "why",
+    "faq"
   ]
 }

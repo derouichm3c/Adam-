@@ -1,0 +1,157 @@
+{% comment %}
+  Section contract.
+  Full-width split band: visual on one side (image or glowing mask illustration), headline,
+  short text and a button on the other. Tone red or black.
+  @example
+  <!-- Home page. Links to the About page by default. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- liquid
+  assign link = section.settings.link
+  if link == blank
+    assign link = pages.about.url | default: routes.root_url
+  endif
+  capture title_key
+    echo 'glowe.' | append: section.settings.copy | append: '.title_html'
+  endcapture
+  capture text_key
+    echo 'glowe.' | append: section.settings.copy | append: '.text'
+  endcapture
+  capture button_key
+    echo 'glowe.' | append: section.settings.copy | append: '.button'
+  endcapture
+-%}
+<div class="section section--full-width glowe glowe--tone-{{ section.settings.tone }} glowe-band glowe-band--{{ section.settings.layout }}">
+  <div class="glowe-band__grid">
+    <div class="glowe-band__visual">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1600
+          | image_tag: widths: '600, 900, 1200, 1600', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy', class: 'glowe-band__img', alt: section.settings.image.alt
+        }}
+      {%- else -%}
+        <div class="glowe-band__art" style="--glowe-art-color: #ff2a2a;">
+          {% render 'glowe-mask-art', uid: section.id %}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="glowe-band__content">
+      <h2 class="glowe-title">{{ title_key | t }}</h2>
+      <p class="glowe-lead">{{ text_key | t }}</p>
+      <a class="glowe-btn glowe-btn--light glowe-band__btn" href="{{ link }}">{{ button_key | t }}</a>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-band__grid {
+    display: grid;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-band__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      min-block-size: 560px;
+    }
+
+    .glowe-band--text-first .glowe-band__visual {
+      order: 2;
+    }
+  }
+
+  .glowe-band__visual {
+    position: relative;
+    align-self: stretch;
+    min-block-size: 340px;
+  }
+
+  .glowe-band__img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .glowe-band__art {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    background: radial-gradient(circle at 50% 50%, rgb(255 40 40 / 0.25) 0%, transparent 65%);
+  }
+
+  .glowe-band__content {
+    padding: clamp(40px, 6vw, 88px) clamp(20px, 6vw, 88px);
+  }
+
+  .glowe-band .glowe-title {
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.1rem);
+  }
+
+  .glowe-band .glowe-lead {
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .glowe-band .glowe-band__btn {
+    margin-block-start: 28px;
+    border-color: #fff;
+    background: #fff;
+    color: #111;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Bandeau image",
+  "settings": [
+    {
+      "type": "select",
+      "id": "copy",
+      "label": "Texte",
+      "options": [
+        { "value": "band", "label": "La lumière LED, réinventée" },
+        { "value": "why", "label": "Pourquoi Glowe Lab ?" }
+      ],
+      "default": "band"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fond",
+      "options": [
+        { "value": "red", "label": "Rouge" },
+        { "value": "black", "label": "Noir" }
+      ],
+      "default": "red"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Disposition",
+      "options": [
+        { "value": "image-first", "label": "Image à gauche" },
+        { "value": "text-first", "label": "Texte à gauche" }
+      ],
+      "default": "image-first"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (facultatif)"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Lien du bouton",
+      "info": "Laissez vide pour la page À propos."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Bandeau image"
+    }
+  ]
+}
+{% endschema %}

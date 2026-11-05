@@ -8,18 +8,22 @@
 
 {% stylesheet %}
   .glowe {
-    --g-ink: #17131c;
-    --g-ink-soft: #2a2330;
-    --g-ivory: #fbf8f4;
-    --g-sand: #f4eee7;
-    --g-line: #e7ded4;
-    --g-muted: #6d6472;
-    --g-accent: #b3243b;
+    --g-ink: #111111;
+    --g-ink-soft: #2b2b2b;
+    --g-ivory: #faf5ef;
+    --g-sand: #f5eee7;
+    --g-line: #e6dcd0;
+    --g-muted: #5f5953;
+    --g-accent: #a70002;
+    --g-red: #a70002;
+    --g-red-deep: #961028;
+    --g-black: #000000;
+    --g-gold: #e9c47a;
     --g-glow: #ff4d5a;
     --g-success: #2f7a55;
     --g-radius: 22px;
     --g-radius-sm: 14px;
-    --g-shadow: 0 24px 60px -28px rgb(23 19 28 / 0.35);
+    --g-shadow: 0 24px 60px -28px rgb(0 0 0 / 0.35);
     --g-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
     color: var(--g-ink);
@@ -54,6 +58,31 @@
 
   .glowe--tone-white {
     background: #fff;
+  }
+
+  .glowe--tone-black {
+    --g-muted: rgb(255 255 255 / 0.72);
+    --g-line: rgb(255 255 255 / 0.14);
+
+    background: var(--g-black);
+    color: #fff;
+  }
+
+  .glowe--tone-red {
+    --g-muted: rgb(255 255 255 / 0.8);
+    --g-line: rgb(255 255 255 / 0.18);
+
+    background:
+      radial-gradient(90% 120% at 50% 0%, rgb(255 255 255 / 0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #a5112b 0%, var(--g-red-deep) 55%, #6e0a1d 100%);
+    color: #fff;
+  }
+
+  .glowe--tone-black .glowe-eyebrow,
+  .glowe--tone-red .glowe-eyebrow,
+  .glowe--tone-black .glowe-title em,
+  .glowe--tone-red .glowe-title em {
+    color: var(--g-gold);
   }
 
   .glowe--tone-ink {
@@ -126,16 +155,17 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-block-size: 54px;
+    min-block-size: 50px;
     padding: 0 30px;
     border: 1px solid var(--g-ink);
     border-radius: 999px;
     background: var(--g-ink);
     color: var(--g-ivory);
     font: inherit;
-    font-size: 0.975rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.3s var(--g-ease), box-shadow 0.3s var(--g-ease), background-color 0.3s var(--g-ease);
@@ -143,7 +173,7 @@
 
   .glowe-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 30px -14px rgb(23 19 28 / 0.6);
+    box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.6);
   }
 
   .glowe-btn:focus-visible {
@@ -165,6 +195,27 @@
     border-color: var(--g-ivory);
     background: var(--g-ivory);
     color: var(--g-ink);
+  }
+
+  .glowe-btn--red {
+    border-color: var(--g-red);
+    background: var(--g-red);
+    color: #fff;
+  }
+
+  .glowe-btn--red:hover {
+    background: #8a0002;
+  }
+
+  .glowe-btn--outline-light {
+    border-color: rgb(255 255 255 / 0.85);
+    background: transparent;
+    color: #fff;
+  }
+
+  .glowe-btn--outline-light:hover {
+    background: #fff;
+    color: var(--g-black);
   }
 
   .glowe-btn--block {

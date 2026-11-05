@@ -1,0 +1,350 @@
+{% comment %}
+  Section contract.
+  "Best sellers" row: a red lifestyle tile linking to the product, then one card per variant
+  with image, real rating (only when a review app provides it), short points, sale price,
+  compare-at price, savings pill and a shop button that opens that variant.
+  @example
+  <!-- Home page, after the hero. Choose the LED mask product. -->
+{% endcomment %}
+{% render 'glowe-styles' %}
+{%- assign product = section.settings.product -%}
+<div class="section section--page-width glowe glowe--tone-ivory glowe-section glowe-best">
+  <div class="glowe__inner">
+    <header class="glowe-best__head">
+      <h2 class="glowe-title">{{ 'glowe.best.title' | t }}</h2>
+      <p class="glowe-best__sub">{{ 'glowe.best.subtitle' | t }}</p>
+    </header>
+
+    {%- if product != blank -%}
+      {%- liquid
+        assign rating = product.metafields.reviews.rating.value.rating
+        assign rating_count = product.metafields.reviews.rating_count
+      -%}
+      <div class="glowe-best__row">
+        <a class="glowe-best__tile" href="{{ product.url }}">
+          {%- if section.settings.tile_image != blank -%}
+            {{
+              section.settings.tile_image
+              | image_url: width: 800
+              | image_tag: widths: '400, 600, 800', sizes: '(min-width: 990px) 25vw, 80vw', loading: 'lazy', class: 'glowe-best__tile-img', alt: ''
+            }}
+          {%- else -%}
+            <span class="glowe-best__tile-art" style="--glowe-art-color: #ff2a2a;">
+              {% render 'glowe-mask-art', uid: section.id %}
+            </span>
+          {%- endif -%}
+          <span class="glowe-best__tile-name">{{ 'glowe.best.tile' | t }}</span>
+          <span class="glowe-btn glowe-btn--red glowe-best__tile-btn">{{ 'glowe.best.see_all' | t }}</span>
+        </a>
+
+        {%- for variant in product.variants -%}
+          {%- liquid
+            assign image = variant.featured_image | default: product.featured_image
+            assign qty = variant.title | split: ' ' | first | plus: 0
+            assign savings = 0
+            if variant.compare_at_price > variant.price
+              assign savings = variant.compare_at_price | minus: variant.price
+            endif
+          -%}
+          <div class="glowe-best__card">
+            <a class="glowe-best__media" href="{{ variant.url }}" tabindex="-1" aria-hidden="true">
+              {%- if image != blank -%}
+                {{ image | image_url: width: 700 | image_tag: widths: '350, 500, 700', sizes: '(min-width: 990px) 25vw, 80vw', loading: 'lazy', alt: '' }}
+              {%- else -%}
+                <span class="glowe-best__art" style="--glowe-art-color: #ff3b3b;">
+                  {% render 'glowe-mask-art', uid: variant.id %}
+                </span>
+              {%- endif -%}
+              {%- if savings > 0 -%}
+                {%- assign pct = savings | times: 100 | divided_by: variant.compare_at_price | floor -%}
+                <span class="glowe-best__badge">-{{ pct }}%</span>
+              {%- endif -%}
+            </a>
+            <div class="glowe-best__body">
+              {%- if rating != blank -%}
+                <p class="glowe-best__stars">
+                  <span aria-hidden="true">★★★★★</span>
+                  <span>({{ rating | round: 2 }}/5) {{ 'glowe.best.reviews' | t: count: rating_count }}</span>
+                </p>
+              {%- endif -%}
+              <p class="glowe-best__variant">{{ variant.title }}</p>
+              <h3 class="glowe-best__name"><a href="{{ variant.url }}">{{ product.title }}</a></h3>
+              <ul class="glowe-best__points" role="list">
+                {%- if qty > 1 -%}
+                  <li>{{ 'glowe.best.duo_1' | t }}</li>
+                  <li>{{ 'glowe.best.duo_2' | t }}</li>
+                {%- else -%}
+                  <li>{{ 'glowe.best.single_1' | t }}</li>
+                  <li>{{ 'glowe.best.single_2' | t }}</li>
+                {%- endif -%}
+              </ul>
+              <p class="glowe-best__price">
+                <span class="glowe-best__now">{{ variant.price | money }}</span>
+                {%- if savings > 0 -%}
+                  {%- assign savings_money = savings | money_without_trailing_zeros -%}
+                  <s class="glowe-best__was">{{ variant.compare_at_price | money }}</s>
+                  <span class="glowe-best__save">{{ 'glowe.best.save' | t: amount: savings_money }}</span>
+                {%- endif -%}
+              </p>
+              <a class="glowe-btn glowe-btn--red glowe-best__btn" href="{{ variant.url }}">{{ 'glowe.best.shop' | t }}</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .glowe-best__head {
+    margin-block-end: 28px;
+  }
+
+  .glowe-best__sub {
+    max-inline-size: 60ch;
+    margin: 12px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--g-ink);
+  }
+
+  .glowe-best__row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 300px);
+    gap: 14px;
+    overflow-x: auto;
+    padding-block-end: 12px;
+    scroll-snap-type: x mandatory;
+  }
+
+  @media screen and (min-width: 990px) {
+    .glowe-best__row {
+      grid-auto-columns: minmax(0, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-flow: row;
+      overflow: visible;
+    }
+  }
+
+  .glowe-best__tile,
+  .glowe-best__card {
+    scroll-snap-align: start;
+    min-width: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 989px) {
+    .glowe-best__tile {
+      order: 99;
+    }
+  }
+
+  .glowe-best__tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+    min-block-size: 420px;
+    padding: 24px;
+    background: linear-gradient(170deg, #c40d12 0%, #6d0004 100%);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .glowe-best__tile-img,
+  .glowe-best__tile-art {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .glowe-best__tile-art {
+    display: grid;
+    place-items: start center;
+    padding-block-start: 24px;
+    opacity: 0.9;
+  }
+
+  .glowe-best__tile-name,
+  .glowe-best__tile-btn {
+    position: relative;
+  }
+
+  .glowe-best__tile-name {
+    font-family: var(--font-heading--family);
+    font-size: 1.9rem;
+    line-height: 1.05;
+    text-shadow: 0 2px 14px rgb(0 0 0 / 0.4);
+  }
+
+  .glowe-best__tile .glowe-best__tile-btn {
+    align-self: flex-start;
+    min-block-size: 40px;
+    padding: 0 22px;
+    border-color: #fff;
+    background: #a70002;
+  }
+
+  .glowe-best__card {
+    display: flex;
+    flex-direction: column;
+    background: var(--g-sand);
+  }
+
+  .glowe-best__media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 0.95;
+    background: var(--g-sand);
+  }
+
+  .glowe-best__media img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  .glowe-best__art {
+    display: grid;
+    inline-size: 100%;
+    block-size: 100%;
+    background: radial-gradient(circle at 50% 45%, #2a0b10 0%, #0b0203 70%);
+  }
+
+  .glowe-best__badge {
+    position: absolute;
+    inset-block-start: 12px;
+    inset-inline-start: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #e0141f;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .glowe-best__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+    padding: 14px 16px 18px;
+  }
+
+  .glowe-best__stars {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--g-muted);
+  }
+
+  .glowe-best__stars [aria-hidden] {
+    color: #f2b01e;
+    letter-spacing: 1px;
+  }
+
+  .glowe-best__variant {
+    align-self: flex-start;
+    margin: 0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .glowe-best__name {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .glowe-best__name a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .glowe-best__points {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--g-ink-soft);
+  }
+
+  .glowe-best__points li::before {
+    content: '· ';
+  }
+
+  .glowe-best__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 4px 0 0;
+  }
+
+  .glowe-best__now {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #c4000a;
+  }
+
+  .glowe-best__was {
+    font-size: 0.8rem;
+    color: var(--g-muted);
+  }
+
+  .glowe-best__save {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgb(224 20 31 / 0.12);
+    color: #c4000a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .glowe-best__card .glowe-best__btn {
+    align-self: flex-start;
+    min-block-size: 40px;
+    margin-block-start: auto;
+    padding: 0 24px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowe – Meilleures ventes",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_image",
+      "label": "Image de la tuile rouge (facultatif)",
+      "info": "Une photo du masque porté, format portrait."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowe – Meilleures ventes"
+    }
+  ]
+}
+{% endschema %}
