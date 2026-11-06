@@ -88,3 +88,40 @@ Visuels montés à partir de la vraie photo du pack (pas d'IA), texte net.
 - **Lien :** https://lumysmile.com/products/the-complete-smile-bundle
 
 ⚠️ Après le 27 novembre : arrêter ces pubs (le prix revient à $59.99).
+
+---
+
+## 📘 Page Facebook — kit Black Friday
+
+### Couverture (1640×924)
+`docs/ad-assets/lumysmile-facebook-cover-black-friday.png` — texte dans la bande centrale (visible sur ordi et mobile).
+À remettre en couverture normale après le 27 novembre (mettre « 7–8 days » au lieu de « 7 days »).
+
+### Post Black Friday à épingler (« En vedette »)
+Visuel : `docs/ad-assets/lumysmile-black-friday-feed-4x5.png`
+
+> 🖤 BLACK FRIDAY IS HERE 🖤
+>
+> Our Complete Smile Bundle is $54.99 instead of $77.97 — that's 29% off your full whitening routine:
+> 🖤 Charcoal whitening toothpaste
+> ✨ Peroxide-free whitening strips
+> 🪥 4 bamboo toothbrushes
+>
+> 📦 Free tracked shipping
+> 💚 30-day money-back guarantee
+> ⏰ Ends November 27
+>
+> 👉 Shop the deal: https://lumysmile.com/products/the-complete-smile-bundle
+
+Après publication : ••• → « Épingler sur la Page » / « Ajouter à En vedette ».
+
+### Premier Reel
+Vidéo : `docs/ad-assets/brush-demo-9x16-notext.mp4` (9:16, sans texte)
+
+> Switching to bamboo never felt this good 🌿🪥
+> Charcoal bristles, biodegradable bamboo handle — and it's part of our Black Friday bundle: $54.99 instead of $77.97 🖤
+> 👉 lumysmile.com
+>
+> #bambootoothbrush #ecofriendly #sustainableliving #oralcare #blackfriday #zerowaste #smile
+
+Musique : choisir un son tendance dans la bibliothèque Reels (calme / « clean aesthetic »).
