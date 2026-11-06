@@ -4,10 +4,12 @@
 {%- endcomment -%}
 {%- assign bf_end = 1795841999 -%}
 {%- assign bf_now = 'now' | date: '%s' | plus: 0 -%}
-{%- if bf_now < bf_end -%}
+{%- assign bf_p = all_products['the-complete-smile-bundle'] -%}
+{%- assign bf_pct = bf_p.compare_at_price | minus: bf_p.price | times: 100 | divided_by: bf_p.compare_at_price -%}
+{%- if bf_now < bf_end and bf_p.compare_at_price > bf_p.price -%}
 <div class="bf-bar" id="bfBar" data-bf-end="{{ bf_end }}" role="region" aria-label="Black Friday offer">
   <div class="container bf-bar__inner">
-    <p class="bf-bar__text"><strong>Black Friday</strong> &middot; Complete Bundle <strong>$44.99</strong> <s>$77.97</s> <span class="bf-bar__save">-42%</span></p>
+    <p class="bf-bar__text"><strong>Black Friday</strong> &middot; Complete Bundle <strong>{{ bf_p.price | money }}</strong> <s>{{ bf_p.compare_at_price | money }}</s> <span class="bf-bar__save">-{{ bf_pct }}%</span></p>
     <div class="bf-bar__timer" aria-live="off">
       <span class="bf-bar__label">Ends in</span>
       <span class="bf-bar__unit"><b data-bf="d">00</b>d</span>
