@@ -1,0 +1,60 @@
+{%- comment -%}
+  Black Friday bar with countdown. Shows until Nov 27, 2026 23:59:59 EST,
+  then hides itself (Liquid check + JS check, in case the page is cached).
+{%- endcomment -%}
+{%- assign bf_end = 1795841999 -%}
+{%- assign bf_now = 'now' | date: '%s' | plus: 0 -%}
+{%- if bf_now < bf_end -%}
+<div class="bf-bar" id="bfBar" data-bf-end="{{ bf_end }}" role="region" aria-label="Black Friday offer">
+  <div class="container bf-bar__inner">
+    <p class="bf-bar__text"><strong>Black Friday</strong> &middot; Complete Bundle <strong>$44.99</strong> <s>$77.97</s> <span class="bf-bar__save">-42%</span></p>
+    <div class="bf-bar__timer" aria-live="off">
+      <span class="bf-bar__label">Ends in</span>
+      <span class="bf-bar__unit"><b data-bf="d">00</b>d</span>
+      <span class="bf-bar__unit"><b data-bf="h">00</b>h</span>
+      <span class="bf-bar__unit"><b data-bf="m">00</b>m</span>
+      <span class="bf-bar__unit"><b data-bf="s">00</b>s</span>
+    </div>
+    <a class="bf-bar__cta" href="/products/the-complete-smile-bundle">Shop the deal &rarr;</a>
+  </div>
+</div>
+<style>
+  .bf-bar{background:#14211D;color:#fff;font-family:'Inter',system-ui,sans-serif;font-size:.9rem;}
+  .bf-bar__inner{display:flex;align-items:center;justify-content:center;gap:10px 22px;flex-wrap:wrap;padding-block:10px;text-align:center;}
+  .bf-bar__text{margin:0;}
+  .bf-bar__text s{opacity:.6;margin-left:4px;}
+  .bf-bar__save{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#7FD9C9;color:#0A3D34;font-weight:700;font-size:.78rem;}
+  .bf-bar__timer{display:flex;align-items:center;gap:6px;}
+  .bf-bar__label{opacity:.75;margin-right:2px;}
+  .bf-bar__unit{display:inline-flex;align-items:baseline;gap:1px;padding:3px 7px;border-radius:6px;background:rgba(255,255,255,.1);font-variant-numeric:tabular-nums;}
+  .bf-bar__unit b{font-weight:700;font-size:1rem;}
+  .bf-bar__cta{color:#7FD9C9;font-weight:700;text-decoration:none;white-space:nowrap;}
+  .bf-bar__cta:hover{text-decoration:underline;}
+  @media (max-width:600px){.bf-bar{font-size:.82rem;}.bf-bar__inner{gap:6px 12px;padding-block:8px;}}
+</style>
+<script>
+  (function(){
+    var bar=document.getElementById('bfBar');
+    if(!bar){return;}
+    var end=parseInt(bar.getAttribute('data-bf-end'),10)*1000;
+    var el={};
+    ['d','h','m','s'].forEach(function(k){el[k]=bar.querySelector('[data-bf="'+k+'"]');});
+    function pad(n){return (n<10?'0':'')+n;}
+    function hideAll(){
+      bar.remove();
+      var anns=document.querySelectorAll('.bf-ann');
+      for(var i=0;i<anns.length;i++){anns[i].remove();}
+    }
+    function tick(){
+      var left=Math.floor((end-Date.now())/1000);
+      if(left<=0){hideAll();return false;}
+      el.d.textContent=pad(Math.floor(left/86400));
+      el.h.textContent=pad(Math.floor(left%86400/3600));
+      el.m.textContent=pad(Math.floor(left%3600/60));
+      el.s.textContent=pad(left%60);
+      return true;
+    }
+    if(tick()){var t=setInterval(function(){if(!tick()){clearInterval(t);}},1000);}
+  })();
+</script>
+{%- endif -%}
