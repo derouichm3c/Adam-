@@ -47,7 +47,8 @@ gestionnaire de publicités Meta.
 - **Format :** 9:16 vertical (1080×1920), plein écran
 - **Retouches faites en local (ffmpeg + OpenCV) :** bandes blanches latérales supprimées,
   passage carré → 9:16 plein cadre, et **sous-titre incrusté « GOES ON SMOOTH » retiré par
-  inpainting image par image** (pas de zoom, pas de flou, pas de bandeau).
+  inpainting image par image**. Correctif nov. 2026 : léger recadrage (~13 %) pour sortir de l'image
+  les taches laissées par l'effacement du sous-titre, + léger renforcement de netteté.
 - **Fichier (dans le repo) :** `docs/ad-assets/brush-demo-9x16-notext.mp4`
 
 ---
