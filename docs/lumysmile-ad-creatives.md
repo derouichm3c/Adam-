@@ -67,3 +67,24 @@ gestionnaire de publicités Meta.
 - [ ] Passer les 3 statiques en 4K (upscale) — optionnel mais recommandé.
 - [ ] Rédiger les textes Meta de chaque pub (titre + texte principal + description + bouton).
 - [ ] Photo de profil (logo) + photo de couverture de la Page.
+
+---
+
+## 🖤 Black Friday 2026 (6 → 27 novembre)
+
+Offre : **Complete Smile Bundle à $54.99 au lieu de $77.97 (-29 %)**, fin le 27 novembre.
+Visuels montés à partir de la vraie photo du pack (pas d'IA), texte net.
+
+| Format | Placement | Fichier |
+|---|---|---|
+| 4:5 (1080×1350) | Fil Facebook / Instagram | `docs/ad-assets/lumysmile-black-friday-feed-4x5.png` |
+| 9:16 (1080×1920) | Stories / Reels / TikTok | `docs/ad-assets/lumysmile-black-friday-story-9x16.png` |
+
+**Textes Meta**
+- **Texte principal :** Our Black Friday deal is here 🖤 Get the Complete Smile Bundle — charcoal toothpaste, peroxide-free whitening strips and 4 bamboo brushes — for $54.99 instead of $77.97. Free tracked shipping + 30-day money-back guarantee. Ends November 27.
+- **Titre :** Black Friday: Complete Smile Bundle -29%
+- **Description :** Free shipping · 30-day guarantee
+- **Bouton :** Shop now
+- **Lien :** https://lumysmile.com/products/the-complete-smile-bundle
+
+⚠️ Après le 27 novembre : arrêter ces pubs (le prix revient à $59.99).
