@@ -117,7 +117,7 @@ Visuel : `docs/ad-assets/lumysmile-black-friday-feed-4x5.png`
 Après publication : ••• → « Épingler sur la Page » / « Ajouter à En vedette ».
 
 ### Premier Reel
-Vidéo : `docs/ad-assets/brush-demo-9x16-notext.mp4` (9:16, sans texte)
+Vidéo : `docs/ad-assets/brush-reel-9x16-branded.mp4` (9:16, version habillée LumySmile : vidéo d'origine non zoomée dans un cadre arrondi, accroche en haut, sous-titre fournisseur coupé — plus nette que la version plein écran)
 
 > Switching to bamboo never felt this good 🌿🪥
 > Charcoal bristles, biodegradable bamboo handle — and it's part of our Black Friday bundle: $54.99 instead of $77.97 🖤
