@@ -9,14 +9,14 @@
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
   {%- endif -%}
 
-  <title>
+  <title>{%- assign brand = settings.brand_name | default: shop.name -%}
     {{ page_title }}
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    {%- unless page_title contains brand %} &ndash; {{ brand }}{% endunless -%}
   </title>
   {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
 
-  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:site_name" content="{{ settings.brand_name | default: shop.name }}">
   <meta property="og:title" content="{{ page_title | escape }}">
   <meta property="og:url" content="{{ canonical_url }}">
   {%- if template.name == 'product' and product.featured_image -%}

@@ -1,6 +1,6 @@
 <section class="page-wrap">
   <div class="container" style="max-width:520px;text-align:center">
-    <span class="eyebrow">{{ shop.name }}</span>
+    <span class="eyebrow">{{ settings.brand_name | default: shop.name }}</span>
     <h1>Your gift card</h1>
     <div class="account-block">
       {%- if gift_card.image -%}

@@ -6,7 +6,7 @@
   <div class="container">
     <div class="footer__grid">
       <div>
-        <a href="{{ routes.root_url }}" class="brand">{% render 'icon', name: 'logo' %}<span>{{ shop.name }}</span></a>
+        <a href="{{ routes.root_url }}" class="brand">{% render 'icon', name: 'logo' %}<span>{{ settings.brand_name | default: shop.name }}</span></a>
         <p>{{ section.settings.about }}</p>
       </div>
       <div>
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ settings.brand_name | default: shop.name }}. All rights reserved.</span>
       <div class="payment-icons">
         {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag }}{%- endfor -%}
       </div>

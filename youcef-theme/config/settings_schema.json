@@ -1,0 +1,80 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Youcef",
+    "theme_version": "1.0.0",
+    "theme_author": "Custom",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Store name shown on the site",
+        "default": "Youcef"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Square image, 64 x 64 px or larger"
+      }
+    ]
+  },
+  {
+    "name": "Offers",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "These percentages are displayed on the 2 and 3 unit offers. Create the matching automatic discounts in Shopify Admin > Discounts (e.g. 'Buy 2, get 15% off') so the price is really applied at checkout."
+      },
+      {
+        "type": "range",
+        "id": "tier2_discount",
+        "label": "Discount for 2 units",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "%",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "tier3_discount",
+        "label": "Discount for 3 units",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "%",
+        "default": 25
+      },
+      {
+        "type": "range",
+        "id": "guarantee_days",
+        "label": "Guarantee (days)",
+        "min": 7,
+        "max": 100,
+        "step": 1,
+        "default": 30
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping progress bar threshold (0 = hidden)",
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "unit": "$",
+        "default": 0
+      }
+    ]
+  }
+]

@@ -21,11 +21,11 @@
   <div class="container header__inner">
     <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" data-open-nav>{% render 'icon', name: 'menu' %}</button>
 
-    <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name }}">
+    <a href="{{ routes.root_url }}" class="brand" aria-label="{{ settings.brand_name | default: shop.name }}">
       {%- if section.settings.logo != blank -%}
-        <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" style="height:{{ section.settings.logo_height }}px;width:auto">
+        <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ settings.brand_name | default: shop.name }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" style="height:{{ section.settings.logo_height }}px;width:auto">
       {%- else -%}
-        {% render 'icon', name: 'logo' %}<span>{{ shop.name }}</span>
+        {% render 'icon', name: 'logo' %}<span>{{ settings.brand_name | default: shop.name }}</span>
       {%- endif -%}
     </a>
 

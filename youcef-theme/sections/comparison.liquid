@@ -7,7 +7,7 @@
     <div class="compare reveal" role="table" aria-label="Comparison">
       <div class="compare__row compare__head" role="row">
         <div role="columnheader">&nbsp;</div>
-        <div role="columnheader">{{ section.settings.us_label | default: shop.name }}</div>
+        <div role="columnheader">{{ section.settings.us_label | default: settings.brand_name | default: shop.name }}</div>
         <div role="columnheader">{{ section.settings.them_label }}</div>
       </div>
       {%- for block in section.blocks -%}

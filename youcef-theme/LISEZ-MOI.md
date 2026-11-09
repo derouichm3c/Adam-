@@ -1,10 +1,10 @@
-# Thème Shopify « Cozy Blanket » — boutique de couvertures
+# Thème Shopify « Youcef » — boutique de couvertures
 
 Thème Shopify complet, beige et chaleureux, pensé pour vendre une couverture (page produit qui convertit).
 
 ## Importer le thème
 1. Shopify Admin → **Boutique en ligne → Thèmes**.
-2. **Ajouter un thème → Importer un fichier ZIP** → choisis `cozy-blanket-theme.zip`.
+2. **Ajouter un thème → Importer un fichier ZIP** → choisis `youcef-theme.zip`.
 3. Clique **Personnaliser** pour vérifier, puis **Publier**.
 
 ## Brancher ton produit
@@ -25,3 +25,6 @@ Vérifie que la fiche « Specifications » correspond bien à ton article (mati�
 ## Avis clients
 La section « Reviews » reste cachée tant qu'elle est vide. Ajoute uniquement de vrais avis,
 ou installe une appli d'avis (Judge.me, Loox…) et ajoute son bloc dans cette section.
+
+## Nom du site
+Le nom « Youcef » s'affiche dans l'en-tête, le pied de page et le comparatif. Pour le changer : Personnaliser → Paramètres du thème → Brand.
