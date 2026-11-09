@@ -226,6 +226,21 @@
       updatePrices();
     });
   });
+  // "Shop by colour" cards select the matching colour on the product
+  $$('[data-select-colour]').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var name = (card.dataset.selectColour || '').trim().toLowerCase();
+      optionGroups.forEach(function (g) {
+        $$('input', g).forEach(function (inp) {
+          if (inp.value.trim().toLowerCase() === name && !inp.checked) {
+            inp.checked = true;
+            g.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        });
+      });
+    });
+  });
+
   if (product && optionGroups.length) markAvailability();
   updatePrices();
 

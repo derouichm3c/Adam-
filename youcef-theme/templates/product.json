@@ -11,15 +11,15 @@
         "stats_1": {
           "type": "stat",
           "settings": {
-            "number": "Ultra-soft",
-            "label": "Plush, cloud-like feel"
+            "number": "Faux fur",
+            "label": "Long, rippled & plush"
           }
         },
         "stats_2": {
           "type": "stat",
           "settings": {
-            "number": "All-season",
-            "label": "Warm, never stuffy"
+            "number": "Anti-pilling",
+            "label": "Stays beautiful"
           }
         },
         "stats_3": {
@@ -42,6 +42,54 @@
         "stats_2",
         "stats_3",
         "stats_4"
+      ]
+    },
+    "colours": {
+      "type": "shop-colours",
+      "settings": {},
+      "blocks": {
+        "colours_1": {
+          "type": "colour",
+          "settings": {
+            "name": "Snow",
+            "hex": "#EEE9E2",
+            "subtitle": "Bright & airy",
+            "image_url": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg"
+          }
+        },
+        "colours_2": {
+          "type": "colour",
+          "settings": {
+            "name": "Cocoa",
+            "hex": "#7A5B45",
+            "subtitle": "Deep & grounding",
+            "image_url": "https://s.alicdn.com/@sc01/kf/Hd9a09a32bee5481a9f4be99c1e740397a.jpg"
+          }
+        },
+        "colours_3": {
+          "type": "colour",
+          "settings": {
+            "name": "Amber",
+            "hex": "#C9773F",
+            "subtitle": "Warm & glowing",
+            "image_url": "https://s.alicdn.com/@sc01/kf/H764585df1b2343b49ac6a8324fd1e7a2a.jpg"
+          }
+        },
+        "colours_4": {
+          "type": "colour",
+          "settings": {
+            "name": "Sand",
+            "hex": "#D6C2A6",
+            "subtitle": "Soft & natural",
+            "image_url": "https://s.alicdn.com/@sc01/kf/Hc686d0ab6e684834adf396ee9caf1f3eN.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "colours_1",
+        "colours_2",
+        "colours_3",
+        "colours_4"
       ]
     },
     "problem": {
@@ -148,22 +196,22 @@
         "comfort_1": {
           "type": "layer",
           "settings": {
-            "title": "Velvety soft surface",
-            "text": "A smooth, silky touch that feels wonderful against bare skin."
+            "title": "Rippled faux-fur top",
+            "text": "Long, wave-shaped fibres with a plush, silky touch you will want to sink into."
           }
         },
         "comfort_2": {
           "type": "layer",
           "settings": {
-            "title": "Plush warming core",
-            "text": "Dense fibres create tiny air pockets that hold your body heat in."
+            "title": "Heavyweight knitted base",
+            "text": "A dense, high-weight base that holds your body heat in on cold nights."
           }
         },
         "comfort_3": {
           "type": "layer",
           "settings": {
-            "title": "Cozy, durable finish",
-            "text": "Reinforced stitched edges keep it looking beautiful wash after wash."
+            "title": "Anti-pilling finish",
+            "text": "Treated to resist pilling, so it keeps looking beautiful wash after wash."
           }
         }
       },
@@ -173,39 +221,57 @@
         "comfort_3"
       ]
     },
-    "moments": {
-      "type": "moments",
+    "sizes": {
+      "type": "size-guide",
       "settings": {},
       "blocks": {
-        "moments_1": {
-          "type": "moment",
+        "sizes_1": {
+          "type": "row",
           "settings": {
-            "icon": "sofa",
-            "title": "Movie nights",
-            "text": "Your sofa just became the best seat in the house."
+            "label": "Best for",
+            "value1": "Sofa, armchair, one person",
+            "value2": "Two people, queen bed"
           }
         },
-        "moments_2": {
-          "type": "moment",
+        "sizes_2": {
+          "type": "row",
           "settings": {
-            "icon": "bed",
-            "title": "Deep, cozy sleep",
-            "text": "Add an extra layer of warmth to your bed on cold winter nights."
+            "label": "Colours",
+            "value1": "4 colours",
+            "value2": "4 colours"
           }
         },
-        "moments_3": {
-          "type": "moment",
+        "sizes_3": {
+          "type": "row",
           "settings": {
-            "icon": "gift",
-            "title": "A gift they'll use daily",
-            "text": "Thoughtful, useful and loved — the kind of gift that gets used every day."
+            "label": "Anti-pilling",
+            "value1": "yes",
+            "value2": "yes"
+          }
+        },
+        "sizes_4": {
+          "type": "row",
+          "settings": {
+            "label": "Machine washable",
+            "value1": "yes",
+            "value2": "yes"
+          }
+        },
+        "sizes_5": {
+          "type": "row",
+          "settings": {
+            "label": "Covers a bed",
+            "value1": "no",
+            "value2": "yes"
           }
         }
       },
       "block_order": [
-        "moments_1",
-        "moments_2",
-        "moments_3"
+        "sizes_1",
+        "sizes_2",
+        "sizes_3",
+        "sizes_4",
+        "sizes_5"
       ]
     },
     "compare": {
@@ -270,6 +336,44 @@
         "compare_6"
       ]
     },
+    "moments": {
+      "type": "moments",
+      "settings": {},
+      "blocks": {
+        "moments_1": {
+          "type": "moment",
+          "settings": {
+            "icon": "sofa",
+            "image_url": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg",
+            "title": "Movie nights",
+            "text": "Your sofa just became the best seat in the house."
+          }
+        },
+        "moments_2": {
+          "type": "moment",
+          "settings": {
+            "icon": "bed",
+            "image_url": "https://s.alicdn.com/@sc01/kf/Hc686d0ab6e684834adf396ee9caf1f3eN.jpg",
+            "title": "Deep, cozy sleep",
+            "text": "Add an extra layer of warmth to your bed on cold winter nights."
+          }
+        },
+        "moments_3": {
+          "type": "moment",
+          "settings": {
+            "icon": "gift",
+            "image_url": "https://s.alicdn.com/@sc01/kf/H764585df1b2343b49ac6a8324fd1e7a2a.jpg",
+            "title": "A gift they'll use daily",
+            "text": "Thoughtful, useful and loved — the kind of gift that gets used every day."
+          }
+        }
+      },
+      "block_order": [
+        "moments_1",
+        "moments_2",
+        "moments_3"
+      ]
+    },
     "reviews": {
       "type": "reviews",
       "settings": {}
@@ -281,8 +385,8 @@
         "faq_1": {
           "type": "question",
           "settings": {
-            "question": "How warm is it?",
-            "answer": "<p>Very! The plush fibres trap your body heat, so you feel warm quickly — while staying breathable enough to avoid overheating.</p>"
+            "question": "What is it made of?",
+            "answer": "<p>95% polyester and 5% spandex: long, rippled faux fur on a heavyweight knitted base. Very warm, while staying soft and easy to care for.</p>"
           }
         },
         "faq_2": {
@@ -296,14 +400,14 @@
           "type": "question",
           "settings": {
             "question": "Does it shed or pill?",
-            "answer": "<p>It is made to resist shedding and pilling. A first wash before use removes any loose fibres from manufacturing.</p>"
+            "answer": "<p>It has an anti-pilling finish. A first gentle wash before use removes any loose fibres from manufacturing.</p>"
           }
         },
         "faq_4": {
           "type": "question",
           "settings": {
             "question": "Which size should I choose?",
-            "answer": "<p>Smaller sizes are perfect for the sofa and as a throw; larger sizes cover a bed or two people comfortably. See the sizes in the product selector.</p>"
+            "answer": "<p>The Throw (40\" × 60\") is perfect for the sofa or an armchair. The Oversized (60\" × 80\") wraps two people or covers a queen bed.</p>"
           }
         },
         "faq_5": {
@@ -342,11 +446,13 @@
   "order": [
     "main",
     "stats",
+    "colours",
     "problem",
     "benefits",
     "comfort",
-    "moments",
+    "sizes",
     "compare",
+    "moments",
     "reviews",
     "faq",
     "guarantee",

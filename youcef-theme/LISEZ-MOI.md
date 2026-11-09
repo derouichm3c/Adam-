@@ -28,3 +28,11 @@ ou installe une appli d'avis (Judge.me, Loox…) et ajoute son bloc dans cette s
 
 ## Nom du site
 Le nom « Youcef » s'affiche dans l'en-tête, le pied de page et le comparatif. Pour le changer : Personnaliser → Paramètres du thème → Brand.
+
+## Produit : The Ripple Throw (fausse fourrure ondulée)
+- 4 couleurs : Snow, Cocoa, Amber, Sand · 2 tailles : Throw 40" × 60" et Oversized 60" × 80"
+- 95 % polyester, 5 % élasthanne · anti-boulochage · lavable en machine
+- Dans Shopify, nomme l'option couleur « Color » avec les valeurs Snow / Cocoa / Amber / Sand :
+  le site affiche alors des pastilles de couleur, et les cartes « Shop by colour » sélectionnent la bonne couleur.
+- Les 5 photos Alibaba sont déjà branchées (page d'accueil, galerie, sections). Elles servent de secours :
+  le mieux est de les ajouter aussi dans la fiche produit Shopify (elles remplaceront automatiquement celles de secours).

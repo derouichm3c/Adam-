@@ -1,0 +1,52 @@
+<section class="section" id="colours">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div class="colours">
+      {%- for block in section.blocks -%}
+        <a class="colour reveal" href="#product" data-select-colour="{{ block.settings.name | escape }}" {{ block.shopify_attributes }}>
+          <div class="colour__img">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.name | escape }} throw" loading="lazy" width="700" height="933">
+            {%- elsif block.settings.image_url != blank -%}
+              <img src="{{ block.settings.image_url }}" alt="{{ block.settings.name | escape }} throw" loading="lazy" width="700" height="933">
+            {%- endif -%}
+            {%- if block.settings.tint -%}<span class="colour__tint" style="background:{{ block.settings.hex }}"></span>{%- endif -%}
+          </div>
+          <div class="colour__name"><span class="colour__dot" style="background:{{ block.settings.hex }}"></span>{{ block.settings.name }}</div>
+          <div class="colour__sub">{{ block.settings.subtitle }}</div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by colour",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Four warm neutrals" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by colour" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Pick the shade that matches your space. Click a colour to select it." }
+  ],
+  "blocks": [
+    { "type": "colour", "name": "Colour", "settings": [
+      { "type": "text", "id": "name", "label": "Colour name (must match the product variant)", "default": "Snow" },
+      { "type": "color", "id": "hex", "label": "Swatch colour", "default": "#EEE9E2" },
+      { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Bright & airy" },
+      { "type": "image_picker", "id": "image", "label": "Photo" },
+      { "type": "text", "id": "image_url", "label": "Or photo link" },
+      { "type": "checkbox", "id": "tint", "label": "Tint the photo with the swatch colour", "default": false, "info": "Useful while you only have one photo for several colours." }
+    ] }
+  ],
+  "presets": [{ "name": "Shop by colour", "blocks": [
+    { "type": "colour", "settings": { "name": "Snow", "hex": "#EEE9E2", "subtitle": "Bright & airy", "image_url": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg" } },
+    { "type": "colour", "settings": { "name": "Cocoa", "hex": "#7A5B45", "subtitle": "Deep & grounding", "image_url": "https://s.alicdn.com/@sc01/kf/Hd9a09a32bee5481a9f4be99c1e740397a.jpg" } },
+    { "type": "colour", "settings": { "name": "Amber", "hex": "#C9773F", "subtitle": "Warm & glowing", "image_url": "https://s.alicdn.com/@sc01/kf/H764585df1b2343b49ac6a8324fd1e7a2a.jpg" } },
+    { "type": "colour", "settings": { "name": "Sand", "hex": "#D6C2A6", "subtitle": "Soft & natural", "image_url": "https://s.alicdn.com/@sc01/kf/Hc686d0ab6e684834adf396ee9caf1f3eN.jpg" } }
+  ] }]
+}
+{% endschema %}

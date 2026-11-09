@@ -1,0 +1,28 @@
+<section class="hero">
+  {%- if section.settings.image != blank -%}
+    <img class="hero__bg" src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.image.alt | escape }}" width="2000" height="1200" fetchpriority="high">
+  {%- elsif section.settings.image_url != blank -%}
+    <img class="hero__bg" src="{{ section.settings.image_url }}" alt="{{ section.settings.heading | escape }}" width="2000" height="1200" fetchpriority="high">
+  {%- endif -%}
+  <div class="container hero__copy">
+    <span class="eyebrow" style="color:#F1DCC2">{{ section.settings.eyebrow }}</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.text }}</p>
+    <a href="#product" class="btn btn--light btn--lg">{{ section.settings.button }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero image",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_url", "label": "Or image link (used if no image is chosen)", "default": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Ripple Collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for staying in." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Our rippled faux-fur throw, now in four warm neutrals, for the longest evenings of the year." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Shop now" }
+  ],
+  "presets": [{ "name": "Hero image" }]
+}
+{% endschema %}

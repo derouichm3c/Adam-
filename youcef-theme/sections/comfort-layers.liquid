@@ -3,6 +3,8 @@
     <div class="layers__visual reveal">
       {%- if section.settings.image != blank -%}
         <img src="{{ section.settings.image | image_url: width: 900 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="900" height="900" style="border-radius:14px">
+      {%- elsif section.settings.image_url != blank -%}
+        <img src="{{ section.settings.image_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="900" height="900" style="border-radius:14px">
       {%- else -%}
         <svg viewBox="0 0 360 360" width="100%" role="img" aria-label="Blanket comfort layers">
           <defs>
@@ -51,9 +53,10 @@
   "name": "Comfort layers",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+    { "type": "text", "id": "image_url", "label": "Or image link", "default": "https://s.alicdn.com/@sc01/kf/H7b47a6019be2415eb835621b5a8b07980.jpg" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Crafted for comfort" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Every layer is made to keep you warm" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "Thoughtful materials work together to hold in warmth while staying light and breathable." }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Waves of softness, layer after layer" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Long, wave-shaped faux fur on a knitted base with an anti-pilling finish — cozy through every season and easy to wash." }
   ],
   "blocks": [
     { "type": "layer", "name": "Layer", "settings": [
@@ -62,9 +65,9 @@
     ] }
   ],
   "presets": [{ "name": "Comfort layers", "blocks": [
-    { "type": "layer", "settings": { "title": "Velvety soft surface", "text": "A smooth, silky touch that feels wonderful against bare skin." } },
-    { "type": "layer", "settings": { "title": "Plush warming core", "text": "Dense fibres create tiny air pockets that hold your body heat in." } },
-    { "type": "layer", "settings": { "title": "Cozy, durable finish", "text": "Reinforced stitched edges keep it looking beautiful wash after wash." } }
+    { "type": "layer", "settings": { "title": "Rippled faux-fur top", "text": "Long, wave-shaped fibres with a plush, silky touch you will want to sink into." } },
+    { "type": "layer", "settings": { "title": "Heavyweight knitted base", "text": "A dense, high-weight base that holds your body heat in on cold nights." } },
+    { "type": "layer", "settings": { "title": "Anti-pilling finish", "text": "Treated to resist pilling, so it keeps looking beautiful wash after wash." } }
   ] }]
 }
 {% endschema %}

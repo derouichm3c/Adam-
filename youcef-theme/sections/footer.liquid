@@ -16,7 +16,8 @@
             {%- for link in menu1.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
           {%- else -%}
             <li><a href="{{ routes.root_url }}">Shop</a></li>
-            <li><a href="{{ routes.root_url }}#comfort">Why it's cozy</a></li>
+            <li><a href="{{ routes.root_url }}#colours">Colours</a></li>
+            <li><a href="{{ routes.root_url }}#sizes">Size guide</a></li>
             <li><a href="{{ routes.root_url }}#faq">FAQ</a></li>
           {%- endif -%}
         </ul>

@@ -34,7 +34,8 @@
         {%- for link in menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
       {%- else -%}
         <a href="{{ routes.root_url }}">Shop</a>
-        <a href="{{ routes.root_url }}#comfort">Why it's cozy</a>
+        <a href="{{ routes.root_url }}#colours">Colours</a>
+        <a href="{{ routes.root_url }}#sizes">Sizes</a>
         <a href="{{ routes.root_url }}#faq">FAQ</a>
       {%- endif -%}
     </nav>
@@ -59,7 +60,8 @@
       {%- for link in menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
     {%- else -%}
       <a href="{{ routes.root_url }}">Shop</a>
-      <a href="{{ routes.root_url }}#comfort">Why it's cozy</a>
+      <a href="{{ routes.root_url }}#colours">Colours</a>
+        <a href="{{ routes.root_url }}#sizes">Sizes</a>
       <a href="{{ routes.root_url }}#faq">FAQ</a>
     {%- endif -%}
     {%- if shop.customer_accounts_enabled -%}<a href="{{ routes.account_url }}">Account</a>{%- endif -%}
@@ -76,8 +78,8 @@
     { "type": "checkbox", "id": "show_announcement", "label": "Show announcement bar", "default": true },
     { "type": "text", "id": "announcement_1", "label": "Announcement 1", "default": "Free shipping across Canada & the US" },
     { "type": "text", "id": "announcement_2", "label": "Announcement 2", "default": "30-day money-back guarantee" },
-    { "type": "text", "id": "announcement_3", "label": "Announcement 3", "default": "The perfect gift for cold nights" },
-    { "type": "text", "id": "announcement_4", "label": "Announcement 4", "default": "Cloud-soft comfort, machine washable" }
+    { "type": "text", "id": "announcement_3", "label": "Announcement 3", "default": "Rippled faux fur · 4 warm colours" },
+    { "type": "text", "id": "announcement_4", "label": "Announcement 4", "default": "Anti-pilling & machine washable" }
   ]
 }
 {% endschema %}

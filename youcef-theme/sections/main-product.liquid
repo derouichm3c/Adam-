@@ -12,6 +12,8 @@
   assign t2 = settings.tier2_discount | default: 0
   assign t3 = settings.tier3_discount | default: 0
   assign bullets = section.settings.bullets | newline_to_br | split: '<br />'
+  assign fb_photos = settings.fallback_photos | newline_to_br | split: '<br />'
+  assign swatch_map = settings.color_swatches | newline_to_br | split: '<br />'
 -%}
 
 <section class="product" id="product" data-product-section>
@@ -27,6 +29,11 @@
             <button class="gallery__nav gallery__nav--prev" type="button" aria-label="Previous image" data-gallery-prev>{% render 'icon', name: 'chevron-left' %}</button>
             <button class="gallery__nav gallery__nav--next" type="button" aria-label="Next image" data-gallery-next>{% render 'icon', name: 'chevron-right' %}</button>
           {%- endif -%}
+        {%- elsif settings.fallback_photos != blank -%}
+          {%- assign fb_first = fb_photos.first | strip -%}
+          <img src="{{ fb_first }}" alt="{{ p.title | default: 'Blanket' | escape }}" width="1200" height="1200" data-gallery-main fetchpriority="high">
+          <button class="gallery__nav gallery__nav--prev" type="button" aria-label="Previous image" data-gallery-prev>{% render 'icon', name: 'chevron-left' %}</button>
+          <button class="gallery__nav gallery__nav--next" type="button" aria-label="Next image" data-gallery-next>{% render 'icon', name: 'chevron-right' %}</button>
         {%- else -%}
           {% render 'blanket-illustration' %}
         {%- endif -%}
@@ -46,6 +53,19 @@
             </button>
           {%- endfor -%}
         </div>
+      {%- elsif p.images.size == 0 and settings.fallback_photos != blank -%}
+        <div class="gallery__thumbs" role="list">
+          {%- assign n = 0 -%}
+          {%- for url in fb_photos -%}
+            {%- assign u = url | strip -%}
+            {%- if u != blank -%}
+              <button class="gallery__thumb{% if n == 0 %} is-active{% endif %}" type="button" role="listitem" data-thumb data-src="{{ u }}" data-alt="{{ p.title | default: 'Blanket' | escape }}" aria-label="Show image {{ forloop.index }}">
+                <img src="{{ u }}" alt="" width="78" height="78" loading="lazy">
+              </button>
+              {%- assign n = n | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
       {%- endif -%}
     </div>
 
@@ -55,7 +75,7 @@
         <div class="buy__rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>{{ section.settings.rating_text }}</span></div>
       {%- endif -%}
 
-      <h1 class="buy__title">{{ p.title | default: 'Cozy Blanket' }}</h1>
+      <h1 class="buy__title">{{ p.title | default: 'The Ripple Throw' }}</h1>
       {%- if section.settings.subtitle != blank -%}<p class="buy__subtitle">{{ section.settings.subtitle }}</p>{%- endif -%}
 
       {%- if section.settings.bullets != blank -%}
@@ -81,11 +101,27 @@
           {%- for option in p.options_with_values -%}
             <div class="option" data-option-index="{{ forloop.index0 }}">
               <span class="option__label">{{ option.name }}: <span data-option-selected>{{ option.selected_value }}</span></span>
-              <div class="option__values">
+              {%- assign oname = option.name | downcase -%}
+              {%- assign is_color = false -%}
+              {%- if oname contains 'color' or oname contains 'colour' or oname contains 'couleur' -%}{%- assign is_color = true -%}{%- endif -%}
+              <div class="option__values{% if is_color %} option__values--swatch{% endif %}">
                 {%- assign oi = forloop.index -%}
                 {%- for value in option.values -%}
+                  {%- assign hex = '' -%}
+                  {%- if is_color -%}
+                    {%- assign vkey = value | downcase | strip -%}
+                    {%- for pair in swatch_map -%}
+                      {%- assign kv = pair | split: ':' -%}
+                      {%- assign k = kv.first | downcase | strip -%}
+                      {%- if k == vkey -%}{%- assign hex = kv.last | strip -%}{%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
                   <input type="radio" id="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}" name="option-{{ oi }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-input>
-                  <label for="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}">{{ value }}</label>
+                  {%- if hex != blank -%}
+                    <label for="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}" class="swatch" style="--sw:{{ hex }}" title="{{ value | escape }}"><span class="visually-hidden">{{ value }}</span></label>
+                  {%- else -%}
+                    <label for="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}">{{ value }}</label>
+                  {%- endif -%}
                 {%- endfor -%}
               </div>
             </div>
@@ -199,26 +235,26 @@
     { "type": "product", "id": "product", "label": "Product (used on the home page)", "info": "On product pages the current product is used automatically." },
     { "type": "header", "content": "Text" },
     { "type": "text", "id": "rating_text", "label": "Rating line", "info": "Leave empty until you have real reviews, e.g. '4.8/5 — 320 verified reviews'." },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The ultra-soft blanket that keeps you warm all evening long — on the sofa, in bed, or wherever you curl up." },
-    { "type": "textarea", "id": "bullets", "label": "Key benefits (one per line)", "default": "Cloud-soft, plush feel from the very first touch\nTraps body heat for cozy warmth on cold nights\nLightweight and breathable — warm without overheating\nMachine washable, stays soft wash after wash" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Our rippled faux-fur throw, in four warm neutrals, made for the longest evenings of the year." },
+    { "type": "textarea", "id": "bullets", "label": "Key benefits (one per line)", "default": "Long, wave-shaped faux fur — plush and cloud-soft\nHeavyweight warmth for cold autumn & winter nights\nAnti-pilling finish that stays beautiful\nMachine washable, easy care" },
     { "type": "text", "id": "atc_label", "label": "Button text", "default": "Add to cart" },
     { "type": "header", "content": "Bundle offers" },
     { "type": "checkbox", "id": "show_offers", "label": "Show 1 / 2 / 3 unit offers", "default": true, "info": "Discount % are set in Theme settings > Offers. Create matching automatic discounts in Shopify (Discounts) so the price is applied at checkout." },
     { "type": "text", "id": "offers_title", "label": "Offers title", "default": "Bundle & save" },
     { "type": "range", "id": "default_tier", "label": "Pre-selected offer", "min": 1, "max": 3, "step": 1, "default": 2 },
-    { "type": "text", "id": "tier1_name", "label": "Offer 1 name", "default": "1 Blanket" },
+    { "type": "text", "id": "tier1_name", "label": "Offer 1 name", "default": "1 Throw" },
     { "type": "text", "id": "tier1_note", "label": "Offer 1 note", "default": "Your new favourite spot" },
-    { "type": "text", "id": "tier2_name", "label": "Offer 2 name", "default": "2 Blankets" },
+    { "type": "text", "id": "tier2_name", "label": "Offer 2 name", "default": "2 Throws" },
     { "type": "text", "id": "tier2_note", "label": "Offer 2 note", "default": "One for the sofa, one for the bed" },
     { "type": "text", "id": "tier2_tag", "label": "Offer 2 tag", "default": "Most popular" },
-    { "type": "text", "id": "tier3_name", "label": "Offer 3 name", "default": "3 Blankets" },
+    { "type": "text", "id": "tier3_name", "label": "Offer 3 name", "default": "3 Throws" },
     { "type": "text", "id": "tier3_note", "label": "Offer 3 note", "default": "Cozy for the whole family" },
     { "type": "text", "id": "tier3_tag", "label": "Offer 3 tag", "default": "Best value" },
     { "type": "header", "content": "Delivery" },
     { "type": "range", "id": "ship_min", "label": "Delivery min (business days)", "min": 1, "max": 30, "step": 1, "default": 7 },
     { "type": "range", "id": "ship_max", "label": "Delivery max (business days)", "min": 2, "max": 40, "step": 1, "default": 12 },
     { "type": "header", "content": "Tabs" },
-    { "type": "richtext", "id": "specs", "label": "Specifications", "default": "<ul><li>Material: soft polyester fleece (edit to match your product)</li><li>Sizes: see the size selector above</li><li>Care: machine wash cold, tumble dry low</li><li>In the box: 1 blanket, gift-ready packaging</li></ul>" },
+    { "type": "richtext", "id": "specs", "label": "Specifications", "default": "<ul><li>Material: 95% polyester, 5% spandex</li><li>Texture: long, rippled faux fur on a knitted base</li><li>Sizes: Throw 40\" × 60\" · Oversized 60\" × 80\"</li><li>Colours: Snow, Cocoa, Amber, Sand</li><li>Anti-pilling finish</li><li>Care: machine wash cold, gentle cycle; tumble dry low</li></ul>" },
     { "type": "richtext", "id": "shipping_text", "label": "Shipping", "default": "<p>Free tracked shipping on every order to Canada and the United States. You will receive a tracking number by email as soon as your order ships.</p>" },
     { "type": "richtext", "id": "guarantee_text", "label": "Guarantee", "default": "<p>Try it for 30 days. If you are not in love with your new blanket, contact us and we will make it right with a full refund.</p>" }
   ]

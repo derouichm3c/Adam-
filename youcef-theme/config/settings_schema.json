@@ -25,6 +25,27 @@
     ]
   },
   {
+    "name": "Product",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "These photos are shown while your Shopify product has no photos of its own. Best: upload the photos to the product in Shopify Admin."
+      },
+      {
+        "type": "textarea",
+        "id": "fallback_photos",
+        "label": "Fallback photo links (one per line)",
+        "default": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg\nhttps://s.alicdn.com/@sc01/kf/H7b47a6019be2415eb835621b5a8b07980.jpg\nhttps://s.alicdn.com/@sc01/kf/Hd9a09a32bee5481a9f4be99c1e740397a.jpg\nhttps://s.alicdn.com/@sc01/kf/H764585df1b2343b49ac6a8324fd1e7a2a.jpg\nhttps://s.alicdn.com/@sc01/kf/Hc686d0ab6e684834adf396ee9caf1f3eN.jpg"
+      },
+      {
+        "type": "textarea",
+        "id": "color_swatches",
+        "label": "Colour swatches (Name:#hex, one per line)",
+        "default": "Snow:#EEE9E2\nCocoa:#7A5B45\nAmber:#C9773F\nSand:#D6C2A6"
+      }
+    ]
+  },
+  {
     "name": "Offers",
     "settings": [
       {

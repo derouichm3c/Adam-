@@ -9,6 +9,8 @@
         <div class="step reveal" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
             <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy" width="700" height="525" style="border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;margin-bottom:18px;width:100%">
+          {%- elsif block.settings.image_url != blank -%}
+            <img src="{{ block.settings.image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="700" height="525" style="border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;margin-bottom:18px;width:100%">
           {%- else -%}
             <div class="step__num">{% render 'icon', name: block.settings.icon %}</div>
           {%- endif -%}
@@ -30,6 +32,7 @@
   "blocks": [
     { "type": "moment", "name": "Moment", "settings": [
       { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+      { "type": "text", "id": "image_url", "label": "Or image link" },
       { "type": "select", "id": "icon", "label": "Icon (if no image)", "default": "sofa", "options": [
         { "value": "sofa", "label": "Sofa" }, { "value": "bed", "label": "Bed" }, { "value": "moon", "label": "Moon" }, { "value": "gift", "label": "Gift" }, { "value": "flame", "label": "Warmth" }, { "value": "heart", "label": "Heart" }
       ] },
@@ -38,9 +41,9 @@
     ] }
   ],
   "presets": [{ "name": "Cozy moments", "blocks": [
-    { "type": "moment", "settings": { "icon": "sofa", "title": "Movie nights", "text": "Your sofa just became the best seat in the house." } },
-    { "type": "moment", "settings": { "icon": "bed", "title": "Deep, cozy sleep", "text": "Add an extra layer of warmth to your bed on cold winter nights." } },
-    { "type": "moment", "settings": { "icon": "gift", "title": "A gift they'll use daily", "text": "Thoughtful, useful and loved — the kind of gift that gets used every day." } }
+    { "type": "moment", "settings": { "icon": "sofa", "image_url": "https://s.alicdn.com/@sc01/kf/H37d4bcd1cfd544d6b46cff6f01b27ae2g.jpg", "title": "Movie nights", "text": "Your sofa just became the best seat in the house." } },
+    { "type": "moment", "settings": { "icon": "bed", "image_url": "https://s.alicdn.com/@sc01/kf/Hc686d0ab6e684834adf396ee9caf1f3eN.jpg", "title": "Deep, cozy sleep", "text": "Add an extra layer of warmth to your bed on cold winter nights." } },
+    { "type": "moment", "settings": { "icon": "gift", "image_url": "https://s.alicdn.com/@sc01/kf/H764585df1b2343b49ac6a8324fd1e7a2a.jpg", "title": "A gift they'll use daily", "text": "Thoughtful, useful and loved — the kind of gift that gets used every day." } }
   ] }]
 }
 {% endschema %}
