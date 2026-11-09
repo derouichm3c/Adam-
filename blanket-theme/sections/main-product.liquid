@@ -1,0 +1,226 @@
+{%- liquid
+  assign p = product
+  if p == blank
+    assign p = section.settings.product
+  endif
+  if p == blank
+    assign p = collections.all.products.first
+  endif
+  assign v = p.selected_or_first_available_variant
+  assign base_price = v.price | default: 0
+  assign compare = v.compare_at_price | default: 0
+  assign t2 = settings.tier2_discount | default: 0
+  assign t3 = settings.tier3_discount | default: 0
+  assign bullets = section.settings.bullets | newline_to_br | split: '<br />'
+-%}
+
+<section class="product" id="product" data-product-section>
+  <div class="container product__grid">
+
+    <!-- Gallery -->
+    <div class="gallery" data-gallery>
+      <div class="gallery__main">
+        {%- if p.images.size > 0 -%}
+          {%- assign first = v.featured_image | default: p.featured_image -%}
+          <img src="{{ first | image_url: width: 1200 }}" alt="{{ first.alt | default: p.title | escape }}" width="1200" height="1200" data-gallery-main fetchpriority="high">
+          {%- if p.images.size > 1 -%}
+            <button class="gallery__nav gallery__nav--prev" type="button" aria-label="Previous image" data-gallery-prev>{% render 'icon', name: 'chevron-left' %}</button>
+            <button class="gallery__nav gallery__nav--next" type="button" aria-label="Next image" data-gallery-next>{% render 'icon', name: 'chevron-right' %}</button>
+          {%- endif -%}
+        {%- else -%}
+          {% render 'blanket-illustration' %}
+        {%- endif -%}
+        {%- if compare > base_price -%}
+          <span class="gallery__badge" data-sale-badge>Save {{ compare | minus: base_price | times: 100 | divided_by: compare }}%</span>
+        {%- else -%}
+          <span class="gallery__badge" data-sale-badge hidden></span>
+        {%- endif -%}
+      </div>
+      {%- if p.images.size > 1 -%}
+        <div class="gallery__thumbs" role="list">
+          {%- for img in p.images -%}
+            <button class="gallery__thumb{% if img.id == first.id %} is-active{% endif %}" type="button" role="listitem"
+              data-thumb data-image-id="{{ img.id }}" data-src="{{ img | image_url: width: 1200 }}" data-alt="{{ img.alt | default: p.title | escape }}"
+              aria-label="Show image {{ forloop.index }}">
+              <img src="{{ img | image_url: width: 160 }}" alt="" width="78" height="78" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Buy box -->
+    <div class="buy">
+      {%- if section.settings.rating_text != blank -%}
+        <div class="buy__rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>{{ section.settings.rating_text }}</span></div>
+      {%- endif -%}
+
+      <h1 class="buy__title">{{ p.title | default: 'Cozy Blanket' }}</h1>
+      {%- if section.settings.subtitle != blank -%}<p class="buy__subtitle">{{ section.settings.subtitle }}</p>{%- endif -%}
+
+      {%- if section.settings.bullets != blank -%}
+        <ul class="buy__bullets">
+          {%- for b in bullets -%}
+            {%- assign b2 = b | strip -%}
+            {%- if b2 != blank -%}<li>{% render 'icon', name: 'check-circle' %}<span>{{ b2 }}</span></li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="price" aria-live="polite">
+        <span class="price-now" data-price>{{ base_price | money }}</span>
+        <s class="price-was" data-compare {% unless compare > base_price %}hidden{% endunless %}>{{ compare | money }}</s>
+        <span class="price-save" data-save {% unless compare > base_price %}hidden{% endunless %}>You save {{ compare | minus: base_price | money }}</span>
+      </div>
+
+      {%- form 'product', p, id: 'ProductForm', data-product-form: '' -%}
+        <input type="hidden" name="id" value="{{ v.id }}" data-variant-id>
+        <input type="hidden" name="quantity" value="1" data-quantity>
+
+        {%- unless p.has_only_default_variant -%}
+          {%- for option in p.options_with_values -%}
+            <div class="option" data-option-index="{{ forloop.index0 }}">
+              <span class="option__label">{{ option.name }}: <span data-option-selected>{{ option.selected_value }}</span></span>
+              <div class="option__values">
+                {%- assign oi = forloop.index -%}
+                {%- for value in option.values -%}
+                  <input type="radio" id="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}" name="option-{{ oi }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-input>
+                  <label for="opt-{{ section.id }}-{{ oi }}-{{ forloop.index }}">{{ value }}</label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        {%- if section.settings.show_offers -%}
+          <div class="offers" role="radiogroup" aria-label="Choose your bundle">
+            <div class="offers__title">{{ section.settings.offers_title }}</div>
+            {%- for tier in (1..3) -%}
+              {%- liquid
+                if tier == 1
+                  assign pct = 0
+                  assign name = section.settings.tier1_name
+                  assign note = section.settings.tier1_note
+                  assign tag = ''
+                elsif tier == 2
+                  assign pct = t2
+                  assign name = section.settings.tier2_name
+                  assign note = section.settings.tier2_note
+                  assign tag = section.settings.tier2_tag
+                else
+                  assign pct = t3
+                  assign name = section.settings.tier3_name
+                  assign note = section.settings.tier3_note
+                  assign tag = section.settings.tier3_tag
+                endif
+                assign full = base_price | times: tier
+                assign keep = 100 | minus: pct
+                assign tier_price = full | times: keep | divided_by: 100
+                assign was = compare | times: tier
+                if was < full
+                  assign was = full
+                endif
+              -%}
+              <label class="offer{% if tier == section.settings.default_tier %} is-selected{% endif %}" data-offer data-qty="{{ tier }}" data-pct="{{ pct }}">
+                <input type="radio" name="offer" value="{{ tier }}" {% if tier == section.settings.default_tier %}checked{% endif %}>
+                <span class="offer__radio" aria-hidden="true"></span>
+                <span class="offer__body">
+                  <span class="offer__name">{{ name }}</span>
+                  <span class="offer__note">{% if pct > 0 %}Save {{ pct }}% &middot; {% endif %}{{ note }}</span>
+                </span>
+                <span class="offer__prices">
+                  <span class="offer__price" data-offer-price>{{ tier_price | money }}</span>
+                  <s class="offer__was" data-offer-was {% unless was > tier_price %}hidden{% endunless %}>{{ was | money }}</s>
+                </span>
+                {%- if tag != blank -%}<span class="offer__tag{% if tier == 2 %} offer__tag--accent{% endif %}">{{ tag }}</span>{%- endif -%}
+              </label>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="buy__atc">
+          <button type="submit" class="btn btn--accent btn--lg" data-atc {% unless v.available %}disabled{% endunless %}>
+            <span data-atc-label>{% if v.available or p == blank %}{{ section.settings.atc_label }}{% else %}Sold out{% endif %}</span>
+          </button>
+        </div>
+      {%- endform -%}
+
+      <div class="buy__micro">
+        <span>{% render 'icon', name: 'lock' %} Secure checkout</span>
+        <span>{% render 'icon', name: 'refresh' %} {{ settings.guarantee_days }}-day returns</span>
+        <span>{% render 'icon', name: 'truck' %} Tracked shipping</span>
+      </div>
+
+      <div class="delivery" data-delivery data-min="{{ section.settings.ship_min }}" data-max="{{ section.settings.ship_max }}">
+        {% render 'icon', name: 'truck' %}
+        <span>Order today, delivered between <strong data-delivery-range>{{ section.settings.ship_min }}–{{ section.settings.ship_max }} business days</strong>.</span>
+      </div>
+
+      <div class="trust-grid">
+        <div>{% render 'icon', name: 'shield' %}{{ settings.guarantee_days }}-day guarantee</div>
+        <div>{% render 'icon', name: 'washer' %}Machine washable</div>
+        <div>{% render 'icon', name: 'heart' %}Friendly support</div>
+      </div>
+
+      <div class="accordion">
+        {%- if p.description != blank -%}
+          <details open><summary>Description</summary><div class="accordion__body rte">{{ p.description }}</div></details>
+        {%- endif -%}
+        {%- if section.settings.specs != blank -%}
+          <details><summary>Specifications &amp; what's in the box</summary><div class="accordion__body rte">{{ section.settings.specs }}</div></details>
+        {%- endif -%}
+        {%- if section.settings.shipping_text != blank -%}
+          <details><summary>Shipping</summary><div class="accordion__body rte">{{ section.settings.shipping_text }}</div></details>
+        {%- endif -%}
+        <details><summary>{{ settings.guarantee_days }}-day guarantee</summary><div class="accordion__body rte">{{ section.settings.guarantee_text }}</div></details>
+      </div>
+    </div>
+  </div>
+
+  {%- if p != blank -%}
+    <script type="application/json" data-product-json>{{ p | json }}</script>
+  {%- endif -%}
+</section>
+
+<!-- Sticky add to cart (mobile) -->
+<div class="sticky-atc" data-sticky-atc aria-hidden="true">
+  {%- if p.featured_image -%}<img src="{{ p.featured_image | image_url: width: 120 }}" alt="" width="48" height="48">{%- endif -%}
+  <div class="sticky-atc__info">
+    <div class="sticky-atc__title">{{ p.title }}</div>
+    <div class="sticky-atc__price" data-sticky-price>{{ base_price | money }}</div>
+  </div>
+  <button type="button" class="btn btn--accent" data-sticky-btn>{{ section.settings.atc_label }}</button>
+</div>
+
+{% schema %}
+{
+  "name": "Product — main",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product (used on the home page)", "info": "On product pages the current product is used automatically." },
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "rating_text", "label": "Rating line", "info": "Leave empty until you have real reviews, e.g. '4.8/5 — 320 verified reviews'." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The ultra-soft blanket that keeps you warm all evening long — on the sofa, in bed, or wherever you curl up." },
+    { "type": "textarea", "id": "bullets", "label": "Key benefits (one per line)", "default": "Cloud-soft, plush feel from the very first touch\nTraps body heat for cozy warmth on cold nights\nLightweight and breathable — warm without overheating\nMachine washable, stays soft wash after wash" },
+    { "type": "text", "id": "atc_label", "label": "Button text", "default": "Add to cart" },
+    { "type": "header", "content": "Bundle offers" },
+    { "type": "checkbox", "id": "show_offers", "label": "Show 1 / 2 / 3 unit offers", "default": true, "info": "Discount % are set in Theme settings > Offers. Create matching automatic discounts in Shopify (Discounts) so the price is applied at checkout." },
+    { "type": "text", "id": "offers_title", "label": "Offers title", "default": "Bundle & save" },
+    { "type": "range", "id": "default_tier", "label": "Pre-selected offer", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "text", "id": "tier1_name", "label": "Offer 1 name", "default": "1 Blanket" },
+    { "type": "text", "id": "tier1_note", "label": "Offer 1 note", "default": "Your new favourite spot" },
+    { "type": "text", "id": "tier2_name", "label": "Offer 2 name", "default": "2 Blankets" },
+    { "type": "text", "id": "tier2_note", "label": "Offer 2 note", "default": "One for the sofa, one for the bed" },
+    { "type": "text", "id": "tier2_tag", "label": "Offer 2 tag", "default": "Most popular" },
+    { "type": "text", "id": "tier3_name", "label": "Offer 3 name", "default": "3 Blankets" },
+    { "type": "text", "id": "tier3_note", "label": "Offer 3 note", "default": "Cozy for the whole family" },
+    { "type": "text", "id": "tier3_tag", "label": "Offer 3 tag", "default": "Best value" },
+    { "type": "header", "content": "Delivery" },
+    { "type": "range", "id": "ship_min", "label": "Delivery min (business days)", "min": 1, "max": 30, "step": 1, "default": 7 },
+    { "type": "range", "id": "ship_max", "label": "Delivery max (business days)", "min": 2, "max": 40, "step": 1, "default": 12 },
+    { "type": "header", "content": "Tabs" },
+    { "type": "richtext", "id": "specs", "label": "Specifications", "default": "<ul><li>Material: soft polyester fleece (edit to match your product)</li><li>Sizes: see the size selector above</li><li>Care: machine wash cold, tumble dry low</li><li>In the box: 1 blanket, gift-ready packaging</li></ul>" },
+    { "type": "richtext", "id": "shipping_text", "label": "Shipping", "default": "<p>Free tracked shipping on every order to Canada and the United States. You will receive a tracking number by email as soon as your order ships.</p>" },
+    { "type": "richtext", "id": "guarantee_text", "label": "Guarantee", "default": "<p>Try it for 30 days. If you are not in love with your new blanket, contact us and we will make it right with a full refund.</p>" }
+  ]
+}
+{% endschema %}

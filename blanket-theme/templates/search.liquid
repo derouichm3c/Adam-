@@ -1,0 +1,30 @@
+<section class="page-hero">
+  <div class="container">
+    <h1>Search</h1>
+    <form action="{{ routes.search_url }}" method="get" class="footer__news" style="max-width:520px;margin:0 auto" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" aria-label="Search" style="color:var(--ink);background:var(--white);border-color:var(--line)">
+      <input type="hidden" name="type" value="product">
+      <button type="submit" class="btn btn--accent">Search</button>
+    </form>
+  </div>
+</section>
+<section class="page-wrap">
+  <div class="container">
+    {%- if search.performed -%}
+      {%- paginate search.results by 24 -%}
+        {%- if search.results_count > 0 -%}
+          <div class="grid-products">
+            {%- for item in search.results -%}
+              {%- if item.object_type == 'product' -%}{% render 'product-card', card: item %}{%- else -%}
+                <a class="card" href="{{ item.url }}"><div class="card__body"><div class="card__title">{{ item.title }}</div></div></a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <p style="text-align:center;color:var(--muted)">No results for "{{ search.terms }}".</p>
+        {%- endif -%}
+        {%- if paginate.pages > 1 -%}<div class="pagination">{{ paginate | default_pagination }}</div>{%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>

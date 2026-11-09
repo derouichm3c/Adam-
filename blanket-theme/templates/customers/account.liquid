@@ -1,0 +1,30 @@
+<section class="auth" style="max-width:720px">
+  <h1>My account</h1>
+  <p style="text-align:center;color:var(--muted)">Welcome back{% if customer.first_name %}, {{ customer.first_name }}{% endif %}. <a class="link" href="{{ routes.account_logout_url }}">Sign out</a></p>
+
+  <div class="account-block">
+    <h2 style="font-size:1.1rem">Order history</h2>
+    {%- if customer.orders.size > 0 -%}
+      <table class="cart-table">
+        <thead><tr><th>Order</th><th>Date</th><th>Total</th></tr></thead>
+        <tbody>
+          {%- for order in customer.orders -%}
+            <tr class="cart-row">
+              <td><a class="link" href="{{ order.customer_url }}">{{ order.name }}</a></td>
+              <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+              <td>{{ order.total_price | money }} &middot; {{ order.financial_status_label }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    {%- else -%}
+      <p style="color:var(--muted)">You haven't placed any orders yet.</p>
+    {%- endif -%}
+  </div>
+
+  <div class="account-block">
+    <h2 style="font-size:1.1rem">Account details</h2>
+    <p style="color:var(--muted)">{{ customer.name }}<br>{{ customer.email }}</p>
+    <a class="link" href="{{ routes.account_addresses_url }}">Manage addresses ({{ customer.addresses_count }})</a>
+  </div>
+</section>

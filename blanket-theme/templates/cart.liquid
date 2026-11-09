@@ -1,0 +1,45 @@
+<section class="page-hero"><div class="container"><h1>Your cart</h1></div></section>
+<section class="page-wrap">
+  <div class="container" style="max-width:960px">
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="cart-table">
+          <thead><tr class="cart-row"><th>Product</th><th>Quantity</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr class="cart-row">
+                <td>
+                  <a href="{{ item.url }}" style="display:flex;gap:14px;align-items:center">
+                    {%- if item.image -%}<img src="{{ item.image | image_url: width: 160 }}" alt="" width="72" height="72" style="border-radius:12px;object-fit:cover">{%- endif -%}
+                    <span><strong>{{ item.product.title }}</strong>{%- unless item.product.has_only_default_variant -%}<br><small style="color:var(--muted)">{{ item.variant.title }}</small>{%- endunless -%}</span>
+                  </a>
+                </td>
+                <td>
+                  <label class="visually-hidden" for="qty-{{ forloop.index }}">Quantity</label>
+                  <input id="qty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:72px;padding:.5rem;border:1.5px solid var(--line);border-radius:10px">
+                  <a class="link" href="{{ item.url_to_remove }}" style="margin-left:10px;font-size:.85rem">Remove</a>
+                </td>
+                <td style="text-align:right">
+                  {%- if item.original_line_price > item.final_line_price -%}<s style="color:var(--muted);font-size:.85rem">{{ item.original_line_price | money }}</s><br>{%- endif -%}
+                  <strong>{{ item.final_line_price | money }}</strong>
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        <div class="cart-foot">
+          <div class="cart-foot__box">
+            {%- if cart.total_discount > 0 -%}<div class="cart-foot__row" style="color:var(--sage)"><span>Savings</span><span>-{{ cart.total_discount | money }}</span></div>{%- endif -%}
+            <div class="cart-foot__row"><strong>Subtotal</strong><strong>{{ cart.total_price | money }}</strong></div>
+            <p style="color:var(--muted);font-size:.85rem">Taxes and shipping calculated at checkout.</p>
+            <button type="submit" name="update" class="btn btn--outline btn--block" style="margin-bottom:10px">Update cart</button>
+            <button type="submit" name="checkout" class="btn btn--accent btn--lg btn--block">Checkout</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <p style="text-align:center;color:var(--muted)">Your cart is empty.</p>
+      <div class="section-cta"><a href="{{ routes.root_url }}" class="btn btn--accent btn--lg">Continue shopping</a></div>
+    {%- endif -%}
+  </div>
+</section>

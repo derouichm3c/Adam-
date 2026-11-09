@@ -1,0 +1,16 @@
+{
+  "current": {
+    "tier2_discount": 15,
+    "tier3_discount": 25,
+    "guarantee_days": 30,
+    "free_shipping_threshold": 0
+  },
+  "presets": {
+    "Default": {
+      "tier2_discount": 15,
+      "tier3_discount": 25,
+      "guarantee_days": 30,
+      "free_shipping_threshold": 0
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ article.published_at | date: '%B %d, %Y' }}</span>
+    <h1>{{ article.title }}</h1>
+  </div>
+</section>
+<section class="page-wrap">
+  <div class="container">
+    {%- if article.image -%}<img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" width="{{ article.image.width }}" height="{{ article.image.height }}" style="border-radius:var(--radius);max-width:960px;margin:0 auto 40px;width:100%">{%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+    <div class="section-cta"><a href="{{ blog.url }}" class="btn btn--outline">&larr; Back to {{ blog.title }}</a></div>
+  </div>
+</section>

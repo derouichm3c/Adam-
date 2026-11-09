@@ -1,0 +1,19 @@
+<section class="auth">
+  <h1>Activate account</h1>
+  <p style="text-align:center;color:var(--muted)">Create your password to activate your account.</p>
+  <div class="account-block">
+    {%- form 'activate_customer_password' -%}
+      {%- if form.errors -%}<p class="newsletter__msg" style="color:#c0392b">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="field">
+        <label for="APwd">Password</label>
+        <input type="password" id="APwd" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="field">
+        <label for="APwdConfirm">Confirm password</label>
+        <input type="password" id="APwdConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="btn btn--primary btn--lg btn--block">Activate account</button>
+      <button type="submit" name="decline" class="btn btn--outline btn--block" style="margin-top:.6rem">Decline invitation</button>
+    {%- endform -%}
+  </div>
+</section>

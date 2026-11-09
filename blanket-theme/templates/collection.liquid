@@ -1,0 +1,21 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Collection</span>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}<div>{{ collection.description }}</div>{%- endif -%}
+  </div>
+</section>
+<section class="page-wrap">
+  <div class="container">
+    {%- paginate collection.products by 24 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="grid-products">
+          {%- for p in collection.products -%}{% render 'product-card', card: p %}{%- endfor -%}
+        </div>
+      {%- else -%}
+        <p style="text-align:center;color:var(--muted)">No products in this collection yet.</p>
+      {%- endif -%}
+      {%- if paginate.pages > 1 -%}<div class="pagination">{{ paginate | default_pagination }}</div>{%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>

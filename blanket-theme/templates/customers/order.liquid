@@ -1,0 +1,25 @@
+<section class="auth" style="max-width:760px">
+  <h1>Order {{ order.name }}</h1>
+  <p style="text-align:center;color:var(--muted)">Placed on {{ order.created_at | date: '%B %d, %Y' }} &middot; {{ order.financial_status_label }} &middot; {{ order.fulfillment_status_label }}</p>
+  <div class="account-block">
+    <table class="cart-table">
+      <thead><tr><th>Product</th><th>Qty</th><th>Total</th></tr></thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr class="cart-row">
+            <td>{{ line.title }}</td>
+            <td>{{ line.quantity }}</td>
+            <td>{{ line.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+    <div class="cart-foot"><div class="cart-foot__box">
+      <div class="cart-foot__row"><span>Subtotal</span><span>{{ order.line_items_subtotal_price | money }}</span></div>
+      <div class="cart-foot__row"><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div>
+      <div class="cart-foot__row"><span>Tax</span><span>{{ order.tax_price | money }}</span></div>
+      <div class="cart-foot__row"><span style="font-weight:700">Total</span><span class="price-now" style="font-size:1.3rem">{{ order.total_price | money }}</span></div>
+    </div></div>
+  </div>
+  <p style="text-align:center"><a class="link" href="{{ routes.account_url }}">&larr; Back to my account</a></p>
+</section>

@@ -1,0 +1,72 @@
+{%- liquid
+  assign menu1 = linklists[section.settings.menu_1]
+  assign menu2 = linklists[section.settings.menu_2]
+-%}
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="{{ routes.root_url }}" class="brand">{% render 'icon', name: 'logo' %}<span>{{ shop.name }}</span></a>
+        <p>{{ section.settings.about }}</p>
+      </div>
+      <div>
+        <h4>{{ section.settings.menu_1_title }}</h4>
+        <ul>
+          {%- if menu1.links.size > 0 -%}
+            {%- for link in menu1.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+          {%- else -%}
+            <li><a href="{{ routes.root_url }}">Shop</a></li>
+            <li><a href="{{ routes.root_url }}#comfort">Why it's cozy</a></li>
+            <li><a href="{{ routes.root_url }}#faq">FAQ</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+      <div>
+        <h4>{{ section.settings.menu_2_title }}</h4>
+        <ul>
+          {%- if menu2.links.size > 0 -%}
+            {%- for link in menu2.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+          {%- else -%}
+            {%- for policy in shop.policies -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endfor -%}
+            {%- if shop.policies.size == 0 -%}<li><a href="{{ routes.search_url }}">Search</a></li>{%- endif -%}
+          {%- endif -%}
+        </ul>
+      </div>
+      <div>
+        <h4>{{ section.settings.news_title }}</h4>
+        <p>{{ section.settings.news_text }}</p>
+        {%- form 'customer', class: 'footer__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer__news">
+            <label class="visually-hidden" for="FooterEmail">Email</label>
+            <input type="email" id="FooterEmail" name="contact[email]" placeholder="Your email" autocomplete="email" required>
+            <button type="submit" class="btn btn--accent">Join</button>
+          </div>
+          {%- if form.posted_successfully? -%}<p class="newsletter__msg" style="color:#CFE0C9">Thanks for subscribing!</p>{%- endif -%}
+          {%- if form.errors -%}<p class="newsletter__msg" style="color:#F0B5A5">{{ form.errors | default_errors }}</p>{%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <div class="payment-icons">
+        {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag }}{%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "about", "label": "About text", "default": "Warmth you can feel, comfort you can keep. Ultra-soft blankets made for slow mornings and cozy nights." },
+    { "type": "text", "id": "menu_1_title", "label": "Column 1 title", "default": "Shop" },
+    { "type": "link_list", "id": "menu_1", "label": "Column 1 menu" },
+    { "type": "text", "id": "menu_2_title", "label": "Column 2 title", "default": "Help" },
+    { "type": "link_list", "id": "menu_2", "label": "Column 2 menu (store policies shown if empty)" },
+    { "type": "text", "id": "news_title", "label": "Newsletter title", "default": "Join the cozy club" },
+    { "type": "textarea", "id": "news_text", "label": "Newsletter text", "default": "New colours, cozy tips and members-only offers." }
+  ]
+}
+{% endschema %}

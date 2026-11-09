@@ -1,0 +1,70 @@
+<section class="section section--cream" id="why">
+  <div class="container split{% if section.settings.reverse %} split--reverse{% endif %}">
+    <div class="split__media reveal">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 1000 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="1000" height="1250">
+      {%- else -%}
+        <svg viewBox="0 0 400 500" width="100%" height="100%" role="img" aria-label="Cozy evening illustration" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="500" fill="#EADCC8"/>
+          <circle cx="310" cy="96" r="44" fill="#FFF3E2"/><circle cx="328" cy="84" r="40" fill="#EADCC8"/>
+          <g fill="#FFF8EF" opacity=".8"><circle cx="70" cy="70" r="2.5"/><circle cx="130" cy="120" r="2"/><circle cx="220" cy="60" r="2.5"/><circle cx="90" cy="170" r="2"/></g>
+          <!-- sofa -->
+          <rect x="40" y="300" width="320" height="110" rx="34" fill="#B98A62"/>
+          <rect x="70" y="250" width="260" height="90" rx="30" fill="#C99A70"/>
+          <rect x="54" y="404" width="14" height="30" rx="5" fill="#8C5F3E"/><rect x="332" y="404" width="14" height="30" rx="5" fill="#8C5F3E"/>
+          <!-- blanket draped -->
+          <path d="M120 262 C170 240 260 246 300 268 L318 420 C250 440 170 440 108 420 Z" fill="#F4ECE1"/>
+          <path d="M120 262 C170 240 260 246 300 268" fill="none" stroke="#D9C6AB" stroke-width="4"/>
+          <g stroke="#E3D3BE" stroke-width="3" fill="none"><path d="M150 300 C190 320 240 320 290 300"/><path d="M140 350 C190 372 250 372 305 350"/><path d="M130 398 C190 420 255 420 312 398"/></g>
+          <!-- mug -->
+          <rect x="300" y="210" width="40" height="44" rx="8" fill="#A8683A"/><path d="M340 222 h8 a9 9 0 0 1 0 18 h-8" fill="none" stroke="#A8683A" stroke-width="5"/>
+          <g fill="none" stroke="#FFF8EF" stroke-width="3" stroke-linecap="round" opacity=".9"><path d="M312 200c-6-8 6-12 0-22"/><path d="M326 200c-6-8 6-12 0-22"/></g>
+          <text x="200" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#2E241C">Cold nights,</text>
+          <text x="200" y="188" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="30" fill="#A8683A">warm you.</text>
+        </svg>
+      {%- endif -%}
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="split__lead">{{ section.settings.text }}</div>
+      <ul class="issue-list">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <span class="ico">{% render 'icon', name: block.settings.icon %}</span>
+            <div><strong>{{ block.settings.title }}</strong><span>{{ block.settings.text }}</span></div>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if section.settings.button != blank -%}<a href="#product" class="btn btn--primary btn--lg">{{ section.settings.button }}</a>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problem / solution",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "checkbox", "id": "reverse", "label": "Image on the right", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made for cold evenings" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your old blanket isn't keeping you warm" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Thin, scratchy throws that pill after two washes. Heavy duvets that leave you sweating. You deserve a blanket that simply feels good — every single night.</p>" },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get cozy now" }
+  ],
+  "blocks": [
+    { "type": "issue", "name": "Point", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "snow", "options": [
+        { "value": "snow", "label": "Cold" }, { "value": "flame", "label": "Warmth" }, { "value": "feather", "label": "Soft" }, { "value": "moon", "label": "Sleep" }, { "value": "washer", "label": "Wash" }, { "value": "sparkle", "label": "Sparkle" }, { "value": "heart", "label": "Heart" }
+      ] },
+      { "type": "text", "id": "title", "label": "Title", "default": "Always a little chilly" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Thin throws let the warmth slip away." }
+    ] }
+  ],
+  "presets": [{ "name": "Problem / solution", "blocks": [
+    { "type": "issue", "settings": { "icon": "snow", "title": "Always a little chilly", "text": "Thin throws let your body heat slip away the moment you sit down." } },
+    { "type": "issue", "settings": { "icon": "feather", "title": "Scratchy & pilling", "text": "Cheap fabrics lose their softness after just a few washes." } },
+    { "type": "issue", "settings": { "icon": "moon", "title": "Too hot, then too cold", "text": "Heavy covers trap sweat and ruin a good night's sleep." } }
+  ] }]
+}
+{% endschema %}

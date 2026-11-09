@@ -1,0 +1,24 @@
+<section class="section section--tight">
+  <div class="container">
+    <div class="guarantee reveal">
+      {% render 'icon', name: 'seal', days: settings.guarantee_days %}
+      <div>
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.text }}</p>
+      </div>
+      {%- if section.settings.button != blank -%}<a href="#product" class="btn btn--primary btn--lg">{{ section.settings.button }}</a>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Guarantee",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Snuggle it for 30 nights, risk-free" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "If it's not the coziest blanket you've ever owned, contact us within 30 days and we'll make it right. No stress." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Try it risk-free" }
+  ],
+  "presets": [{ "name": "Guarantee" }]
+}
+{% endschema %}

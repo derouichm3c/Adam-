@@ -1,0 +1,51 @@
+<section class="section section--cream" id="compare">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="compare reveal" role="table" aria-label="Comparison">
+      <div class="compare__row compare__head" role="row">
+        <div role="columnheader">&nbsp;</div>
+        <div role="columnheader">{{ section.settings.us_label | default: shop.name }}</div>
+        <div role="columnheader">{{ section.settings.them_label }}</div>
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="compare__row" role="row" {{ block.shopify_attributes }}>
+          <div class="compare__feature" role="cell">{{ block.settings.feature }}</div>
+          <div role="cell">{%- if block.settings.us -%}<span class="yes">{% render 'icon', name: 'check' %}</span>{%- else -%}<span class="no">{% render 'icon', name: 'x' %}</span>{%- endif -%}</div>
+          <div role="cell">{%- if block.settings.them -%}<span class="yes">{% render 'icon', name: 'check' %}</span>{%- else -%}<span class="no">{% render 'icon', name: 'x' %}</span>{%- endif -%}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button != blank -%}<div class="section-cta"><a href="#product" class="btn btn--accent btn--lg">{{ section.settings.button }}</a></div>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The difference" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Not all blankets are created equal" },
+    { "type": "text", "id": "us_label", "label": "Our column (store name if empty)" },
+    { "type": "text", "id": "them_label", "label": "Other column", "default": "Ordinary blanket" },
+    { "type": "text", "id": "button", "label": "Button", "default": "Choose comfort" }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Row", "settings": [
+      { "type": "text", "id": "feature", "label": "Feature", "default": "Ultra-soft plush feel" },
+      { "type": "checkbox", "id": "us", "label": "We have it", "default": true },
+      { "type": "checkbox", "id": "them", "label": "They have it", "default": false }
+    ] }
+  ],
+  "presets": [{ "name": "Comparison", "blocks": [
+    { "type": "row", "settings": { "feature": "Ultra-soft, plush feel", "us": true, "them": false } },
+    { "type": "row", "settings": { "feature": "Warm yet breathable", "us": true, "them": false } },
+    { "type": "row", "settings": { "feature": "Stays soft after washing", "us": true, "them": false } },
+    { "type": "row", "settings": { "feature": "No shedding or pilling", "us": true, "them": false } },
+    { "type": "row", "settings": { "feature": "Machine washable", "us": true, "them": true } },
+    { "type": "row", "settings": { "feature": "30-day comfort guarantee", "us": true, "them": false } }
+  ] }]
+}
+{% endschema %}

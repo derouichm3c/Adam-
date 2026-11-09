@@ -1,0 +1,355 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "stats": {
+      "type": "stats-bar",
+      "settings": {},
+      "blocks": {
+        "stats_1": {
+          "type": "stat",
+          "settings": {
+            "number": "Ultra-soft",
+            "label": "Plush, cloud-like feel"
+          }
+        },
+        "stats_2": {
+          "type": "stat",
+          "settings": {
+            "number": "All-season",
+            "label": "Warm, never stuffy"
+          }
+        },
+        "stats_3": {
+          "type": "stat",
+          "settings": {
+            "number": "Washable",
+            "label": "Machine wash & dry"
+          }
+        },
+        "stats_4": {
+          "type": "stat",
+          "settings": {
+            "number": "30 days",
+            "label": "Risk-free trial"
+          }
+        }
+      },
+      "block_order": [
+        "stats_1",
+        "stats_2",
+        "stats_3",
+        "stats_4"
+      ]
+    },
+    "problem": {
+      "type": "problem",
+      "settings": {},
+      "blocks": {
+        "problem_1": {
+          "type": "issue",
+          "settings": {
+            "icon": "snow",
+            "title": "Always a little chilly",
+            "text": "Thin throws let your body heat slip away the moment you sit down."
+          }
+        },
+        "problem_2": {
+          "type": "issue",
+          "settings": {
+            "icon": "feather",
+            "title": "Scratchy & pilling",
+            "text": "Cheap fabrics lose their softness after just a few washes."
+          }
+        },
+        "problem_3": {
+          "type": "issue",
+          "settings": {
+            "icon": "moon",
+            "title": "Too hot, then too cold",
+            "text": "Heavy covers trap sweat and ruin a good night's sleep."
+          }
+        }
+      },
+      "block_order": [
+        "problem_1",
+        "problem_2",
+        "problem_3"
+      ]
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {},
+      "blocks": {
+        "benefits_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flame",
+            "title": "Instant warmth",
+            "text": "Dense, plush fibres trap your body heat so you feel cozy within seconds."
+          }
+        },
+        "benefits_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "feather",
+            "title": "Cloud-soft touch",
+            "text": "A velvety finish that feels gentle on your skin, from the first night to the hundredth."
+          }
+        },
+        "benefits_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "moon",
+            "title": "Sleep better",
+            "text": "Breathable warmth that keeps you comfortable all night — not sweaty."
+          }
+        },
+        "benefits_4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "washer",
+            "title": "Easy care",
+            "text": "Toss it in the washing machine. It comes out just as soft as day one."
+          }
+        },
+        "benefits_5": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sofa",
+            "title": "Goes everywhere",
+            "text": "Sofa, bed, reading nook, road trips — your comfort follows you."
+          }
+        },
+        "benefits_6": {
+          "type": "benefit",
+          "settings": {
+            "icon": "gift",
+            "title": "The perfect gift",
+            "text": "Everyone loves a cozy blanket. Ideal for birthdays, holidays and housewarmings."
+          }
+        }
+      },
+      "block_order": [
+        "benefits_1",
+        "benefits_2",
+        "benefits_3",
+        "benefits_4",
+        "benefits_5",
+        "benefits_6"
+      ]
+    },
+    "comfort": {
+      "type": "comfort-layers",
+      "settings": {},
+      "blocks": {
+        "comfort_1": {
+          "type": "layer",
+          "settings": {
+            "title": "Velvety soft surface",
+            "text": "A smooth, silky touch that feels wonderful against bare skin."
+          }
+        },
+        "comfort_2": {
+          "type": "layer",
+          "settings": {
+            "title": "Plush warming core",
+            "text": "Dense fibres create tiny air pockets that hold your body heat in."
+          }
+        },
+        "comfort_3": {
+          "type": "layer",
+          "settings": {
+            "title": "Cozy, durable finish",
+            "text": "Reinforced stitched edges keep it looking beautiful wash after wash."
+          }
+        }
+      },
+      "block_order": [
+        "comfort_1",
+        "comfort_2",
+        "comfort_3"
+      ]
+    },
+    "moments": {
+      "type": "moments",
+      "settings": {},
+      "blocks": {
+        "moments_1": {
+          "type": "moment",
+          "settings": {
+            "icon": "sofa",
+            "title": "Movie nights",
+            "text": "Your sofa just became the best seat in the house."
+          }
+        },
+        "moments_2": {
+          "type": "moment",
+          "settings": {
+            "icon": "bed",
+            "title": "Deep, cozy sleep",
+            "text": "Add an extra layer of warmth to your bed on cold winter nights."
+          }
+        },
+        "moments_3": {
+          "type": "moment",
+          "settings": {
+            "icon": "gift",
+            "title": "A gift they'll use daily",
+            "text": "Thoughtful, useful and loved — the kind of gift that gets used every day."
+          }
+        }
+      },
+      "block_order": [
+        "moments_1",
+        "moments_2",
+        "moments_3"
+      ]
+    },
+    "compare": {
+      "type": "comparison",
+      "settings": {},
+      "blocks": {
+        "compare_1": {
+          "type": "row",
+          "settings": {
+            "feature": "Ultra-soft, plush feel",
+            "us": true,
+            "them": false
+          }
+        },
+        "compare_2": {
+          "type": "row",
+          "settings": {
+            "feature": "Warm yet breathable",
+            "us": true,
+            "them": false
+          }
+        },
+        "compare_3": {
+          "type": "row",
+          "settings": {
+            "feature": "Stays soft after washing",
+            "us": true,
+            "them": false
+          }
+        },
+        "compare_4": {
+          "type": "row",
+          "settings": {
+            "feature": "No shedding or pilling",
+            "us": true,
+            "them": false
+          }
+        },
+        "compare_5": {
+          "type": "row",
+          "settings": {
+            "feature": "Machine washable",
+            "us": true,
+            "them": true
+          }
+        },
+        "compare_6": {
+          "type": "row",
+          "settings": {
+            "feature": "30-day comfort guarantee",
+            "us": true,
+            "them": false
+          }
+        }
+      },
+      "block_order": [
+        "compare_1",
+        "compare_2",
+        "compare_3",
+        "compare_4",
+        "compare_5",
+        "compare_6"
+      ]
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {},
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "How warm is it?",
+            "answer": "<p>Very! The plush fibres trap your body heat, so you feel warm quickly — while staying breathable enough to avoid overheating.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I wash it?",
+            "answer": "<p>Machine wash cold on a gentle cycle and tumble dry on low. Avoid bleach and fabric softener to keep it extra soft.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "Does it shed or pill?",
+            "answer": "<p>It is made to resist shedding and pilling. A first wash before use removes any loose fibres from manufacturing.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Which size should I choose?",
+            "answer": "<p>Smaller sizes are perfect for the sofa and as a throw; larger sizes cover a bed or two people comfortably. See the sizes in the product selector.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders are processed within 1–3 business days. Delivery to Canada and the US usually takes 7–12 business days, with tracking.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "<p>You are covered by our 30-day guarantee. Contact us and we'll make it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6"
+      ]
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {}
+    },
+    "cta": {
+      "type": "final-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "stats",
+    "problem",
+    "benefits",
+    "comfort",
+    "moments",
+    "compare",
+    "reviews",
+    "faq",
+    "guarantee",
+    "cta"
+  ]
+}

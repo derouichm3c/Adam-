@@ -1,0 +1,46 @@
+<section class="section" id="moments">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        <div class="step reveal" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy" width="700" height="525" style="border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;margin-bottom:18px;width:100%">
+          {%- else -%}
+            <div class="step__num">{% render 'icon', name: block.settings.icon %}</div>
+          {%- endif -%}
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cozy moments",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made for every moment" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wherever you curl up" }
+  ],
+  "blocks": [
+    { "type": "moment", "name": "Moment", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+      { "type": "select", "id": "icon", "label": "Icon (if no image)", "default": "sofa", "options": [
+        { "value": "sofa", "label": "Sofa" }, { "value": "bed", "label": "Bed" }, { "value": "moon", "label": "Moon" }, { "value": "gift", "label": "Gift" }, { "value": "flame", "label": "Warmth" }, { "value": "heart", "label": "Heart" }
+      ] },
+      { "type": "text", "id": "title", "label": "Title", "default": "Movie nights" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Your sofa just became the best seat in the house." }
+    ] }
+  ],
+  "presets": [{ "name": "Cozy moments", "blocks": [
+    { "type": "moment", "settings": { "icon": "sofa", "title": "Movie nights", "text": "Your sofa just became the best seat in the house." } },
+    { "type": "moment", "settings": { "icon": "bed", "title": "Deep, cozy sleep", "text": "Add an extra layer of warmth to your bed on cold winter nights." } },
+    { "type": "moment", "settings": { "icon": "gift", "title": "A gift they'll use daily", "text": "Thoughtful, useful and loved — the kind of gift that gets used every day." } }
+  ] }]
+}
+{% endschema %}

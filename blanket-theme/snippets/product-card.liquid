@@ -1,0 +1,16 @@
+<a class="card" href="{{ card.url }}">
+  <div class="card__media">
+    {%- if card.featured_image -%}
+      <img src="{{ card.featured_image | image_url: width: 600 }}" alt="{{ card.featured_image.alt | default: card.title | escape }}" loading="lazy" width="600" height="600">
+    {%- else -%}
+      {% render 'blanket-illustration' %}
+    {%- endif -%}
+  </div>
+  <div class="card__body">
+    <div class="card__title">{{ card.title }}</div>
+    <div class="card__price">
+      <span>{% if card.price_varies %}From {% endif %}{{ card.price | money }}</span>
+      {%- if card.compare_at_price > card.price -%}<s>{{ card.compare_at_price | money }}</s>{%- endif -%}
+    </div>
+  </div>
+</a>

@@ -1,0 +1,29 @@
+<section class="stats">
+  <div class="container stats__grid">
+    {%- for block in section.blocks -%}
+      <div class="reveal" {{ block.shopify_attributes }}>
+        <div class="stats__num">{{ block.settings.number }}</div>
+        <div class="stats__label">{{ block.settings.label }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stats bar",
+  "max_blocks": 4,
+  "blocks": [
+    { "type": "stat", "name": "Stat", "settings": [
+      { "type": "text", "id": "number", "label": "Number", "default": "Ultra-soft" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Plush, cloud-like feel" }
+    ] }
+  ],
+  "presets": [{ "name": "Stats bar", "blocks": [
+    { "type": "stat", "settings": { "number": "Ultra-soft", "label": "Plush, cloud-like feel" } },
+    { "type": "stat", "settings": { "number": "All-season", "label": "Warm, never stuffy" } },
+    { "type": "stat", "settings": { "number": "Washable", "label": "Machine wash & dry" } },
+    { "type": "stat", "settings": { "number": "30 days", "label": "Risk-free trial" } }
+  ] }]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+<section class="section" id="benefits">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div class="benefits">
+      {%- for block in section.blocks -%}
+        <div class="benefit reveal" {{ block.shopify_attributes }}>
+          <div class="benefit__ico">{% render 'icon', name: block.settings.icon %}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why you'll love it" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pure comfort, wrapped around you" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Designed for the moments you slow down — and never want to get up." }
+  ],
+  "blocks": [
+    { "type": "benefit", "name": "Benefit", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "flame", "options": [
+        { "value": "flame", "label": "Warmth" }, { "value": "feather", "label": "Soft" }, { "value": "snow", "label": "Cold" }, { "value": "moon", "label": "Sleep" }, { "value": "washer", "label": "Wash" }, { "value": "gift", "label": "Gift" }, { "value": "sofa", "label": "Sofa" }, { "value": "bed", "label": "Bed" }, { "value": "layers", "label": "Layers" }, { "value": "leaf", "label": "Leaf" }, { "value": "sparkle", "label": "Sparkle" }, { "value": "shield", "label": "Shield" }, { "value": "heart", "label": "Heart" }
+      ] },
+      { "type": "text", "id": "title", "label": "Title", "default": "Instant warmth" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Traps your body heat so you feel warm in seconds." }
+    ] }
+  ],
+  "presets": [{ "name": "Benefits", "blocks": [
+    { "type": "benefit", "settings": { "icon": "flame", "title": "Instant warmth", "text": "Dense, plush fibres trap your body heat so you feel cozy within seconds." } },
+    { "type": "benefit", "settings": { "icon": "feather", "title": "Cloud-soft touch", "text": "A velvety finish that feels gentle on your skin, from the first night to the hundredth." } },
+    { "type": "benefit", "settings": { "icon": "moon", "title": "Sleep better", "text": "Breathable warmth that keeps you comfortable all night — not sweaty." } },
+    { "type": "benefit", "settings": { "icon": "washer", "title": "Easy care", "text": "Toss it in the washing machine. It comes out just as soft as day one." } },
+    { "type": "benefit", "settings": { "icon": "sofa", "title": "Goes everywhere", "text": "Sofa, bed, reading nook, road trips — your comfort follows you." } },
+    { "type": "benefit", "settings": { "icon": "gift", "title": "The perfect gift", "text": "Everyone loves a cozy blanket. Ideal for birthdays, holidays and housewarmings." } }
+  ] }]
+}
+{% endschema %}

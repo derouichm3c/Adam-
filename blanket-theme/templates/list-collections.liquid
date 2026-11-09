@@ -1,0 +1,11 @@
+<section class="page-hero"><div class="container"><h1>Shop</h1></div></section>
+<section class="page-wrap">
+  <div class="container grid-products">
+    {%- for c in collections -%}
+      <a class="card" href="{{ c.url }}">
+        <div class="card__media">{%- if c.featured_image -%}<img src="{{ c.featured_image | image_url: width: 600 }}" alt="{{ c.title | escape }}" loading="lazy" width="600" height="600">{%- else -%}{% render 'blanket-illustration' %}{%- endif -%}</div>
+        <div class="card__body"><div class="card__title">{{ c.title }}</div><div class="card__price">{{ c.products_count }} products</div></div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>

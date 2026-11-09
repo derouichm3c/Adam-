@@ -1,0 +1,26 @@
+<section class="auth">
+  <h1>Create account</h1>
+  <div class="account-block">
+    {%- form 'create_customer' -%}
+      {%- if form.errors -%}<p class="newsletter__msg" style="color:#c0392b">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="field">
+        <label for="FirstName">First name</label>
+        <input type="text" id="FirstName" name="customer[first_name]" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="LastName">Last name</label>
+        <input type="text" id="LastName" name="customer[last_name]" autocomplete="family-name">
+      </div>
+      <div class="field">
+        <label for="RegEmail">Email</label>
+        <input type="email" id="RegEmail" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="RegPassword">Password</label>
+        <input type="password" id="RegPassword" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="btn btn--primary btn--lg btn--block">Create account</button>
+    {%- endform -%}
+  </div>
+  <p style="text-align:center;color:var(--muted)">Already have an account? <a class="link" href="{{ routes.account_login_url }}">Sign in</a></p>
+</section>

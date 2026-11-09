@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+    <div class="final-cta reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <a href="#product" class="btn btn--accent btn--lg">{{ section.settings.button }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final call to action",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Your coziest season starts now" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wrap yourself in warmth tonight" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Free tracked shipping, a 30-day guarantee and the softest blanket you'll ever own." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get my blanket" }
+  ],
+  "presets": [{ "name": "Final call to action" }]
+}
+{% endschema %}
